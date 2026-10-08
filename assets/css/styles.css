@@ -166,3 +166,10 @@ a:focus-visible {
         gap: 0.25rem;
     }
 }
+
+@media (min-width: 64rem) and (min-height: 45rem) {
+    header {
+        position: sticky;
+        top: 3rem;
+    }
+}
