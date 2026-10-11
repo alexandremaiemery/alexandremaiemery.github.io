@@ -1,138 +1,142 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
-Date de cadrage : 1 octobre 2026  
-Statut : développement en cours — contenu HTML et styles de base réalisés
+Date de cadrage : 1er octobre 2026  
+Dernière mise à jour : 11 octobre 2026  
+Statut : développement en cours — structure HTML et mise en page de base réalisées, JavaScript à développer
 
-Ce document rassemble les objectifs, le contenu, les décisions techniques
-et les règles de travail du portfolio. Il doit être actualisé lorsque
-le projet évolue.
+Ce document rassemble les objectifs, le contenu, les décisions techniques
+et les règles de travail du portfolio. Il doit être actualisé lorsque
+le projet évolue. Le code du dépôt reste la référence pour l’état exact
+du site.
 
-## 1. Identité et objectifs
+## 1. Identité et objectifs
 
-- Nom affiché : Alexandre MAI--EMERY.
+- Nom affiché : Alexandre MAI--EMERY.
 - Identifiant GitHub : alexandremaiemery.
-- Langue de la V1 : français.
-- Public : recruteurs, enseignants, étudiants, collaborateurs potentiels
-  et toute personne souhaitant découvrir mon parcours.
-- Objectif prioritaire : préparer mes futures candidatures.
-- Objectifs complémentaires : développer ma présence professionnelle,
-  approfondir mes compétences web et présenter mes futurs projets.
-- Résultat attendu : un site professionnel, propre, moderne et personnel,
-  reflétant un travail sérieux.
-- Aucune échéance imposée pour le moment.
-- Développement progressif, selon le temps disponible.
-- Budget initial : zéro euro.
-- Une petite dépense pourra être envisagée plus tard si elle est justifiée,
+- Langue de la V1 : français.
+- Public : recruteurs, enseignants, étudiants, collaborateurs potentiels
+  et toute personne souhaitant découvrir mon parcours.
+- Objectif prioritaire : préparer mes futures candidatures.
+- Objectifs complémentaires : développer ma présence professionnelle,
+  approfondir mes compétences web et présenter mes futurs projets.
+- Résultat attendu : un site professionnel, propre, moderne et personnel,
+  reflétant un travail sérieux.
+- Aucune échéance imposée pour le moment.
+- Développement progressif, selon le temps disponible.
+- Budget initial : zéro euro.
+- Une petite dépense pourra être envisagée plus tard si elle est justifiée,
   notamment pour un domaine personnel.
 
-## 2. Parcours à présenter
+## 2. Parcours à présenter
 
-### Licence — depuis la rentrée 2026
+### Licence — depuis la rentrée 2026
 
-- Sorbonne Université.
-- Portail Mathématiques-Informatique.
-- Campus de Jussieu, historiquement associé à l’UPMC.
-- Entrée en L1 pour l’année universitaire 2026–2027.
+- Sorbonne Université.
+- Portail Mathématiques-Informatique.
+- Campus de Jussieu, historiquement associé à l’UPMC.
+- Entrée en L1 pour l’année universitaire 2026–2027.
 - Formation en cours.
+- Formulation retenue : « Licence — depuis 2026 ». Aucune date de fin
+  n’est présentée comme certaine.
 
-### Baccalauréat général — session 2026
+### Baccalauréat général — session 2026
 
-- Année scolaire 2025–2026.
-- Spécialités Mathématiques et NSI
-  (Numérique et sciences de l’informatique).
-- Mention très bien.
+- Année scolaire 2025–2026.
+- Spécialités Mathématiques et NSI
+  (Numérique et sciences de l’informatique).
+- Mention très bien.
 - Moyenne : 16,0/20.
 
-La mention et la moyenne pourront apparaître dans la section Parcours.
-Elles ne seront pas mises au centre de la présentation principale.
+La mention et la moyenne pourront apparaître dans la section Parcours.
+Elles ne seront pas mises au centre de la présentation principale.
 
-Aucun domaine de spécialisation informatique ne sera annoncé pour
-le moment : il est encore trop tôt pour arrêter ce choix.
+Aucun domaine de spécialisation informatique ne sera annoncé pour
+le moment : il est encore trop tôt pour arrêter ce choix.
 
-## 3. Compétences actuelles
+## 3. Compétences actuelles
 
 ### Python
 
-Langage pratiqué depuis le lycée.
+Langage pratiqué depuis le lycée.
 
-Notions déjà étudiées et utilisées :
+Notions déjà étudiées et utilisées :
 
 - fonctions ;
 - listes et dictionnaires ;
-- lecture et écriture de fichiers ;
+- lecture et écriture de fichiers ;
 - classes ;
 - modules.
 
-Le niveau sera présenté honnêtement, sans revendiquer une expertise.
+Le niveau sera présenté honnêtement, sans revendiquer une expertise.
 
-### Autres compétences
+### Autres compétences
 
-- HTML et CSS : bases acquises au lycée, à approfondir avec ce portfolio.
+- HTML et CSS : bases acquises au lycée, à approfondir avec ce portfolio.
 - PHP et SQLite : initiation.
 - Git et GitHub : bases du versionnement et utilisation du terminal.
-- JavaScript : apprentissage progressif pendant le développement du site.
+- JavaScript : apprentissage progressif pendant le développement du site.
 
-Les compétences seront décrites par des notions ou des usages concrets.
-Pas de pourcentages, d’étoiles ou de niveaux artificiellement précis.
+Les compétences seront décrites par des notions ou des usages concrets.
+Pas de pourcentages, d’étoiles ou de niveaux artificiellement précis.
 
 ## 4. Contenu de la V1
 
-La V1 sera composée d’une seule page.
+La V1 sera composée d’une seule page.
 
-### Présentation principale
+### Présentation principale
 
-- Nom et prénom.
-- Intitulé envisagé : « Étudiant en mathématiques et informatique ».
+- Nom et prénom.
+- Intitulé envisagé : « Étudiant en mathématiques et informatique ».
 - Introduction courte.
 - Sommaire.
 - Liens rapides.
-- Commande de changement de thème.
+- Commande de changement de thème.
 
-### À propos
+### À propos
 
-- Présentation personnelle concise.
+- Présentation personnelle concise.
 - Formation actuelle et motivation.
-- Photo réelle, de taille modérée.
-- Aucun texte générique ni spécialisation inventée.
+- Photo réelle, de taille modérée.
+- Aucun texte générique ni spécialisation inventée.
 
 ### Parcours
 
 - Licence en cours.
-- Baccalauréat.
-- Présentation chronologique avec dates clairement visibles.
+- Baccalauréat.
+- Présentation chronologique avec dates clairement visibles.
 
-### Compétences
+### Compétences
 
 - Python.
 - HTML et CSS.
-- Initiation à PHP et SQLite.
+- Initiation à PHP et SQLite.
 - Git et GitHub.
-- Mise à jour progressive selon les acquis réels.
+- Mise à jour progressive selon les acquis réels.
 
 ### Contact et CV
 
 - Adresse e-mail visible et lien de contact.
 - GitHub.
 - LinkedIn.
-- Téléchargement direct du CV public au format PDF.
+- Téléchargement direct du CV public au format PDF.
 
-Aucune section Projets vide et aucune carte « À venir » pour remplir
+Aucune section Projets vide et aucune carte « À venir » pour remplir
 artificiellement le site.
 
 ## 5. Direction visuelle
 
-Style recherché :
+Style recherché :
 
 - sobre ;
 - professionnel ;
 - moderne ;
-- épuré ;
+- épuré ;
 - fluide ;
 - lisible.
 
-### Références
+### Références
 
-Classement des références étudiées :
+Classement des références étudiées :
 
 1. Brittany Chiang.
 2. Tania Rascia.
@@ -140,165 +144,200 @@ Classement des références étudiées :
 4. Adham Dannaway.
 5. Rauno Freiberg.
 
-Brittany Chiang est la référence principale :
+Brittany Chiang est la référence principale :
 
 - composition en deux colonnes ;
-- présentation et sommaire à gauche ;
-- contenu détaillé à droite ;
-- qualité de la typographie ;
-- hiérarchie des informations ;
-- présentation du parcours et des projets ;
-- animations et interactions discrètes.
+- présentation et sommaire à gauche ;
+- contenu détaillé à droite ;
+- qualité de la typographie ;
+- hiérarchie des informations ;
+- présentation du parcours et des projets ;
+- animations et interactions discrètes.
 
-Tania Rascia est une référence complémentaire :
+Tania Rascia est une référence complémentaire :
 
-- présentation chronologique du parcours ;
-- navigation latérale ;
-- bouton de changement de thème ;
+- présentation chronologique du parcours ;
+- navigation latérale ;
+- bouton de changement de thème ;
 - organisation des projets pour une future version.
 
-Le site aura sa propre identité visuelle et son propre code.
-Il ne sera pas une copie conforme de ces références.
+Le site aura sa propre identité visuelle et son propre code.
+Il ne sera pas une copie conforme de ces références.
 
-Les couleurs exactes, la police et les espacements restent à choisir.
+### État actuel (provisoire)
 
-## 6. Organisation selon la taille de l’écran
+- Thème sombre de base : fond bleu très foncé (`#111827`), texte principal
+  presque blanc (`#f1f5f9`), texte secondaire gris clair (`#a8b4c7`),
+  accent bleu clair (`#7dd3fc`), définis par des variables CSS.
+- Police système (`system-ui`), taille de base `1rem`, interligne `1.7`.
+- Les couleurs définitives, la police et les espacements restent à choisir.
 
-### Écrans suffisamment larges
+## 6. Organisation selon la taille de l’écran
 
-Colonne gauche restant visible pendant le défilement :
+### Écrans suffisamment larges
 
-- identité ;
-- courte présentation ;
+Colonne gauche restant visible pendant le défilement :
+
+- identité ;
+- courte présentation ;
 - navigation ;
 - liens rapides ;
-- commande de thème.
+- commande de thème.
 
 Colonne droite :
 
-- À propos ;
+- À propos ;
 - Parcours ;
-- Compétences ;
+- Compétences ;
 - Contact et CV.
 
-### Téléphones et petits écrans
+Mise en œuvre actuelle :
+
+- deux colonnes avec CSS Grid à partir de `64rem` de largeur ;
+- présentation fixe au défilement (`position: sticky`) uniquement si
+  l’écran est à la fois assez large (`64rem`) et assez haut (`45rem`),
+  afin qu’une présentation trop haute ne reste pas bloquée dans une
+  fenêtre basse ;
+- ce seuil de hauteur est à retester lorsque la présentation s’agrandira
+  (liens rapides, commande de thème).
+
+### Téléphones et petits écrans
 
 - Une seule colonne.
-- Présentation en haut.
+- Présentation en haut.
 - Navigation compacte.
 - Sections successives.
 - Contact et CV en bas.
-- Aucun défilement horizontal imposé.
+- Aucun défilement horizontal imposé.
 
-## 7. Thèmes et interactions
+### Prénom et nom
 
-Deux thèmes sont prévus :
+Le prénom et le nom sont volontairement sur deux lignes (saut de ligne
+dans le titre principal). Ne pas imposer `white-space: nowrap`, qui
+provoquerait un débordement horizontal ; tester sur les très petits écrans.
+
+## 7. Thèmes et interactions
+
+Deux thèmes sont prévus :
 
 - clair ;
 - sombre.
 
-Comportement souhaité :
+Comportement souhaité :
 
-- préférence système utilisée au premier accès ;
-- bouton permettant de changer le thème ;
-- mémorisation du choix lorsque le navigateur le permet.
+- préférence système utilisée au premier accès ;
+- bouton permettant de changer le thème ;
+- mémorisation du choix lorsque le navigateur le permet.
 
-Interactions prévues pour la V1 :
+Interactions prévues pour la V1 :
 
-- animation d’entrée légère ;
+- animation d’entrée légère ;
 - transitions sur les liens et boutons ;
-- survol discret des éléments du parcours ;
+- survol discret des éléments du parcours ;
 - indication de la section active dans le sommaire ;
-- changement de thème soigné.
+- changement de thème soigné.
 
-À éviter :
+À éviter :
 
-- écran d’attente obligatoire ;
-- curseur personnalisé ;
-- défilement détourné ou inhabituel ;
-- animations gênant la lecture ;
-- effets décoratifs sans intérêt.
+- écran d’attente obligatoire ;
+- curseur personnalisé ;
+- défilement détourné ou inhabituel ;
+- animations gênant la lecture ;
+- effets décoratifs sans intérêt ;
+- changements de taille ou de graisse provoquant des déplacements au survol.
 
-Les préférences de réduction des animations seront respectées.
+Les préférences de réduction des animations seront respectées.
 Le contenu et la navigation devront rester utilisables sans JavaScript.
 
-## 8. Technologies et hébergement
+## 8. Technologies et hébergement
 
-Choix validés :
+Choix validés :
 
 - HTML pour la structure et le contenu.
-- CSS pour la présentation et les mises en page.
+- CSS pour la présentation et les mises en page.
 - JavaScript pour les interactions utiles.
 - Git pour le versionnement.
-- GitHub pour le dépôt.
-- GitHub Pages pour l’hébergement.
+- GitHub pour le dépôt.
+- GitHub Pages pour l’hébergement.
 
 Pour la V1 :
 
 - aucun framework ;
 - aucun backend ;
-- aucune base de données ;
-- aucun outil de compilation imposé ;
-- aucune dépendance ajoutée sans besoin expliqué.
+- aucune base de données ;
+- aucun outil de compilation imposé ;
+- aucune dépendance ajoutée sans besoin expliqué.
 
-Dépôt public prévu :
-alexandremaiemery.github.io
+Dépôt public : `alexandremaiemery/alexandremaiemery.github.io`
+(branche `main`).
 
-Adresse initiale prévue : https://alexandremaiemery.github.io/
+Adresse du site : https://alexandremaiemery.github.io/
 
-Un domaine personnel pourra être ajouté plus tard.
-Le projet ne dépendra pas d’une offre étudiante temporaire.
+Un domaine personnel pourra être ajouté plus tard.
+Le projet ne dépendra pas d’une offre étudiante temporaire.
 
-Les futures applications nécessitant un serveur seront hébergées
-séparément et présentées depuis le portfolio.
+Les futures applications nécessitant un serveur seront hébergées
+séparément et présentées depuis le portfolio.
 
-## 9. Environnement de développement
+## 9. Environnement de développement
 
 - macOS.
 - MacBook Air M5.
 - Visual Studio Code.
-- Git utilisé dans le terminal.
-- Accès GitHub par SSH configuré.
-- GitHub Student Developer Pack activé.
+- Git utilisé dans le terminal.
+- Accès GitHub par SSH configuré (HTTPS reste utilisable).
+- GitHub Student Developer Pack activé.
+- Claude accède au dépôt par un connecteur GitHub en lecture seule.
 
-Copilot et la complétion peuvent être utilisés.
-Le code conservé doit être compris et testé.
+Copilot et la complétion peuvent être utilisés.
+Le code conservé doit être compris et testé.
+
+### Structure actuelle du dépôt
+
+- `index.html`
+- `assets/css/styles.css` (au pluriel ; l’ancien `style.css` est supprimé
+  et ne doit pas être recréé)
+- `assets/js/main.js` (vide pour l’instant)
+- `assets/documents/cv-alexandre-mai-emery.pdf` (CV public)
+- `docs/cahier-des-charges.md` (ce document)
+- `README.md`, `.gitignore`, `.nojekyll`
 
 ## 10. Informations publiques, photo et CV
 
-### Informations prévues sur le site
+### Informations prévues sur le site
 
-- Prénom et nom.
+- Prénom et nom.
 - Formation.
-- Compétences.
-- Photo réelle.
+- Compétences.
+- Photo réelle.
 - GitHub et LinkedIn.
 - Adresse e-mail de contact.
 
-### Informations à ne pas publier par défaut
+### Informations à ne pas publier par défaut
 
-- Numéro personnel.
-- Adresse postale complète.
+- Numéro personnel.
+- Adresse postale complète.
 - Date de naissance.
-- Identifiants étudiants.
+- Identifiants étudiants.
 - Documents administratifs.
-- Secrets, clés privées ou jetons d’accès.
+- Secrets, clés privées ou jetons d’accès.
 
 ### Deux versions du CV
 
 CV public :
 
-- téléchargement direct depuis le site ;
-- informations adaptées à une publication sur Internet ;
-- numéro personnel retiré.
+- téléchargement direct depuis le site (lien avec l’attribut `download`) ;
+- informations adaptées à une publication sur Internet ;
+- numéro personnel retiré ;
+- fichier : `assets/documents/cv-alexandre-mai-emery.pdf`.
 
 CV de candidature :
 
-- coordonnées supplémentaires utiles, notamment le téléphone ;
-- envoyé directement lorsque c’est pertinent ;
-- conservé hors du dépôt du portfolio.
+- coordonnées supplémentaires utiles, notamment le téléphone ;
+- envoyé directement lorsque c’est pertinent ;
+- conservé hors du dépôt du portfolio.
 
-La version complète ne doit pas être ajoutée au dépôt, même temporairement.
+La version complète ne doit pas être ajoutée au dépôt, même temporairement.
 
 ### Contact
 
@@ -307,131 +346,211 @@ Pour la V1 :
 - adresse e-mail ;
 - lien ouvrant la messagerie ;
 - liens professionnels ;
-- téléchargement direct du CV public.
+- téléchargement direct du CV public.
 
 Pas de formulaire ni d’envoi automatique de CV dans la V1.
 
 ### Photo
 
-Photo réelle pour le portfolio et le CV.
+Photo réelle pour le portfolio et le CV.
 
-Une version retouchée ou stylisée par IA pourra être préparée séparément
-pour d’autres profils, à partir d’une vraie photo et en conservant
-fidèlement les traits du visage.
+Une version retouchée ou stylisée par IA pourra être préparée séparément
+pour d’autres profils, à partir d’une vraie photo et en conservant
+fidèlement les traits du visage.
 
 ## 11. Situation des projets
 
-### Projet NSI du lycée
+### Projet NSI du lycée
 
-Robot de type voiture télécommandée :
+Robot de type voiture télécommandée :
 
 - interface web ;
 - serveur sur Raspberry Pi ;
 - commandes GPIO du robot ;
-- données GPS pour le suivi d’un itinéraire.
+- données GPS pour le suivi d’un itinéraire.
 
-Le suivi du trajet n’était pas satisfaisant.
-La cause exacte n’a pas été identifiée avec certitude.
+Le suivi du trajet n’était pas satisfaisant.
+La cause exacte n’a pas été identifiée avec certitude.
 
-Décision :
+Le projet est terminé et ne sera pas repris. L’ancien dépôt a été supprimé
+après sauvegarde hors GitHub.
 
-- ne pas le présenter dans la V1 ;
-- éventuellement préparer plus tard une rétrospective honnête
-  sur l’architecture, ma contribution, les résultats et les limites.
+Décision :
+
+- ne pas le présenter dans la V1 ;
+- éventuellement préparer plus tard une rétrospective honnête
+  sur l’architecture, ma contribution, les résultats et les limites.
 
 ### Projet personnel actuel
 
-Projet à un stade très précoce, dont la poursuite n’est pas garantie.
+Projet à un stade très précoce, dont la poursuite n’est pas garantie.
 
-Décision :
+Décision :
 
 - ne pas le mentionner pour le moment.
 
 ### Futurs projets
 
-Ils seront ajoutés lorsqu’il y aura quelque chose de concret à présenter.
+Ils seront ajoutés lorsqu’il y aura quelque chose de concret à présenter.
 
 Une fiche pourra contenir :
 
 - objectif ;
 - technologies ;
 - contribution personnelle ;
-- captures ou démonstration ;
-- difficultés et apprentissages ;
+- captures ou démonstration ;
+- difficultés et apprentissages ;
 - limites ;
-- lien vers le dépôt ;
-- lien vers l’application, si elle est hébergée.
+- lien vers le dépôt ;
+- lien vers l’application, si elle est hébergée.
 
-Des pages détaillées pourront être ajoutées pour alléger la page principale.
+Des pages détaillées pourront être ajoutées pour alléger la page principale.
 
-## 12. Règles de collaboration
+## 12. Règles de collaboration
 
-- Avancer par petites étapes.
-- Définir le résultat attendu avant de coder.
-- Expliquer les choix techniques et leur intérêt.
-- Donner un indice en premier en cas de blocage.
-- Fournir directement du code lorsque je le demande.
-- Expliquer le code fourni afin d’éviter une copie sans compréhension.
-- Ne pas limiter artificiellement les propositions à ce que je connais déjà.
-- Accompagner les notions nouvelles avec des exemples adaptés.
-- Pour une correction, fournir les parties modifiées plutôt que
-  le fichier complet, sauf demande contraire.
-- Vérifier chaque étape avant de poursuivre.
-- Distinguer les besoins de la V1 des idées pour plus tard.
+Ces règles s’appliquent à tout assistant IA qui m’accompagne sur ce projet.
+Elles reprennent mes règles générales de travail.
 
-## 13. Règles de développement
+### Méthode
 
-- Séparer HTML, CSS et JavaScript.
+- Avancer par petites étapes.
+- Définir le résultat attendu avant de coder.
+- Expliquer les choix techniques et leur intérêt.
+- Vérifier chaque étape avant de poursuivre.
+- Distinguer les besoins de la V1 des idées pour plus tard.
+- Ne pas lancer plusieurs fonctionnalités en même temps.
+- Ne pas limiter artificiellement les propositions à ce que je connais déjà.
+- Accompagner les notions nouvelles avec des exemples adaptés.
+- Ne jamais affirmer qu’un fichier, un comportement ou un déploiement a été
+  vérifié sans l’avoir réellement lu ou testé.
+
+### Aide et exercices
+
+- En cas de blocage ou d’exercice : donner d’abord un indice.
+- Fournir directement du code lorsque je le demande, puis l’expliquer pour
+  éviter une copie sans compréhension.
+
+### Format du code
+
+- Aucun commentaire inline dans le code fourni.
+- Explications après le bloc de code, jamais dedans.
+- Pour une correction : fournir le bloc complet à remplacer (la règle CSS
+  entière, la section HTML entière, la fonction entière), copiable tel quel,
+  et non seulement la ligne fautive.
+- Signaler la ligne modifiée après le bloc : numéro, ancienne version →
+  nouvelle version, raison. Jamais dans le code.
+- Messages de commit et textes du site en français. Les noms de classes et
+  de variables suivent la convention déjà en place dans le code.
+
+### GitHub
+
+- Connecteur GitHub en lecture seule uniquement.
+- Ne jamais modifier de fichier ni faire de commit, sauf demande explicite.
+- Lire l’état du dépôt au début d’une session de travail, puis seulement
+  après un commit ou un push annoncé, pas à chaque message.
+- Si je signale des modifications locales non poussées, ne pas relire le
+  dépôt (il ne les contient pas) : me demander les fichiers concernés.
+
+## 13. Règles de développement
+
+- Séparer HTML, CSS et JavaScript.
 - Utiliser une structure de fichiers simple.
-- Employer des noms cohérents et explicites.
-- Éviter les dépendances et les abstractions inutiles.
+- Employer des noms cohérents et explicites.
+- Éviter les dépendances et les abstractions inutiles.
 - Conserver les explications hors des blocs de code fournis.
 - Ne pas ajouter de commentaires inline dans ces blocs.
-- Faire des commits petits et compréhensibles.
-- Vérifier les fichiers inclus avant chaque commit.
-- Maintenir un README présentant le projet et son utilisation.
-- Mettre à jour ce cahier des charges lorsque les décisions changent.
-- Tester les liens, les thèmes, les interactions et la version mobile.
-- Prévoir la navigation au clavier et des contrastes lisibles.
-- Ne pas ajouter de suivi des visiteurs par défaut.
-- Ne jamais versionner de secret ou de document privé.
+- Faire des commits petits et compréhensibles.
+- Avant chaque commit : examiner les modifications, vérifier les fichiers
+  inclus, tester le comportement concerné, ajouter explicitement les
+  fichiers utiles (pas d’ajout machinal de tout), puis pousser et vérifier
+  l’état du dépôt.
+- Maintenir un README présentant le projet et son utilisation.
+- Mettre à jour ce cahier des charges lorsque les décisions changent.
+- Tester les liens, les thèmes, les interactions et la version mobile.
+- Prévoir la navigation au clavier et des contrastes lisibles.
+- Ne pas ajouter de suivi des visiteurs par défaut.
+- Ne jamais versionner de secret ou de document privé.
 
-## 14. Critères de validation de la V1
+## 14. Critères de validation de la V1
 
-- [ ] Présentation et parcours exacts.
+- [ ] Présentation et parcours exacts.
 - [ ] Textes relus et sans contenu artificiel.
-- [ ] Photo réelle adaptée.
-- [ ] Compétences décrites honnêtement.
-- [ ] Affichage propre sur téléphone et ordinateur.
-- [ ] Thèmes clair et sombre lisibles.
-- [ ] Navigation au clavier utilisable.
-- [ ] Animations discrètes et adaptées aux préférences utilisateur.
-- [ ] Contenu accessible même sans JavaScript.
+- [ ] Photo réelle adaptée.
+- [ ] Compétences décrites honnêtement.
+- [ ] Affichage propre sur téléphone et ordinateur.
+- [ ] Aucun débordement horizontal gênant.
+- [ ] Thèmes clair et sombre lisibles.
+- [ ] Navigation au clavier utilisable, focus visible.
+- [ ] Animations discrètes et adaptées aux préférences utilisateur.
+- [ ] Contenu accessible même sans JavaScript.
 - [ ] Liens GitHub, LinkedIn et e-mail fonctionnels.
-- [ ] CV public téléchargeable et vérifié.
-- [ ] Aucun document privé ni secret dans le dépôt.
-- [ ] README utile et à jour.
+- [ ] CV public téléchargeable et vérifié.
+- [ ] Aucun document privé ni secret dans le dépôt.
+- [ ] README utile et à jour.
 - [ ] Publication GitHub Pages fonctionnelle.
 - [ ] Aucun lien ou fichier manquant.
 
-## 15. État et prochaines étapes
+## 15. État et prochaines étapes
 
-Déjà effectué :
+État au 11 octobre 2026, vérifié dans le dépôt.
 
-- choix de GitHub Pages ;
-- validation du périmètre de la V1 ;
-- choix de la direction visuelle ;
-- changement du pseudo GitHub ;
-- actualisation des réglages Git ;
-- décision de créer deux versions du CV.
+### Réalisé
 
-À faire :
+- Choix de GitHub Pages, périmètre de la V1 et direction visuelle validés.
+- Changement du pseudo GitHub et actualisation des réglages Git.
+- Décision de créer deux versions du CV.
+- Dépôt public créé et cloné.
+- `index.html` : structure sémantique (en-tête, navigation, contenu
+  principal, quatre sections, pied de page), lien d’évitement, textes
+  principaux, liens e-mail, GitHub et LinkedIn, lien de téléchargement du
+  CV public. Validation HTML sans erreur à une étape précédente.
+- `styles.css` : thème sombre de base, typographie système, mise en page
+  responsive (une colonne, deux colonnes à partir de `64rem`, présentation
+  fixe au défilement sous conditions de largeur et de hauteur), contour de
+  focus visible.
+- CV public présent dans `assets/documents/`.
+- README minimal.
+- `main.js` créé mais vide.
 
-1. Créer et cloner le dépôt public.
-2. Enregistrer ce document.
-3. Préparer la structure HTML et les textes.
-4. Choisir les couleurs et la typographie.
-5. Construire la mise en page responsive.
-6. Ajouter les thèmes et les interactions.
-7. Intégrer la photo, les liens et le CV public.
-8. Tester et publier la V1.
+### Pas encore fait
+
+- États des liens du sommaire (couleur de repos, survol, focus clavier,
+  transition).
+- Présentation structurée du parcours.
+- Thème clair, bouton de changement, mémorisation du choix, suivi de la
+  préférence système.
+- Indication de la section active.
+- Animations d’entrée légères.
+- Photo.
+- Liens rapides et commande de thème dans la présentation.
+- Couleurs, police et espacements définitifs.
+- README complet.
+- Vérification de la publication GitHub Pages.
+- Validation complète de la V1 (section 14).
+
+### Prochaine étape
+
+États des liens du sommaire, comme petit exercice accompagné :
+
+- liens du sommaire en couleur secondaire (`--color-muted`) au repos ;
+- couleur d’accent au survol et au focus clavier ;
+- contour de focus conservé ;
+- transition de couleur uniquement (150 ms, `ease`), activée seulement
+  si l’utilisateur n’a pas demandé de réduction des animations
+  (`prefers-reduced-motion: no-preference`) ;
+- aucun déplacement du texte.
+
+Vérifications : survol puis sortie du lien, navigation avec Tab (accent et
+contour visibles), aucun décalage de la mise en page, affichage mobile
+inchangé, respect de la réduction des animations.
+
+### Ordre de travail proposé ensuite
+
+1. États et transitions des liens du sommaire.
+2. Présentation structurée du parcours.
+3. Thèmes clair et sombre.
+4. Indication de la section active.
+5. Animations d’entrée légères.
+
+Cet ordre peut être ajusté pour une raison technique, mais les étapes ne
+sont pas lancées simultanément.
