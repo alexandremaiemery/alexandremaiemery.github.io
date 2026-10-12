@@ -109,6 +109,18 @@ nav ul {
 nav a {
     display: inline-block;
     padding: 0.5rem 0;
+    color: var(--color-muted);
+}
+
+nav a:hover,
+nav a:focus-visible {
+    color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    nav a {
+        transition: color 150ms ease;
+    }
 }
 
 a:focus-visible {
