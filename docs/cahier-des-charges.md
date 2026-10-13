@@ -492,7 +492,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 11 octobre 2026, vérifié dans le dépôt.
+État au 13 octobre 2026, vérifié dans le dépôt.
 
 ### Réalisé
 
@@ -508,14 +508,15 @@ Elles reprennent mes règles générales de travail.
   responsive (une colonne, deux colonnes à partir de `64rem`, présentation
   fixe au défilement sous conditions de largeur et de hauteur), contour de
   focus visible.
+- Liens du sommaire : couleur secondaire au repos, accent au survol et au
+  focus clavier, transition de couleur de 150 ms réservée aux utilisateurs
+  n’ayant pas demandé de réduction des animations.
 - CV public présent dans `assets/documents/`.
 - README minimal.
 - `main.js` créé mais vide.
 
 ### Pas encore fait
 
-- États des liens du sommaire (couleur de repos, survol, focus clavier,
-  transition).
 - Présentation structurée du parcours.
 - Thème clair, bouton de changement, mémorisation du choix, suivi de la
   préférence système.
@@ -530,27 +531,21 @@ Elles reprennent mes règles générales de travail.
 
 ### Prochaine étape
 
-États des liens du sommaire, comme petit exercice accompagné :
+Présentation structurée du parcours. Le résultat attendu, la structure
+HTML et le style sont à définir au début de la prochaine session, avant
+d’écrire du code. Contraintes déjà décidées (sections 2 et 4) :
 
-- liens du sommaire en couleur secondaire (`--color-muted`) au repos ;
-- couleur d’accent au survol et au focus clavier ;
-- contour de focus conservé ;
-- transition de couleur uniquement (150 ms, `ease`), activée seulement
-  si l’utilisateur n’a pas demandé de réduction des animations
-  (`prefers-reduced-motion: no-preference`) ;
-- aucun déplacement du texte.
-
-Vérifications : survol puis sortie du lien, navigation avec Tab (accent et
-contour visibles), aucun décalage de la mise en page, affichage mobile
-inchangé, respect de la réduction des animations.
+- présentation chronologique, dates clairement visibles ;
+- licence formulée « depuis 2026 », sans date de fin annoncée ;
+- mention et moyenne du baccalauréat dans cette section, sans les mettre
+  au centre de la présentation.
 
 ### Ordre de travail proposé ensuite
 
-1. États et transitions des liens du sommaire.
-2. Présentation structurée du parcours.
-3. Thèmes clair et sombre.
-4. Indication de la section active.
-5. Animations d’entrée légères.
+1. Présentation structurée du parcours.
+2. Thèmes clair et sombre.
+3. Indication de la section active.
+4. Animations d’entrée légères.
 
 Cet ordre peut être ajusté pour une raison technique, mais les étapes ne
 sont pas lancées simultanément.
