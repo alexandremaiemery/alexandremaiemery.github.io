@@ -1,8 +1,8 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
 Date de cadrage : 1er octobre 2026  
-Dernière mise à jour : 11 octobre 2026  
-Statut : développement en cours — structure HTML et mise en page de base réalisées, JavaScript à développer
+Dernière mise à jour : 13 octobre 2026  
+Statut : développement en cours — structure HTML, mise en page de base et états du sommaire réalisés, JavaScript à développer
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
