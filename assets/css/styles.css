@@ -3,6 +3,7 @@
     --color-text: #f1f5f9;
     --color-muted: #a8b4c7;
     --color-accent: #7dd3fc;
+    --color-hover: rgba(125, 211, 252, 0.06);
 }
 
 body {
@@ -101,6 +102,21 @@ main {
     margin-top: 2rem;
 }
 
+.timeline-item {
+    position: relative;
+    isolation: isolate;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    inset: -1rem;
+    z-index: -1;
+    border: 0.25rem solid transparent;
+    border-radius: 0.75rem;
+    background-clip: padding-box;
+}
+
 .timeline-date {
     margin: 0 0 0.5rem;
     color: var(--color-text);
@@ -111,6 +127,7 @@ main {
 
 .timeline-content h3 {
     margin: 0 0 0.25rem;
+    color: var(--color-text);
 }
 
 .timeline-place {
@@ -155,6 +172,13 @@ nav a:focus-visible {
 @media (prefers-reduced-motion: no-preference) {
     nav a {
         transition: color 150ms ease;
+    }
+
+    .timeline-item,
+    .timeline-item::before,
+    .timeline-date,
+    .timeline-content h3 {
+        transition: opacity 150ms ease, background-color 150ms ease, color 150ms ease;
     }
 }
 
@@ -231,5 +255,20 @@ a:focus-visible {
 
     .timeline-date {
         margin: 0;
+    }
+}
+
+@media (hover: hover) {
+    .timeline-item:hover::before {
+        background-color: var(--color-hover);
+    }
+
+    .timeline:hover > .timeline-item:not(:hover) {
+        opacity: 0.7;
+    }
+
+    .timeline-item:hover .timeline-date,
+    .timeline-item:hover h3 {
+        color: var(--color-accent);
     }
 }
