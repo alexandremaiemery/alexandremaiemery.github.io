@@ -47,7 +47,7 @@ du site.
 
 - Année scolaire 2025–2026.
 - Lycée Gaston Bachelard, Chelles (77).
-- Spécialités Mathématiques et NSI (Numérique et sciences informatiques,
+- Spécialités Mathématiques et NSI (Numérique et Sciences Informatiques,
   intitulé officiel).
 - Mention très bien.
 - Moyenne : 16,0/20.
@@ -578,8 +578,8 @@ Elles reprennent mes règles générales de travail.
   `role="list"`. Les lecteurs d’écran peuvent ne pas les annoncer comme des
   listes. Non testé avec VoiceOver. Choix actuel : ne pas traiter, à
   reconsidérer éventuellement à la validation finale.
-- Intitulé officiel de la spécialité : « Numérique et sciences
-  informatiques ».
+- Intitulé officiel de la spécialité : « Numérique et Sciences
+  Informatiques ».
 
 ### Prochaine étape
 
