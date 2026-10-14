@@ -328,6 +328,9 @@ Le code conservé doit être compris et testé.
 - `assets/js/main.js` (vide pour l’instant)
 - `assets/documents/cv-alexandre-mai-emery.pdf` (CV public)
 - `docs/cahier-des-charges.md` (ce document)
+- `docs/instructions-ia.md` (instructions de projet à fournir aux
+  assistants IA)
+- `docs/prompt-type.md` (prompt type pour reprendre le travail)
 - `README.md`, `.gitignore`, `.nojekyll`
 
 ## 10. Informations publiques, photo et CV
@@ -530,7 +533,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 14 octobre 2026.
+État au 14 octobre 2026, vérifié dans le dépôt.
 
 ### Réalisé
 
@@ -544,7 +547,7 @@ Elles reprennent mes règles générales de travail.
   CV public. Section Parcours en liste ordonnée (`ol.timeline`) : Licence
   (2026 – Aujourd’hui) puis Baccalauréat (2026), avec lieu, mention et
   moyenne sur une ligne séparée, spécialités. Validation HTML sans erreur
-  à une étape précédente, à refaire.
+  le 14 octobre 2026.
 - `styles.css` : thème sombre de base, typographie système, mise en page
   responsive (une colonne, deux colonnes à partir de `64rem`, présentation
   fixe au défilement sous conditions de largeur et de hauteur), contour de
