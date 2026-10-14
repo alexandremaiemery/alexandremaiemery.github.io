@@ -585,7 +585,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 15 octobre 2026.
+État au 15 octobre 2026, vérifié dans le dépôt.
 
 ### Réalisé
 
@@ -640,11 +640,9 @@ Elles reprennent mes règles générales de travail.
 - Spécialité écrite « Numérique et Sciences Informatiques » (majuscules
   choisies pour faire ressortir les initiales de NSI ; le texte officiel
   est en minuscules).
-
-### Points à vérifier
-
-- La consigne de l’UE UL1IN021 autorise-t-elle la publication du projet
-  dans un dépôt public ? Non vérifié.
+- Le dépôt du projet Serrure à frappes est public : l’équipe enseignante
+  accède au code par ce dépôt, ce qui est autorisé par l’UE (confirmé le
+  15 octobre 2026).
 
 ### Prochaine étape
 
