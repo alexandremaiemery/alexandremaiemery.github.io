@@ -1,8 +1,8 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
 Date de cadrage : 1er octobre 2026  
-Dernière mise à jour : 14 octobre 2026    
-Statut : développement en cours — structure HTML, mise en page de base, états du sommaire et chronologie du parcours réalisés, JavaScript à développer
+Dernière mise à jour : 15 octobre 2026  
+Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours et carte de projet réalisés, JavaScript à développer
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -124,6 +124,19 @@ La V1 sera composée d’une seule page.
   puis spécialités.
 - Dates clairement visibles (format décrit en section 2).
 
+### Projets
+
+- Section placée juste après le Parcours, avec une entrée dans le sommaire.
+- Chaque projet est présenté par une carte : nom, mention « (en cours de
+  réalisation) » tant que le travail n’est pas terminé, et une description
+  limitée à l’idée de départ (une ou deux phrases), sans page dédiée.
+- Une carte n’est cliquable que si elle mène à une destination réelle
+  (voir section 7). Aucune carte « À venir » pour remplir artificiellement
+  le site.
+- Premier projet présenté : Serrure à frappes (voir section 11).
+- Une page dédiée et un récit complet ne viennent que lorsque le projet
+  est suffisamment avancé ou terminé (voir section 11).
+
 ### Compétences
 
 - Python.
@@ -138,18 +151,6 @@ La V1 sera composée d’une seule page.
 - GitHub.
 - LinkedIn.
 - Téléchargement direct du CV public au format PDF.
-
-### Projets
-
-- Aucune section Projets tant qu’aucun projet réel n’a commencé, et
-  aucune carte « À venir » pour remplir artificiellement le site.
-- Dès qu’un projet a réellement commencé, il est ajouté directement au
-  site avec la mention « (en cours de réalisation) » et une description
-  limitée à l’idée de départ (une ou deux phrases), sans page dédiée.
-- Une page dédiée et un récit complet ne viennent que lorsque le projet
-  est suffisamment avancé ou terminé (voir section 11).
-- Emplacement dans la page et dans le sommaire : à décider à
-  l’ajout du premier projet.
 
 ## 5. Direction visuelle
 
@@ -293,20 +294,28 @@ pour la V1). Mise en œuvre actuelle, en CSS seul :
   réduction des animations ;
 - aucun déplacement ni changement de taille ou de graisse.
 
-### Cartes de projets (à mettre en œuvre avec le premier projet)
+### Cartes de projets
 
-- Une carte n’est cliquable que si elle mène à une destination réelle
-  (dépôt, démonstration ou page dédiée). Sans destination, ce n’est pas
-  un lien.
-- Carte cliquable : toute la zone est cliquable, avec une flèche en haut à
-  droite. Au survol et au focus clavier, la flèche devient bleue comme le
-  titre et grossit légèrement ou s’incline vers la direction qu’elle
-  indique, par `transform` pour ne rien déplacer dans la page.
-- Mise en œuvre prévue : lien étiré sur le titre pour couvrir toute la
-  carte (plutôt qu’un `<a>` autour de tout le contenu), flèche décorative
-  masquée aux lecteurs d’écran.
-- Test prévu avec une page temporaire affichant « en développement »
-  (décision du 14 octobre 2026).
+Mise en œuvre actuelle, en HTML et CSS seuls :
+
+- carte entièrement cliquable (lien étiré : le lien du titre couvre toute
+  la carte), avec une flèche décorative en haut à droite, masquée aux
+  lecteurs d’écran ;
+- une carte n’est cliquable que si elle mène à une destination réelle
+  (dépôt, démonstration ou page dédiée) ; sans destination, ce n’est pas
+  un lien ;
+- au survol : même comportement que les étapes du parcours (fond teinté,
+  autres cartes atténuées à `0.7`), titre et flèche en couleur d’accent ;
+  la flèche se décale de 4 px vers le haut et la droite et grossit de
+  15 % (`transform`, aucun déplacement dans la page) ;
+- au clavier : contour visible sur toute la carte et mêmes effets qu’au
+  survol (sélecteur `:has()`, pris en charge à partir de Safari 15.4 ;
+  sans lui, le contour reste visible mais les autres effets au clavier
+  sont absents) ;
+- réduction des animations : la flèche ne bouge pas, la couleur change
+  sans transition ;
+- les liens vers un dépôt s’ouvrent dans le même onglet, comme les autres
+  liens du site.
 
 ## 8. Technologies et hébergement
 
@@ -451,6 +460,16 @@ Décision :
 
 - ne pas le mentionner pour le moment.
 
+### Serrure à frappes (projet de l’UE UL1IN021)
+
+- Projet de l’UE Éléments de programmation (UL1IN021), au premier
+  semestre de la première année de licence.
+- Dépôt GitHub : `alexandremaiemery/projet-ul1in021-serrure`.
+- Présenté sur le site par une carte cliquable vers ce dépôt, avec la
+  mention « (en cours de réalisation) », à retirer à la fin du projet.
+- Description actuelle volontairement minimale ; la description réelle
+  sera rédigée plus tard.
+
 ### Futurs projets
 
 Ils seront ajoutés lorsqu’il y aura quelque chose de concret à présenter.
@@ -566,7 +585,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 14 octobre 2026.
+État au 15 octobre 2026.
 
 ### Réalisé
 
@@ -575,19 +594,21 @@ Elles reprennent mes règles générales de travail.
 - Décision de créer deux versions du CV.
 - Dépôt public créé et cloné.
 - `index.html` : structure sémantique (en-tête, navigation, contenu
-  principal, quatre sections, pied de page), lien d’évitement, textes
+  principal, cinq sections, pied de page), lien d’évitement, textes
   principaux, liens e-mail, GitHub et LinkedIn, lien de téléchargement du
   CV public. Section Parcours en liste ordonnée (`ol.timeline`) : Licence
   (2026 – Aujourd’hui) puis Baccalauréat (2026), avec lieu, mention et
-  moyenne sur une ligne séparée, spécialités. Validation HTML sans erreur
-  le 14 octobre 2026.
+  moyenne sur une ligne séparée, spécialités. Section Projets (`ul.projects`)
+  avec la carte du projet Serrure à frappes, entrée correspondante dans le
+  sommaire. Validation HTML sans erreur le 14 octobre 2026 (avant l’ajout
+  de la section Projets).
 - `styles.css` : thème sombre de base, typographie système, mise en page
   responsive (une colonne, deux colonnes à partir de `64rem`, présentation
   fixe au défilement sous conditions de largeur et de hauteur), contour de
   focus visible, chronologie du parcours (date à gauche sur une colonne de
   `9rem` à partir de `40rem`, au-dessus du titre en dessous ; titre et date
-  dans la couleur du texte principal), survol des étapes (comportement
-  décrit en section 7).
+  dans la couleur du texte principal), survol des étapes et carte de projet
+  cliquable avec flèche (comportements décrits en section 7).
 - Liens du sommaire : couleur secondaire au repos, accent au survol et au
   focus clavier, transition de couleur de 150 ms réservée aux utilisateurs
   n’ayant pas demandé de réduction des animations.
@@ -597,8 +618,7 @@ Elles reprennent mes règles générales de travail.
 
 ### Pas encore fait
 
-- Cartes de projets cliquables avec flèche (à mettre en œuvre avec le
-  premier projet, test préalable prévu).
+- Description réelle du projet Serrure à frappes (à rédiger).
 - Thème clair, bouton de changement, mémorisation du choix, suivi de la
   préférence système.
 - Indication de la section active.
@@ -606,33 +626,37 @@ Elles reprennent mes règles générales de travail.
 - Photo.
 - Liens rapides et commande de thème dans la présentation.
 - Couleurs, police et espacements définitifs.
-- Section Projets (à ajouter quand un projet aura réellement commencé).
 - README complet.
 - Vérification de la publication GitHub Pages.
-- Validation complète de la V1 (section 14).
+- Validation complète de la V1 (section 14), dont une nouvelle validation
+  HTML.
 
 ### Décisions et limites connues
 
-- Les listes sans puces (sommaire, chronologie) n’ont pas d’attribut
-  `role="list"`. Les lecteurs d’écran peuvent ne pas les annoncer comme des
-  listes. Non testé avec VoiceOver. Choix actuel : ne pas traiter, à
-  reconsidérer éventuellement à la validation finale.
+- Les listes sans puces (sommaire, chronologie, projets) n’ont pas
+  d’attribut `role="list"`. Les lecteurs d’écran peuvent ne pas les
+  annoncer comme des listes. Non testé avec VoiceOver. Choix actuel : ne
+  pas traiter, à reconsidérer éventuellement à la validation finale.
 - Spécialité écrite « Numérique et Sciences Informatiques » (majuscules
   choisies pour faire ressortir les initiales de NSI ; le texte officiel
   est en minuscules).
 
+### Points à vérifier
+
+- La consigne de l’UE UL1IN021 autorise-t-elle la publication du projet
+  dans un dépôt public ? Non vérifié.
+
 ### Prochaine étape
 
-Carte de projet cliquable avec flèche, testée avec une page temporaire
-« en développement ». Le résultat attendu est à définir au début de
-l’étape, avant d’écrire du code.
+Thèmes clair et sombre, avec bouton de changement et mémorisation du choix
+(premier usage de JavaScript). Le résultat attendu est à définir au début
+de l’étape, avant d’écrire du code.
 
 ### Ordre de travail proposé ensuite
 
-1. Carte de projet cliquable avec flèche (test).
-2. Thèmes clair et sombre.
-3. Indication de la section active.
-4. Animations d’entrée légères.
+1. Thèmes clair et sombre.
+2. Indication de la section active.
+3. Animations d’entrée légères.
 
 Cet ordre peut être ajusté pour une raison technique, mais les étapes ne
 sont pas lancées simultanément.
