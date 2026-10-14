@@ -48,7 +48,7 @@ du site.
 - Année scolaire 2025–2026.
 - Lycée Gaston Bachelard, Chelles (77).
 - Spécialités Mathématiques et NSI (Numérique et Sciences Informatiques,
-  intitulé officiel).
+  majuscules choisies pour faire ressortir les initiales).
 - Mention très bien.
 - Moyenne : 16,0/20.
 - Spécialité Physique-chimie suivie en première puis abandonnée : non
@@ -277,6 +277,37 @@ Interactions prévues pour la V1 :
 Les préférences de réduction des animations seront respectées.
 Le contenu et la navigation devront rester utilisables sans JavaScript.
 
+### Survol des étapes du parcours
+
+Les étapes du parcours ne sont pas des liens (pas de page dédiée prévue
+pour la V1). Mise en œuvre actuelle, en CSS seul :
+
+- titre et date de chaque étape dans la couleur du texte principal ;
+- au survol d’une étape (zone élargie autour du texte) : fond légèrement
+  teinté (variable `--color-hover`), date et titre en couleur d’accent,
+  autres étapes atténuées à `0.7` d’opacité (limite fixée pour conserver
+  un contraste lisible) ;
+- curseur inchangé, puisque l’étape n’est pas cliquable ;
+- effet limité aux appareils disposant d’un vrai survol (`hover: hover`) ;
+- transition de 150 ms, supprimée pour les utilisateurs ayant demandé la
+  réduction des animations ;
+- aucun déplacement ni changement de taille ou de graisse.
+
+### Cartes de projets (à mettre en œuvre avec le premier projet)
+
+- Une carte n’est cliquable que si elle mène à une destination réelle
+  (dépôt, démonstration ou page dédiée). Sans destination, ce n’est pas
+  un lien.
+- Carte cliquable : toute la zone est cliquable, avec une flèche en haut à
+  droite. Au survol et au focus clavier, la flèche devient bleue comme le
+  titre et grossit légèrement ou s’incline vers la direction qu’elle
+  indique, par `transform` pour ne rien déplacer dans la page.
+- Mise en œuvre prévue : lien étiré sur le titre pour couvrir toute la
+  carte (plutôt qu’un `<a>` autour de tout le contenu), flèche décorative
+  masquée aux lecteurs d’écran.
+- Test prévu avec une page temporaire affichant « en développement »
+  (décision du 14 octobre 2026).
+
 ## 8. Technologies et hébergement
 
 Choix validés :
@@ -430,6 +461,8 @@ Règle d’ajout (décidée le 14 octobre 2026) :
   « (en cours de réalisation) » ;
 - sa description se limite à l’idée de départ, sans détailler le projet ;
 - un projet seulement prévu n’est pas présenté ;
+- une carte de projet n’est cliquable que si elle mène à une destination
+  réelle (voir section 7) ;
 - la mention est retirée à la fin du projet et la description est alors
   complétée ;
 - la fiche détaillée et la page dédiée viennent plus tard.
@@ -533,7 +566,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 14 octobre 2026, vérifié dans le dépôt.
+État au 14 octobre 2026.
 
 ### Réalisé
 
@@ -552,7 +585,9 @@ Elles reprennent mes règles générales de travail.
   responsive (une colonne, deux colonnes à partir de `64rem`, présentation
   fixe au défilement sous conditions de largeur et de hauteur), contour de
   focus visible, chronologie du parcours (date à gauche sur une colonne de
-  `9rem` à partir de `40rem`, au-dessus du titre en dessous).
+  `9rem` à partir de `40rem`, au-dessus du titre en dessous ; titre et date
+  dans la couleur du texte principal), survol des étapes (comportement
+  décrit en section 7).
 - Liens du sommaire : couleur secondaire au repos, accent au survol et au
   focus clavier, transition de couleur de 150 ms réservée aux utilisateurs
   n’ayant pas demandé de réduction des animations.
@@ -562,7 +597,8 @@ Elles reprennent mes règles générales de travail.
 
 ### Pas encore fait
 
-- Survol discret des étapes du parcours.
+- Cartes de projets cliquables avec flèche (à mettre en œuvre avec le
+  premier projet, test préalable prévu).
 - Thème clair, bouton de changement, mémorisation du choix, suivi de la
   préférence système.
 - Indication de la section active.
@@ -581,22 +617,19 @@ Elles reprennent mes règles générales de travail.
   `role="list"`. Les lecteurs d’écran peuvent ne pas les annoncer comme des
   listes. Non testé avec VoiceOver. Choix actuel : ne pas traiter, à
   reconsidérer éventuellement à la validation finale.
-- Intitulé officiel de la spécialité : « Numérique et Sciences
-  Informatiques ».
+- Spécialité écrite « Numérique et Sciences Informatiques » (majuscules
+  choisies pour faire ressortir les initiales de NSI ; le texte officiel
+  est en minuscules).
 
 ### Prochaine étape
 
-Survol discret des étapes du parcours. Le résultat attendu est à définir
-au début de l’étape, avant d’écrire du code. Contraintes déjà décidées
-(section 7) :
-
-- aucun déplacement ni changement de taille ou de graisse au survol ;
-- transition limitée aux utilisateurs n’ayant pas demandé de réduction
-  des animations.
+Carte de projet cliquable avec flèche, testée avec une page temporaire
+« en développement ». Le résultat attendu est à définir au début de
+l’étape, avant d’écrire du code.
 
 ### Ordre de travail proposé ensuite
 
-1. Survol discret des étapes du parcours.
+1. Carte de projet cliquable avec flèche (test).
 2. Thèmes clair et sombre.
 3. Indication de la section active.
 4. Animations d’entrée légères.
