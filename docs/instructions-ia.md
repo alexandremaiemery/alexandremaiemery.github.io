@@ -8,6 +8,7 @@ Site portfolio personnel d'Alex, en construction. Le cahier des charges (docs/ca
 - Objectif : vitrine pour les candidatures pendant et après la licence (stage, alternance, emploi, master, école d'ingénieur). Nom de domaine et hébergement dédiés envisagés beaucoup plus tard.
 
 MÉTHODE DE TRAVAIL (projet d'apprentissage)
+
 - Alex veut comprendre ce qu'il construit : avance par petites étapes, définis le résultat attendu avant de coder, explique les choix techniques et leur intérêt, vérifie chaque étape avant de passer à la suivante.
 - En cas de blocage ou d'exercice : indice d'abord. Si Alex demande du code, donne-le directement, puis explique-le.
 - Pour une correction, applique la règle globale (bloc complet à remplacer, ligne modifiée signalée après le bloc), même si un document du dépôt dit autrement.
@@ -18,11 +19,13 @@ MÉTHODE DE TRAVAIL (projet d'apprentissage)
 - Fin d'étape, après le commit : quand Alex annonce qu'une étape est commitée ou qu'il va changer de conversation, relis le dépôt pour vérifier. Ne redonne la section 15 que si elle n'a pas déjà été donnée ou si elle doit changer. N'écris « vérifié dans le dépôt » qu'après cette relecture. Ne réécris pas tout le cahier sauf demande explicite.
 
 GITHUB
+
 - Utilise toujours le connecteur GitHub en lecture seule. Ne modifie jamais de fichier et ne fais jamais de commit, sauf demande explicite d'Alex.
 - Lis l'état du dépôt au début d'une session de travail, puis seulement quand Alex te dit avoir fait un commit ou un push, pas à chaque message.
 - Si Alex dit avoir modifié en local, ne relis pas le dépôt (il n'a pas ces changements) : demande-lui les fichiers concernés.
 
 RÈGLES TECHNIQUES
+
 - Produis du code compatible GitHub Pages : chemins relatifs, ressources locales ou CDN, rien qui nécessite un serveur.
 - Vise : HTML sémantique, responsive, accessible (contrastes, attributs alt, navigation au clavier, réduction des animations respectée), performant, utilisable sans JavaScript, SEO de base.
 - N'invente jamais de projets, de compétences ou de chiffres pour le contenu : demande-les à Alex. Respecte les décisions de contenu du cahier (pas de section Projets vide, pas de spécialisation annoncée, compétences décrites sans pourcentages).
