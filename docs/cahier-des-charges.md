@@ -1,8 +1,8 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
 Date de cadrage : 1er octobre 2026  
-Dernière mise à jour : 13 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page de base et états du sommaire réalisés, JavaScript à développer
+Dernière mise à jour : 14 octobre 2026    
+Statut : développement en cours — structure HTML, mise en page de base, états du sommaire et chronologie du parcours réalisés, JavaScript à développer
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -33,22 +33,37 @@ du site.
 
 - Sorbonne Université.
 - Portail Mathématiques-Informatique.
-- Campus de Jussieu, historiquement associé à l’UPMC.
+- Campus de Jussieu (75005), historiquement associé à l’UPMC.
 - Entrée en L1 pour l’année universitaire 2026–2027.
 - Formation en cours.
-- Formulation retenue : « Licence — depuis 2026 ». Aucune date de fin
-  n’est présentée comme certaine.
+- Enseignements du premier semestre (intitulés officiels sur le site de
+  la faculté) : éléments de programmation (en Python), mathématiques pour
+  les sciences, sciences des données.
+- Présentation sur le site : titre « Licence, portail
+  Mathématiques-Informatique », date « 2026 – Aujourd’hui ». Aucune date
+  de fin n’est présentée comme certaine.
 
 ### Baccalauréat général — session 2026
 
 - Année scolaire 2025–2026.
-- Spécialités Mathématiques et NSI
-  (Numérique et sciences de l’informatique).
+- Lycée Gaston Bachelard, Chelles (77).
+- Spécialités Mathématiques et NSI (Numérique et sciences informatiques,
+  intitulé officiel).
 - Mention très bien.
 - Moyenne : 16,0/20.
+- Spécialité Physique-chimie suivie en première puis abandonnée : non
+  mentionnée sur le site pour le moment.
 
-La mention et la moyenne pourront apparaître dans la section Parcours.
-Elles ne seront pas mises au centre de la présentation principale.
+La mention et la moyenne apparaissent dans la section Parcours, sur une
+ligne séparée sous le lycée. Elles ne sont pas mises au centre de la
+présentation principale.
+
+### Format des dates
+
+- Une année : « 2026 ». Une période : « 2002 – 2005 » (de la plus ancienne
+  à la plus récente), avec un tiret demi-cadratin entouré d’espaces.
+  Étape en cours : « 2026 – Aujourd’hui ».
+- Étapes présentées de la plus récente à la plus ancienne.
 
 Aucun domaine de spécialisation informatique ne sera annoncé pour
 le moment : il est encore trop tôt pour arrêter ce choix.
@@ -101,9 +116,13 @@ La V1 sera composée d’une seule page.
 
 ### Parcours
 
+- Étapes de la plus récente à la plus ancienne.
+- Pour chaque étape : date à gauche (au-dessus du titre sur petit écran),
+  puis titre, lieu et détail.
 - Licence en cours.
-- Baccalauréat.
-- Présentation chronologique avec dates clairement visibles.
+- Baccalauréat : lycée, puis mention et moyenne sur une ligne séparée,
+  puis spécialités.
+- Dates clairement visibles (format décrit en section 2).
 
 ### Compétences
 
@@ -120,8 +139,17 @@ La V1 sera composée d’une seule page.
 - LinkedIn.
 - Téléchargement direct du CV public au format PDF.
 
-Aucune section Projets vide et aucune carte « À venir » pour remplir
-artificiellement le site.
+### Projets
+
+- Aucune section Projets tant qu’aucun projet réel n’a commencé, et
+  aucune carte « À venir » pour remplir artificiellement le site.
+- Dès qu’un projet a réellement commencé, il est ajouté directement au
+  site avec la mention « (en cours de réalisation) » et une description
+  limitée à l’idée de départ (une ou deux phrases), sans page dédiée.
+- Une page dédiée et un récit complet ne viennent que lorsque le projet
+  est suffisamment avancé ou terminé (voir section 11).
+- Emplacement dans la page et dans le sommaire : à décider à
+  l’ajout du premier projet.
 
 ## 5. Direction visuelle
 
@@ -271,7 +299,7 @@ Pour la V1 :
 Dépôt public : `alexandremaiemery/alexandremaiemery.github.io`
 (branche `main`).
 
-Adresse du site : https://alexandremaiemery.github.io/
+Adresse du site : <https://alexandremaiemery.github.io/>
 
 Un domaine personnel pourra être ajouté plus tard.
 Le projet ne dépendra pas d’une offre étudiante temporaire.
@@ -393,7 +421,17 @@ Décision :
 
 Ils seront ajoutés lorsqu’il y aura quelque chose de concret à présenter.
 
-Une fiche pourra contenir :
+Règle d’ajout (décidée le 14 octobre 2026) :
+
+- un projet est ajouté dès qu’il a réellement commencé, avec la mention
+  « (en cours de réalisation) » ;
+- sa description se limite à l’idée de départ, sans détailler le projet ;
+- un projet seulement prévu n’est pas présenté ;
+- la mention est retirée à la fin du projet et la description est alors
+  complétée ;
+- la fiche détaillée et la page dédiée viennent plus tard.
+
+Une fiche complète pourra contenir :
 
 - objectif ;
 - technologies ;
@@ -492,7 +530,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 13 octobre 2026, vérifié dans le dépôt.
+État au 14 octobre 2026.
 
 ### Réalisé
 
@@ -503,11 +541,15 @@ Elles reprennent mes règles générales de travail.
 - `index.html` : structure sémantique (en-tête, navigation, contenu
   principal, quatre sections, pied de page), lien d’évitement, textes
   principaux, liens e-mail, GitHub et LinkedIn, lien de téléchargement du
-  CV public. Validation HTML sans erreur à une étape précédente.
+  CV public. Section Parcours en liste ordonnée (`ol.timeline`) : Licence
+  (2026 – Aujourd’hui) puis Baccalauréat (2026), avec lieu, mention et
+  moyenne sur une ligne séparée, spécialités. Validation HTML sans erreur
+  à une étape précédente, à refaire.
 - `styles.css` : thème sombre de base, typographie système, mise en page
   responsive (une colonne, deux colonnes à partir de `64rem`, présentation
   fixe au défilement sous conditions de largeur et de hauteur), contour de
-  focus visible.
+  focus visible, chronologie du parcours (date à gauche sur une colonne de
+  `9rem` à partir de `40rem`, au-dessus du titre en dessous).
 - Liens du sommaire : couleur secondaire au repos, accent au survol et au
   focus clavier, transition de couleur de 150 ms réservée aux utilisateurs
   n’ayant pas demandé de réduction des animations.
@@ -517,7 +559,7 @@ Elles reprennent mes règles générales de travail.
 
 ### Pas encore fait
 
-- Présentation structurée du parcours.
+- Survol discret des étapes du parcours.
 - Thème clair, bouton de changement, mémorisation du choix, suivi de la
   préférence système.
 - Indication de la section active.
@@ -525,24 +567,33 @@ Elles reprennent mes règles générales de travail.
 - Photo.
 - Liens rapides et commande de thème dans la présentation.
 - Couleurs, police et espacements définitifs.
+- Section Projets (à ajouter quand un projet aura réellement commencé).
 - README complet.
 - Vérification de la publication GitHub Pages.
 - Validation complète de la V1 (section 14).
 
+### Décisions et limites connues
+
+- Les listes sans puces (sommaire, chronologie) n’ont pas d’attribut
+  `role="list"`. Les lecteurs d’écran peuvent ne pas les annoncer comme des
+  listes. Non testé avec VoiceOver. Choix actuel : ne pas traiter, à
+  reconsidérer éventuellement à la validation finale.
+- Intitulé officiel de la spécialité : « Numérique et sciences
+  informatiques ».
+
 ### Prochaine étape
 
-Présentation structurée du parcours. Le résultat attendu, la structure
-HTML et le style sont à définir au début de la prochaine session, avant
-d’écrire du code. Contraintes déjà décidées (sections 2 et 4) :
+Survol discret des étapes du parcours. Le résultat attendu est à définir
+au début de l’étape, avant d’écrire du code. Contraintes déjà décidées
+(section 7) :
 
-- présentation chronologique, dates clairement visibles ;
-- licence formulée « depuis 2026 », sans date de fin annoncée ;
-- mention et moyenne du baccalauréat dans cette section, sans les mettre
-  au centre de la présentation.
+- aucun déplacement ni changement de taille ou de graisse au survol ;
+- transition limitée aux utilisateurs n’ayant pas demandé de réduction
+  des animations.
 
 ### Ordre de travail proposé ensuite
 
-1. Présentation structurée du parcours.
+1. Survol discret des étapes du parcours.
 2. Thèmes clair et sombre.
 3. Indication de la section active.
 4. Animations d’entrée légères.
