@@ -143,6 +143,66 @@ main {
     margin-bottom: 0;
 }
 
+.projects {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.project-card {
+    position: relative;
+    isolation: isolate;
+}
+
+.project-card + .project-card {
+    margin-top: 2rem;
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: -1rem;
+    z-index: -1;
+    border: 0.25rem solid transparent;
+    border-radius: 0.75rem;
+    background-clip: padding-box;
+}
+
+.project-card h3 {
+    margin: 0 0 0.25rem;
+    padding-right: 2rem;
+}
+
+.project-card > :last-child {
+    margin-bottom: 0;
+}
+
+.project-link {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.project-link::after {
+    content: "";
+    position: absolute;
+    inset: -1rem;
+    border-radius: 0.75rem;
+}
+
+.project-status {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.project-arrow {
+    position: absolute;
+    top: 0.1rem;
+    right: 0;
+    color: var(--color-muted);
+    pointer-events: none;
+}
+
 footer {
     margin-top: 4rem;
     color: var(--color-muted);
@@ -177,8 +237,15 @@ nav a:focus-visible {
     .timeline-item,
     .timeline-item::before,
     .timeline-date,
-    .timeline-content h3 {
+    .timeline-content h3,
+    .project-card,
+    .project-card::before,
+    .project-link {
         transition: opacity 150ms ease, background-color 150ms ease, color 150ms ease;
+    }
+
+    .project-arrow {
+        transition: color 150ms ease, transform 150ms ease;
     }
 }
 
@@ -270,5 +337,49 @@ a:focus-visible {
     .timeline-item:hover .timeline-date,
     .timeline-item:hover h3 {
         color: var(--color-accent);
+    }
+}
+
+@media (hover: hover) {
+    .project-card:hover::before {
+        background-color: var(--color-hover);
+    }
+
+    .projects:hover > .project-card:not(:hover) {
+        opacity: 0.7;
+    }
+
+    .project-card:hover .project-link,
+    .project-card:hover .project-arrow {
+        color: var(--color-accent);
+    }
+}
+
+.project-link:focus-visible {
+    outline: none;
+}
+
+.project-link:focus-visible::after {
+    outline: 2px solid var(--color-accent);
+}
+
+.project-card:has(.project-link:focus-visible)::before {
+    background-color: var(--color-hover);
+}
+
+.project-card:has(.project-link:focus-visible) .project-link,
+.project-card:has(.project-link:focus-visible) .project-arrow {
+    color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .project-card:has(.project-link:focus-visible) .project-arrow {
+        transform: translate(4px, -4px) scale(1.15);
+    }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .project-card:hover .project-arrow {
+        transform: translate(4px, -4px) scale(1.15);
     }
 }
