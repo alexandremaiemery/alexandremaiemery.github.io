@@ -1,9 +1,19 @@
 :root {
+    color-scheme: dark;
     --color-background: #111827;
     --color-text: #f1f5f9;
     --color-muted: #a8b4c7;
     --color-accent: #7dd3fc;
     --color-hover: rgba(125, 211, 252, 0.06);
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+    --color-background: #f8fafc;
+    --color-text: #0f172a;
+    --color-muted: #475569;
+    --color-accent: #0369a1;
+    --color-hover: rgba(3, 105, 161, 0.06);
 }
 
 body {
@@ -98,7 +108,7 @@ main {
     list-style: none;
 }
 
-.timeline-item + .timeline-item {
+.timeline-item+.timeline-item {
     margin-top: 2rem;
 }
 
@@ -139,7 +149,7 @@ main {
     margin: 0 0 0.5rem;
 }
 
-.timeline-content > :last-child {
+.timeline-content> :last-child {
     margin-bottom: 0;
 }
 
@@ -154,7 +164,7 @@ main {
     isolation: isolate;
 }
 
-.project-card + .project-card {
+.project-card+.project-card {
     margin-top: 2rem;
 }
 
@@ -173,7 +183,7 @@ main {
     padding-right: 2rem;
 }
 
-.project-card > :last-child {
+.project-card> :last-child {
     margin-bottom: 0;
 }
 
@@ -330,7 +340,7 @@ a:focus-visible {
         background-color: var(--color-hover);
     }
 
-    .timeline:hover > .timeline-item:not(:hover) {
+    .timeline:hover>.timeline-item:not(:hover) {
         opacity: 0.7;
     }
 
@@ -345,7 +355,7 @@ a:focus-visible {
         background-color: var(--color-hover);
     }
 
-    .projects:hover > .project-card:not(:hover) {
+    .projects:hover>.project-card:not(:hover) {
         opacity: 0.7;
     }
 
@@ -381,5 +391,54 @@ a:focus-visible {
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     .project-card:hover .project-arrow {
         transform: translate(4px, -4px) scale(1.15);
+    }
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: 0 0 2rem;
+    padding: 0;
+    border: 1px solid var(--color-muted);
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--color-muted);
+    cursor: pointer;
+}
+
+.theme-toggle[hidden] {
+    display: none;
+}
+
+.theme-toggle-moon {
+    display: none;
+}
+
+:root[data-theme="light"] .theme-toggle-sun {
+    display: none;
+}
+
+:root[data-theme="light"] .theme-toggle-moon {
+    display: block;
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+@media (hover: hover) {
+    .theme-toggle:hover {
+        border-color: var(--color-accent);
+        color: var(--color-accent);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .theme-toggle {
+        transition: color 150ms ease, border-color 150ms ease;
     }
 }
