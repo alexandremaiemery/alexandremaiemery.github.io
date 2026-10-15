@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 15 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours et carte de projet réalisés, JavaScript à développer
+Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet et thèmes clair et sombre réalisés, reste du JavaScript à développer
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -207,16 +207,17 @@ Il ne sera pas une copie conforme de ces références.
 
 Colonne gauche restant visible pendant le défilement :
 
+- commande de thème (bouton soleil/lune, premier élément de la colonne) ;
 - identité ;
 - courte présentation ;
 - navigation ;
-- liens rapides ;
-- commande de thème.
+- liens rapides.
 
 Colonne droite :
 
 - À propos ;
 - Parcours ;
+- Projets ;
 - Compétences ;
 - Contact et CV.
 
@@ -227,8 +228,8 @@ Mise en œuvre actuelle :
   l’écran est à la fois assez large (`64rem`) et assez haut (`45rem`),
   afin qu’une présentation trop haute ne reste pas bloquée dans une
   fenêtre basse ;
-- ce seuil de hauteur est à retester lorsque la présentation s’agrandira
-  (liens rapides, commande de thème).
+- ce seuil de hauteur a été retesté le 15 octobre 2026 avec le bouton de
+  thème ; il reste à retester lorsque les liens rapides seront ajoutés.
 
 ### Téléphones et petits écrans
 
@@ -247,14 +248,16 @@ provoquerait un débordement horizontal ; tester sur les très petits écrans.
 
 ## 7. Thèmes et interactions
 
-Deux thèmes sont prévus :
+Deux thèmes :
 
 - clair ;
 - sombre.
 
-Comportement souhaité :
+Comportement retenu pour la V1 :
 
-- préférence système utilisée au premier accès ;
+- deux états seulement (clair et sombre) ;
+- préférence système utilisée au premier accès, et suivie en direct tant
+  qu’aucun choix n’a été fait ;
 - bouton permettant de changer le thème ;
 - mémorisation du choix lorsque le navigateur le permet.
 
@@ -264,7 +267,7 @@ Interactions prévues pour la V1 :
 - transitions sur les liens et boutons ;
 - survol discret des éléments du parcours ;
 - indication de la section active dans le sommaire ;
-- changement de thème soigné.
+- changement de thème instantané (fondu prévu dans une version suivante).
 
 À éviter :
 
@@ -277,6 +280,49 @@ Interactions prévues pour la V1 :
 
 Les préférences de réduction des animations seront respectées.
 Le contenu et la navigation devront rester utilisables sans JavaScript.
+
+### Thèmes clair et sombre
+
+Mise en œuvre actuelle :
+
+- attribut `data-theme` (`light` ou `dark`) sur `<html>`, posé avant le
+  premier affichage par `assets/js/theme-init.js` (script sans `defer`,
+  chargé avant la feuille de style) pour éviter un éclair du mauvais
+  thème ;
+- ordre de décision : choix mémorisé (clé `theme` de `localStorage`,
+  valeurs `light` ou `dark`, toute autre valeur ignorée), sinon préférence
+  système, sinon sombre ;
+- couleurs définies par des variables CSS : thème sombre dans `:root`,
+  thème clair dans `:root[data-theme="light"]`, avec `color-scheme`
+  déclaré pour chacun ;
+- palette claire : fond `#f8fafc` (blanc légèrement cassé), texte
+  principal `#0f172a`, texte secondaire `#475569`, accent `#0369a1`,
+  survol `rgba(3, 105, 161, 0.06)` ; les contrastes ont été calculés mais
+  restent à vérifier avec un outil dédié ;
+- bouton `button.theme-toggle`, premier élément de l’en-tête (colonne de
+  gauche), masqué (`hidden`) tant que JavaScript ne l’a pas affiché ;
+- icône du thème vers lequel on bascule : soleil en thème sombre, lune en
+  thème clair ; nom accessible (`aria-label`) mis à jour à chaque
+  changement (« Passer au thème clair » ou « Passer au thème sombre »),
+  sans `aria-pressed` ;
+- zone cliquable de `2.75rem`, contour de focus visible, survol limité aux
+  appareils disposant d’un vrai survol, transition de couleur supprimée
+  pour les utilisateurs ayant demandé la réduction des animations ;
+- un clic mémorise le choix et met fin au suivi en direct de la
+  préférence système ;
+- sans JavaScript : thème sombre et bouton absent ;
+- si `localStorage` est inaccessible : le bouton fonctionne pour la
+  session, le choix n’est pas conservé au rechargement ;
+- le basculement est instantané, hors transitions de couleur de 150 ms
+  déjà présentes sur certains éléments (sommaire, parcours, cartes),
+  jugées acceptables à l’issue des tests.
+
+Prévu après la V1 :
+
+- troisième état « suivre le système » (Système / Clair / Sombre), pour
+  pouvoir revenir au réglage système après un choix ;
+- fondu au changement de thème (piste : API View Transitions, prise en
+  charge par Safari à vérifier).
 
 ### Survol des étapes du parcours
 
@@ -365,7 +411,10 @@ Le code conservé doit être compris et testé.
 - `index.html`
 - `assets/css/styles.css` (au pluriel ; l’ancien `style.css` est supprimé
   et ne doit pas être recréé)
-- `assets/js/main.js` (vide pour l’instant)
+- `assets/js/theme-init.js` (applique le thème avant le premier affichage ;
+  chargé sans `defer`)
+- `assets/js/main.js` (bouton de changement de thème et suivi de la
+  préférence système ; chargé avec `defer`)
 - `assets/documents/cv-alexandre-mai-emery.pdf` (CV public)
 - `docs/cahier-des-charges.md` (ce document)
 - `docs/instructions-ia.md` (instructions de projet à fournir aux
@@ -585,7 +634,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 15 octobre 2026, vérifié dans le dépôt.
+État au 15 octobre 2026.
 
 ### Réalisé
 
@@ -600,32 +649,40 @@ Elles reprennent mes règles générales de travail.
   (2026 – Aujourd’hui) puis Baccalauréat (2026), avec lieu, mention et
   moyenne sur une ligne séparée, spécialités. Section Projets (`ul.projects`)
   avec la carte du projet Serrure à frappes, entrée correspondante dans le
-  sommaire. Validation HTML sans erreur le 14 octobre 2026 (avant l’ajout
-  de la section Projets).
+  sommaire. Bouton de changement de thème en premier élément de l’en-tête,
+  et script d’initialisation du thème dans le `<head>`. Validation HTML sans
+  erreur le 14 octobre 2026 (avant l’ajout de la section Projets et du
+  bouton de thème).
 - `styles.css` : thème sombre de base, typographie système, mise en page
   responsive (une colonne, deux colonnes à partir de `64rem`, présentation
   fixe au défilement sous conditions de largeur et de hauteur), contour de
   focus visible, chronologie du parcours (date à gauche sur une colonne de
   `9rem` à partir de `40rem`, au-dessus du titre en dessous ; titre et date
   dans la couleur du texte principal), survol des étapes et carte de projet
-  cliquable avec flèche (comportements décrits en section 7).
+  cliquable avec flèche (comportements décrits en section 7), thème clair
+  et style du bouton de thème.
 - Liens du sommaire : couleur secondaire au repos, accent au survol et au
   focus clavier, transition de couleur de 150 ms réservée aux utilisateurs
   n’ayant pas demandé de réduction des animations.
+- Thèmes clair et sombre (comportement décrit en section 7) : choix du
+  thème avant l’affichage (`theme-init.js`), bouton soleil/lune, mémorisation
+  du choix, suivi de la préférence système tant qu’aucun choix n’est fait
+  (`main.js`). Testés par Alex dans Safari le 15 octobre 2026
+  (préférence système, mémorisation, absence d’éclair, clavier, suivi en
+  direct du système, désactivation de JavaScript, affichage mobile, colonne
+  fixe).
 - CV public présent dans `assets/documents/`.
 - README minimal.
-- `main.js` créé mais vide.
 
 ### Pas encore fait
 
 - Description réelle du projet Serrure à frappes (à rédiger).
-- Thème clair, bouton de changement, mémorisation du choix, suivi de la
-  préférence système.
 - Indication de la section active.
 - Animations d’entrée légères.
 - Photo.
-- Liens rapides et commande de thème dans la présentation.
+- Liens rapides dans la présentation.
 - Couleurs, police et espacements définitifs.
+- Vérification des contrastes des deux thèmes avec un outil dédié.
 - README complet.
 - Vérification de la publication GitHub Pages.
 - Validation complète de la V1 (section 14), dont une nouvelle validation
@@ -643,18 +700,23 @@ Elles reprennent mes règles générales de travail.
 - Le dépôt du projet Serrure à frappes est public : l’équipe enseignante
   accède au code par ce dépôt, ce qui est autorisé par l’UE (confirmé le
   15 octobre 2026).
+- Thèmes : deux états en V1 (clair et sombre), avec bouton à icône
+  soleil/lune en haut de la colonne de gauche. Le thème clair est en blanc
+  légèrement cassé avec le même accent bleu, à ajuster si besoin.
+  Basculement instantané. L’état « suivre le système » et le fondu au
+  changement de thème sont prévus dans une version suivante (section 7).
+  Script d’initialisation séparé (`theme-init.js`) pour éviter l’éclair du
+  mauvais thème.
 
 ### Prochaine étape
 
-Thèmes clair et sombre, avec bouton de changement et mémorisation du choix
-(premier usage de JavaScript). Le résultat attendu est à définir au début
-de l’étape, avant d’écrire du code.
+Indication de la section active dans le sommaire (JavaScript). Le résultat
+attendu est à définir au début de l’étape, avant d’écrire du code.
 
 ### Ordre de travail proposé ensuite
 
-1. Thèmes clair et sombre.
-2. Indication de la section active.
-3. Animations d’entrée légères.
+1. Indication de la section active.
+2. Animations d’entrée légères.
 
 Cet ordre peut être ajusté pour une raison technique, mais les étapes ne
 sont pas lancées simultanément.
