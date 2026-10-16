@@ -1,8 +1,8 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
 Date de cadrage : 1er octobre 2026  
-Dernière mise à jour : 15 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet et thèmes clair et sombre réalisés, reste du JavaScript à développer
+Dernière mise à jour : 16 octobre 2026  
+Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet, thèmes clair et sombre et indication de la section active réalisés, reste du JavaScript à développer
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -363,6 +363,52 @@ Mise en œuvre actuelle, en HTML et CSS seuls :
 - les liens vers un dépôt s’ouvrent dans le même onglet, comme les autres
   liens du site.
 
+### Section active dans le sommaire
+
+Mise en œuvre actuelle, en JavaScript (`main.js`, bloc indépendant de
+celui du thème) et en CSS :
+
+- un seul lien du sommaire est marqué à la fois : celui de la section qui
+  occupe la zone de lecture ; la liste des sections est lue depuis les
+  liens du sommaire (`href="#..."`), sans liste recopiée dans le script ;
+- règle : la section active est la dernière dont le haut a dépassé une
+  ligne de référence située à 128 px du haut de la fenêtre ;
+- dans les derniers pixels de défilement avant le bas de la page, cette
+  ligne descend progressivement jusqu’au bas de la fenêtre, afin que les
+  deux dernières sections (Compétences, Contact et CV), trop courtes pour
+  atteindre 128 px du haut, deviennent actives dans l’ordre ;
+- un clic sur un lien du sommaire marque ce lien jusqu’à ce que le
+  visiteur défile lui-même (molette, toucher, flèches, pages, début, fin,
+  barre d’espace) ; sans cela, la page ne pouvant pas défiler plus bas,
+  la position seule ne distinguerait pas Compétences de Contact et CV
+  après un clic ; la touche Tab ne libère pas le lien cliqué ;
+- état exposé par `aria-current="true"` sur le lien, aussi utilisé comme
+  sélecteur CSS (`nav a[aria-current]`) ;
+- marque visuelle : texte en couleur principale et soulignement fin
+  (1 px, décalé de `0.35em`) ; le soulignement est toujours présent mais
+  transparent au repos, donc les liens du sommaire n’apparaissent plus
+  soulignés hors état actif ;
+- le survol et le focus (couleur d’accent) restent prioritaires sur
+  l’état actif ;
+- transition de 150 ms sur la couleur du texte et du soulignement,
+  supprimée pour les utilisateurs ayant demandé la réduction des
+  animations ;
+- au chargement : « À propos » est actif sur grand écran ; en une
+  colonne, aucun lien n’est actif tant qu’aucune section n’a atteint la
+  ligne de référence ;
+- sans JavaScript : aucun lien marqué, sommaire inchangé ;
+- l’effet n’est visible que lorsque le sommaire l’est, c’est-à-dire
+  lorsque la colonne de gauche est fixe (`64rem` de large et `45rem` de
+  haut minimum) ;
+- choix technique : calcul à partir de la position des sections
+  (`getBoundingClientRect`), limité à un calcul par image affichée,
+  plutôt qu’avec `IntersectionObserver`, dont la gestion du haut et du
+  bas de page aurait été plus complexe ;
+- limites connues : faire glisser la barre de défilement avec la souris
+  ne libère pas le lien cliqué (comportement accepté) ; la valeur
+  `aria-current="true"` n’a pas été testée avec VoiceOver (`"location"`
+  reste envisageable).
+
 ## 8. Technologies et hébergement
 
 Choix validés :
@@ -413,8 +459,9 @@ Le code conservé doit être compris et testé.
   et ne doit pas être recréé)
 - `assets/js/theme-init.js` (applique le thème avant le premier affichage ;
   chargé sans `defer`)
-- `assets/js/main.js` (bouton de changement de thème et suivi de la
-  préférence système ; chargé avec `defer`)
+- `assets/js/main.js` (bouton de changement de thème, suivi de la
+  préférence système et indication de la section active dans le sommaire ;
+  chargé avec `defer`)
 - `assets/documents/cv-alexandre-mai-emery.pdf` (CV public)
 - `docs/cahier-des-charges.md` (ce document)
 - `docs/instructions-ia.md` (instructions de projet à fournir aux
@@ -634,7 +681,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 15 octobre 2026.
+État au 16 octobre 2026.
 
 ### Réalisé
 
@@ -661,9 +708,10 @@ Elles reprennent mes règles générales de travail.
   dans la couleur du texte principal), survol des étapes et carte de projet
   cliquable avec flèche (comportements décrits en section 7), thème clair
   et style du bouton de thème.
-- Liens du sommaire : couleur secondaire au repos, accent au survol et au
-  focus clavier, transition de couleur de 150 ms réservée aux utilisateurs
-  n’ayant pas demandé de réduction des animations.
+- Liens du sommaire : couleur secondaire au repos, sans soulignement
+  visible, accent au survol et au focus clavier, transition de couleur de
+  150 ms réservée aux utilisateurs n’ayant pas demandé de réduction des
+  animations.
 - Thèmes clair et sombre (comportement décrit en section 7) : choix du
   thème avant l’affichage (`theme-init.js`), bouton soleil/lune, mémorisation
   du choix, suivi de la préférence système tant qu’aucun choix n’est fait
@@ -671,13 +719,20 @@ Elles reprennent mes règles générales de travail.
   (préférence système, mémorisation, absence d’éclair, clavier, suivi en
   direct du système, désactivation de JavaScript, affichage mobile, colonne
   fixe).
+- Indication de la section active dans le sommaire (comportement décrit en
+  section 7) : ligne de référence à 128 px qui descend dans les derniers
+  pixels de défilement, lien cliqué conservé jusqu’au défilement suivant,
+  `aria-current`, texte en couleur principale et soulignement fin,
+  transition de 150 ms (`main.js`, `styles.css`). Testée par Alex dans
+  Safari le 16 octobre 2026 (ordre d’activation en défilant vers le bas et
+  vers le haut, clic sur chaque lien, rechargement, thèmes clair et sombre,
+  clavier, réduction des animations, désactivation de JavaScript).
 - CV public présent dans `assets/documents/`.
 - README minimal.
 
 ### Pas encore fait
 
 - Description réelle du projet Serrure à frappes (à rédiger).
-- Indication de la section active.
 - Animations d’entrée légères.
 - Photo.
 - Liens rapides dans la présentation.
@@ -707,16 +762,24 @@ Elles reprennent mes règles générales de travail.
   changement de thème sont prévus dans une version suivante (section 7).
   Script d’initialisation séparé (`theme-init.js`) pour éviter l’éclair du
   mauvais thème.
+- Section active du sommaire : marque choisie = texte en couleur
+  principale et soulignement fin (les liens du sommaire ne sont plus
+  soulignés au repos). La valeur `aria-current="true"` n’a pas été testée
+  avec VoiceOver. Faire glisser la barre de défilement avec la souris ne
+  libère pas le lien cliqué : comportement accepté. L’effet n’est visible
+  que lorsque la colonne de gauche est fixe.
 
 ### Prochaine étape
 
-Indication de la section active dans le sommaire (JavaScript). Le résultat
-attendu est à définir au début de l’étape, avant d’écrire du code.
+Animations d’entrée légères. Le résultat attendu est à définir au début
+de l’étape, avant d’écrire du code, avec l’intérêt pour un recruteur et le
+coût en complexité.
 
 ### Ordre de travail proposé ensuite
 
-1. Indication de la section active.
-2. Animations d’entrée légères.
+1. Animations d’entrée légères.
 
-Cet ordre peut être ajusté pour une raison technique, mais les étapes ne
-sont pas lancées simultanément.
+L’ordre des étapes suivantes (photo, liens rapides, description du projet,
+couleurs et police définitives, contrastes, README, validation de la V1)
+reste à fixer après celle-ci. Les étapes ne sont pas lancées
+simultanément.
