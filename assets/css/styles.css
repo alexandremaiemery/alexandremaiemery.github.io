@@ -451,3 +451,50 @@ a:focus-visible {
         transition: color 150ms ease, border-color 150ms ease;
     }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+    @keyframes enter-rise {
+        from {
+            opacity: 0;
+            transform: translateY(0.75rem);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes enter-fade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    header > h1,
+    header > .subtitle,
+    header > .intro,
+    header > nav {
+        animation: enter-rise 700ms ease-out backwards;
+    }
+
+    header > .subtitle {
+        animation-delay: 100ms;
+    }
+
+    header > .intro {
+        animation-delay: 200ms;
+    }
+
+    header > nav {
+        animation-delay: 300ms;
+    }
+
+    main {
+        animation: enter-fade 700ms ease-out 400ms backwards;
+    }
+}
