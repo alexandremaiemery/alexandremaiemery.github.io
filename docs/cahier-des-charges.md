@@ -1,8 +1,8 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
 Date de cadrage : 1er octobre 2026  
-Dernière mise à jour : 16 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet, thèmes clair et sombre et indication de la section active réalisés, reste du JavaScript à développer
+Dernière mise à jour : 19 octobre 2026  
+Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet, thèmes clair et sombre, indication de la section active et animation d’entrée réalisés, reste du JavaScript à développer
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -409,6 +409,32 @@ celui du thème) et en CSS :
   `aria-current="true"` n’a pas été testée avec VoiceOver (`"location"`
   reste envisageable).
 
+### Animation d’entrée
+
+Mise en œuvre actuelle, en CSS seul (aucun JavaScript) :
+
+- au chargement de la page, le nom, le sous-titre, l’introduction et le
+  sommaire apparaissent l’un après l’autre par un fondu accompagné d’une
+  montée de `0.75rem` (`transform`, aucun déplacement dans la page) ; le
+  contenu principal apparaît ensuite par un fondu seul ;
+- rythme : 700 ms par apparition ; délais de 0, 100, 200 et 300 ms pour
+  l’en-tête, 400 ms pour le contenu principal ; durée totale : 1,1 s ;
+- le bouton de thème est hors de l’animation : il est affiché par
+  JavaScript à un instant imprévisible, et son animation démarrerait en
+  retard ;
+- le contenu principal ne se déplace pas (fondu seul), pour ne pas fausser
+  pendant l’animation le calcul de la section active
+  (`getBoundingClientRect`) ;
+- l’état de départ n’est appliqué qu’avant et pendant l’animation
+  (`animation-fill-mode: backwards`) : ensuite les règles normales
+  reprennent la main, notamment l’opacité au survol des étapes et des
+  cartes ; ces éléments ne sont donc pas animés eux-mêmes ;
+- réduction des animations : aucune animation, contenu visible
+  immédiatement ;
+- sans JavaScript : l’animation se joue normalement ;
+- l’animation se rejoue à chaque chargement ou rechargement de la page,
+  pas lors d’un clic sur le sommaire.
+
 ## 8. Technologies et hébergement
 
 Choix validés :
@@ -681,7 +707,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 16 octobre 2026.
+État au 19 octobre 2026.
 
 ### Réalisé
 
@@ -727,13 +753,20 @@ Elles reprennent mes règles générales de travail.
   Safari le 16 octobre 2026 (ordre d’activation en défilant vers le bas et
   vers le haut, clic sur chaque lien, rechargement, thèmes clair et sombre,
   clavier, réduction des animations, désactivation de JavaScript).
+- Animation d’entrée (comportement décrit en section 7) : en-tête (nom,
+  sous-titre, introduction, sommaire) en fondu avec montée de `0.75rem`,
+  contenu principal en fondu seul, en CSS seul (`styles.css`), réservée aux
+  utilisateurs n’ayant pas demandé de réduction des animations. Testée par
+  Alex dans Safari le 19 octobre 2026 (ordre d’apparition, bouton de
+  thème, survol et section active après l’animation, thèmes clair et
+  sombre, réduction des animations, une colonne, rechargement au milieu de
+  la page, clavier, désactivation de JavaScript).
 - CV public présent dans `assets/documents/`.
 - README minimal.
 
 ### Pas encore fait
 
 - Description réelle du projet Serrure à frappes (à rédiger).
-- Animations d’entrée légères.
 - Photo.
 - Liens rapides dans la présentation.
 - Couleurs, police et espacements définitifs.
@@ -768,18 +801,25 @@ Elles reprennent mes règles générales de travail.
   avec VoiceOver. Faire glisser la barre de défilement avec la souris ne
   libère pas le lien cliqué : comportement accepté. L’effet n’est visible
   que lorsque la colonne de gauche est fixe.
+- Animation d’entrée : CSS seul, bouton de thème exclu de l’animation,
+  contenu principal en fondu seul (section 7). Rythme porté de 500 ms à
+  700 ms par apparition (durée totale 1,1 s) après essai, la première
+  version paraissant trop rapide.
+- Chargement : le bouton de thème est affiché par `main.js` (chargé avec
+  `defer`). Si la page est peinte avant l’exécution de ce script, le titre
+  et le sommaire peuvent descendre d’environ 76 px (`2.75rem` plus `2rem`
+  de marge) à l’apparition du bouton ; `theme-init.js` n’agit pas sur ce
+  point (il ne fait que poser le thème). Décalage non observé par Alex
+  dans Safari, non testé sur connexion lente, non traité.
 
 ### Prochaine étape
 
-Animations d’entrée légères. Le résultat attendu est à définir au début
-de l’étape, avant d’écrire du code, avec l’intérêt pour un recruteur et le
-coût en complexité.
+À choisir au début de la prochaine session parmi les étapes de « Pas
+encore fait ». Le résultat attendu est défini avant d’écrire du code, avec
+l’intérêt pour un recruteur et le coût en complexité.
 
 ### Ordre de travail proposé ensuite
 
-1. Animations d’entrée légères.
-
-L’ordre des étapes suivantes (photo, liens rapides, description du projet,
-couleurs et police définitives, contrastes, README, validation de la V1)
-reste à fixer après celle-ci. Les étapes ne sont pas lancées
-simultanément.
+L’ordre des étapes restantes (photo, liens rapides, description du projet,
+couleurs et police définitifs, contrastes, README, validation de la V1)
+reste à fixer. Les étapes ne sont pas lancées simultanément.
