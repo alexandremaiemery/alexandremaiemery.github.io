@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 20 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet, thèmes clair et sombre, indication de la section active, animation d’entrée, liens rapides et favicon réalisés, reste du JavaScript à développer
+Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet, thèmes clair et sombre, indication de la section active, animation d’entrée, liens rapides, favicon et photo temporaire réalisés, reste du JavaScript à développer
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -199,7 +199,11 @@ Il ne sera pas une copie conforme de ces références.
   presque blanc (`#f1f5f9`), texte secondaire gris clair (`#a8b4c7`),
   accent bleu clair (`#7dd3fc`), définis par des variables CSS.
 - Police système (`system-ui`), taille de base `1rem`, interligne `1.7`.
-- Les couleurs définitives, la police et les espacements restent à choisir.
+- Palette actuelle conservée (décision d’Alex du 20 octobre 2026), sous
+  réserve de la vérification des contrastes.
+- Police : Alex souhaite une police spécifique plutôt que la police système,
+  afin que l’apparence soit la même chez tous les visiteurs. Le choix de la
+  police et des espacements reste à faire.
 
 ## 6. Organisation selon la taille de l’écran
 
@@ -520,6 +524,8 @@ Le code conservé doit être compris et testé.
 - `assets/css/styles.css` (au pluriel ; l’ancien `style.css` est supprimé
   et ne doit pas être recréé)
 - `assets/images/favicon.svg` (favicon)
+- `assets/images/photo-alexandre-mai-emery.jpg` (photo de la section
+  À propos, temporaire)
 - `assets/js/theme-init.js` (applique le thème avant le premier affichage ;
   chargé sans `defer`)
 - `assets/js/main.js` (bouton de changement de thème, suivi de la
@@ -612,6 +618,36 @@ Pas de formulaire ni d’envoi automatique de CV dans la V1.
 ### Photo
 
 Photo réelle pour le portfolio et le CV.
+
+Photo actuelle : temporaire, la même que sur le CV ; une photo définitive
+la remplacera plus tard.
+
+Mise en œuvre actuelle, en HTML et CSS seuls (aucun JavaScript) :
+
+- fichier `assets/images/photo-alexandre-mai-emery.jpg` : carré de
+  480 × 480 px, JPEG de qualité 80 %, poids visé inférieur à 60 Ko, sans
+  métadonnées de localisation (dépôt public) ; recadré autour du visage
+  (carré de 900 px) depuis le portrait d’origine (1086 × 1448 px), puis
+  réduit avec `sips` ;
+- nom de fichier générique : le remplacement par la photo définitive ne
+  demande aucune modification du HTML, à condition de garder le nom, le
+  format JPEG et le format carré ; si les dimensions changent, adapter les
+  attributs `width` et `height` ;
+- balise `img.about-photo` dans la section À propos, entre le titre et les
+  paragraphes ; texte alternatif « Portrait d’Alexandre MAI--EMERY » ;
+  attributs `width="480"` et `height="480"` ; pas de `loading="lazy"` ;
+- affichage : carré de `10rem` aux coins arrondis de `0.75rem` (comme les
+  cartes de projets), `object-fit: cover` ; aucune interaction, la photo
+  n’est pas cliquable ;
+- à partir de `40rem` de large : grille à deux colonnes dans la section,
+  photo à droite des paragraphes (elle couvre les deux lignes de
+  paragraphes) ; en dessous : photo sous le titre, avant le texte, alignée
+  à gauche ;
+- taille fixe en CSS et dimensions dans le HTML : l’espace est réservé
+  avant le chargement, donc aucune section ne se décale et le calcul de la
+  section active (`getBoundingClientRect`) n’est pas faussé ;
+- sans JavaScript : photo visible ; elle apparaît avec le contenu principal
+  dans l’animation d’entrée.
 
 Une version retouchée ou stylisée par IA pourra être préparée séparément
 pour d’autres profils, à partir d’une vraie photo et en conservant
@@ -843,22 +879,31 @@ Elles reprennent mes règles générales de travail.
   Safari 27.0.1 le 20 octobre 2026 via un serveur local : icône visible
   dans l’onglet, fichiers servis sans erreur. Sans serveur (ouverture
   directe du fichier), Safari n’affiche pas l’icône.
+- Photo temporaire (décrite en section 10) : la même que sur le CV,
+  recadrée en carré (480 × 480 px, JPEG), placée dans À propos, à droite
+  du texte à partir de `40rem` de large, sous le titre et avant le texte en
+  une colonne, coins arrondis de `0.75rem`, en HTML et CSS seuls
+  (`index.html`, `styles.css`, `assets/images/photo-alexandre-mai-emery.jpg`).
+  Testée par Alex dans Safari le 20 octobre 2026 (placement à droite et en
+  une colonne, netteté, thèmes clair et sombre, largeur intermédiaire,
+  zoom, section active, clavier, désactivation de JavaScript, réduction des
+  animations, rechargement) ; emplacement et comportement validés par Alex.
 - CV public présent dans `assets/documents/`.
 - README minimal.
 
 ### Pas encore fait
 
 - Description réelle du projet Serrure à frappes (à rédiger quand le projet
-  aura avancé ; trop tôt pour l’instant).
-- Photo (le choix de la photo reste à faire).
-- Couleurs, police et espacements définitifs.
-- Vérification des contrastes des deux thèmes avec un outil dédié.
+  aura avancé ; trop tôt pour l’instant, confirmé le 20 octobre 2026).
+- Photo définitive (une photo temporaire est en place).
+- Police et espacements définitifs (palette actuelle conservée), puis
+  vérification des contrastes des deux thèmes avec un outil dédié.
 - Balises de partage (Open Graph) pour l’aperçu du lien dans les
-  messageries et sur LinkedIn.
+  messageries et sur LinkedIn ; l’image d’aperçu reste à choisir.
 - Mesure de la hauteur de l’en-tête à 64 rem de large (voir section 6).
 - README complet, avec la mention des icônes Feather Icons (licence MIT).
 - Vérification de la publication GitHub Pages, dont l’affichage du favicon
-  sur le site publié.
+  et de la photo sur le site publié.
 - Validation complète de la V1 (section 14), dont une nouvelle validation
   HTML.
 
@@ -904,6 +949,22 @@ Elles reprennent mes règles générales de travail.
   la V2. Non testés : le site publié, les autres navigateurs, les versions
   de Safari antérieures à 26 (où seul l’ICO sert) ; le choix de Safari entre
   l’ICO et le SVG n’a pas été relevé.
+- Photo : carré aux coins arrondis (pas de cercle), choix d’Alex, à droite
+  du texte sur grand écran (testé et validé) et avant le texte en une
+  colonne. Photo temporaire, à remplacer en gardant le nom du fichier et le
+  format carré. Dimensions fixées dans le HTML (480 × 480) et taille fixe
+  de `10rem` en CSS, pour qu’aucune section ne se décale au chargement de
+  l’image. Pas de `loading="lazy"`. Texte alternatif « Portrait d’Alexandre
+  MAI--EMERY ». Limite : dans la grille de la section À propos, la photo
+  couvre deux lignes (`span 2`) ; si un troisième paragraphe est ajouté, la
+  valeur doit passer à 3. Le poids du fichier et l’absence de métadonnées
+  de localisation sont à contrôler avant publication (section 10).
+- Police : Alex souhaite une police spécifique plutôt que la police système,
+  pour une apparence identique chez tous les visiteurs. Une police web
+  n’assure pas un rendu strictement identique et a un coût (fichier à
+  héberger, temps de chargement, police de repli) : le choix se fait à
+  l’étape « police et espacements », avec vérification des options et des
+  licences. Palette de couleurs actuelle conservée.
 - Chargement : le bouton de thème est affiché par `main.js` (chargé avec
   `defer`). Si la page est peinte avant l’exécution de ce script, le titre
   et le sommaire peuvent descendre d’environ 76 px (`2.75rem` plus `2rem`
@@ -922,12 +983,12 @@ l’intérêt pour un recruteur et le coût en complexité.
 Ordre convenu le 20 octobre 2026 pour les étapes restantes, lancées une à
 la fois :
 
-1. Photo et description de Serrure à frappes, dès que les éléments sont
-   prêts.
+1. Photo (faite, temporaire) et description de Serrure à frappes, dès que
+   le projet aura avancé.
 2. Balises de partage (Open Graph), pour pouvoir réutiliser l’image
    choisie.
-3. Couleurs, police et espacements définitifs, puis vérification des
-   contrastes.
+3. Police et espacements définitifs (palette conservée), puis vérification
+   des contrastes.
 4. README complet.
 5. Vérification de GitHub Pages et validation de la V1.
 
