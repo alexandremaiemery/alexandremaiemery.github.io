@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 20 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet, thèmes clair et sombre, indication de la section active, animation d’entrée et liens rapides réalisés, reste du JavaScript à développer
+Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet, thèmes clair et sombre, indication de la section active, animation d’entrée, liens rapides et favicon réalisés, reste du JavaScript à développer
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -502,8 +502,8 @@ séparément et présentées depuis le portfolio.
 
 ## 9. Environnement de développement
 
-- macOS.
-- MacBook Air M5.
+- macOS 27.0.1 et MacBook Air M5.
+- Safari 27.0.1 : navigateur de test principal.
 - Visual Studio Code.
 - Git utilisé dans le terminal.
 - Accès GitHub par SSH configuré (HTTPS reste utilisable).
@@ -516,8 +516,10 @@ Le code conservé doit être compris et testé.
 ### Structure actuelle du dépôt
 
 - `index.html`
+- `favicon.ico` (repli du favicon, à la racine)
 - `assets/css/styles.css` (au pluriel ; l’ancien `style.css` est supprimé
   et ne doit pas être recréé)
+- `assets/images/favicon.svg` (favicon)
 - `assets/js/theme-init.js` (applique le thème avant le premier affichage ;
   chargé sans `defer`)
 - `assets/js/main.js` (bouton de changement de thème, suivi de la
@@ -529,6 +531,35 @@ Le code conservé doit être compris et testé.
   assistants IA)
 - `docs/prompt-type.md` (prompt type pour reprendre le travail)
 - `README.md`, `.gitignore`, `.nojekyll`
+
+### Favicon
+
+- Icône : initiales « AM », lettres `#7dd3fc` sur fond `#111827` à coins
+  arrondis. « AME » a été écarté : trois lettres seraient trop peu lisibles
+  à 16 px.
+- Même icône pour les thèmes clair et sombre. Un SVG qui change selon le
+  thème n’est pas fiable dans Safari : le défaut a été signalé avec
+  Safari 26.3 et n’a pas été revérifié avec Safari 27.
+- `assets/images/favicon.svg` : lettres dessinées en tracés, sans
+  dépendance à une police.
+- `favicon.ico` à la racine (16, 32 et 48 px) : repli pour les navigateurs
+  qui ne lisent pas le SVG (Safari antérieur à 26) ou qui demandent
+  `/favicon.ico` d’office.
+- Deux balises `<link rel="icon">` dans le `<head>` : l’ICO avec
+  `sizes="32x32"`, puis le SVG.
+- Icône d’écran d’accueil de l’iPhone (`apple-touch-icon`) : reportée à la
+  V2.
+
+### Tester en local
+
+- Ouvrir `index.html` directement depuis le disque (`file://`) : Safari
+  n’affiche pas le favicon (observé par Alex avec Safari 27.0.1). Pour
+  tester le favicon, servir le dossier avec un serveur local.
+- Commande, depuis la racine du dépôt :
+  `python3 -m http.server 8000 --bind 127.0.0.1`, puis ouvrir
+  `http://localhost:8000` ; arrêt avec `Ctrl + C`.
+- Le terminal affiche chaque fichier demandé avec son code de réponse,
+  ce qui permet de repérer un `404`.
 
 ## 10. Informations publiques, photo et CV
 
@@ -806,22 +837,28 @@ Elles reprennent mes règles générales de travail.
   liens, survol, thèmes clair et sombre, ouverture des liens, animation,
   réduction des animations, désactivation de JavaScript, section active).
   Hauteur de l’en-tête mesurée à 40,3 rem.
+- Favicon (décrit en section 9) : initiales « AM » en SVG
+  (`assets/images/favicon.svg`) avec repli `favicon.ico` à la racine, et
+  deux balises dans le `<head>` (`index.html`). Testé par Alex dans
+  Safari 27.0.1 le 20 octobre 2026 via un serveur local : icône visible
+  dans l’onglet, fichiers servis sans erreur. Sans serveur (ouverture
+  directe du fichier), Safari n’affiche pas l’icône.
 - CV public présent dans `assets/documents/`.
 - README minimal.
 
 ### Pas encore fait
 
-- Description réelle du projet Serrure à frappes (à rédiger).
-- Photo.
+- Description réelle du projet Serrure à frappes (à rédiger quand le projet
+  aura avancé ; trop tôt pour l’instant).
+- Photo (le choix de la photo reste à faire).
 - Couleurs, police et espacements définitifs.
 - Vérification des contrastes des deux thèmes avec un outil dédié.
-- Favicon : aucune balise `<link rel="icon">` dans le `<head>` (présence
-  d’un `favicon.ico` à la racine non vérifiée).
 - Balises de partage (Open Graph) pour l’aperçu du lien dans les
   messageries et sur LinkedIn.
 - Mesure de la hauteur de l’en-tête à 64 rem de large (voir section 6).
 - README complet, avec la mention des icônes Feather Icons (licence MIT).
-- Vérification de la publication GitHub Pages.
+- Vérification de la publication GitHub Pages, dont l’affichage du favicon
+  sur le site publié.
 - Validation complète de la V1 (section 14), dont une nouvelle validation
   HTML.
 
@@ -862,6 +899,11 @@ Elles reprennent mes règles générales de travail.
 - Contour de focus : tous les liens du site ont les mêmes coins arrondis
   (`0.5rem`, règle `a:focus-visible`), comme le bouton de thème et les
   liens rapides.
+- Favicon : « AM » retenu plutôt que « AME » (lisibilité à 16 px), même
+  icône pour les deux thèmes, icône d’écran d’accueil de l’iPhone reportée à
+  la V2. Non testés : le site publié, les autres navigateurs, les versions
+  de Safari antérieures à 26 (où seul l’ICO sert) ; le choix de Safari entre
+  l’ICO et le SVG n’a pas été relevé.
 - Chargement : le bouton de thème est affiché par `main.js` (chargé avec
   `defer`). Si la page est peinte avant l’exécution de ce script, le titre
   et le sommaire peuvent descendre d’environ 76 px (`2.75rem` plus `2rem`
@@ -875,9 +917,19 @@ Elles reprennent mes règles générales de travail.
 encore fait ». Le résultat attendu est défini avant d’écrire du code, avec
 l’intérêt pour un recruteur et le coût en complexité.
 
-### Ordre de travail proposé ensuite
+### Ordre de travail convenu
 
-L’ordre des étapes restantes (photo, description du projet, couleurs et
-police définitifs, contrastes, favicon et balises de partage, README,
-validation de la V1) reste à fixer. Les étapes ne sont pas lancées
-simultanément.
+Ordre convenu le 20 octobre 2026 pour les étapes restantes, lancées une à
+la fois :
+
+1. Photo et description de Serrure à frappes, dès que les éléments sont
+   prêts.
+2. Balises de partage (Open Graph), pour pouvoir réutiliser l’image
+   choisie.
+3. Couleurs, police et espacements définitifs, puis vérification des
+   contrastes.
+4. README complet.
+5. Vérification de GitHub Pages et validation de la V1.
+
+La mesure de la hauteur de l’en-tête à 64 rem de large peut se faire à
+n’importe quel moment.
