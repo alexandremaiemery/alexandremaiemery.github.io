@@ -271,6 +271,7 @@ nav a:focus-visible {
 a:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 4px;
+    border-radius: 0.5rem;
 }
 
 .skip-link {
@@ -452,6 +453,39 @@ a:focus-visible {
     }
 }
 
+.quick-links {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1.5rem 0 0 -0.75rem;
+    padding: 0;
+    list-style: none;
+}
+
+.quick-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    color: var(--color-muted);
+}
+
+.quick-link:focus-visible {
+    color: var(--color-accent);
+}
+
+@media (hover: hover) {
+    .quick-link:hover {
+        color: var(--color-accent);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .quick-link {
+        transition: color 150ms ease;
+    }
+}
+
 @media (prefers-reduced-motion: no-preference) {
     @keyframes enter-rise {
         from {
@@ -478,7 +512,8 @@ a:focus-visible {
     header > h1,
     header > .subtitle,
     header > .intro,
-    header > nav {
+    header > nav,
+    header > .quick-links {
         animation: enter-rise 700ms ease-out backwards;
     }
 
@@ -494,7 +529,11 @@ a:focus-visible {
         animation-delay: 300ms;
     }
 
+    header > .quick-links {
+        animation-delay: 400ms;
+    }
+
     main {
-        animation: enter-fade 700ms ease-out 400ms backwards;
+        animation: enter-fade 700ms ease-out 500ms backwards;
     }
 }
