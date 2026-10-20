@@ -537,3 +537,35 @@ a:focus-visible {
         animation: enter-fade 700ms ease-out 500ms backwards;
     }
 }
+
+.about-photo {
+    display: block;
+    width: 10rem;
+    height: 10rem;
+    margin: 0 0 1.5rem;
+    border-radius: 0.75rem;
+    object-fit: cover;
+}
+
+@media (min-width: 40rem) {
+    #a-propos {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 10rem;
+        column-gap: 2rem;
+    }
+
+    #a-propos h2 {
+        grid-column: 1 / -1;
+    }
+
+    #a-propos p {
+        grid-column: 1;
+    }
+
+    .about-photo {
+        grid-column: 2;
+        grid-row: 2 / span 2;
+        align-self: start;
+        margin: 0;
+    }
+}
