@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 20 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet, thèmes clair et sombre, indication de la section active, animation d’entrée, liens rapides, favicon et photo temporaire réalisés, reste du JavaScript à développer
+Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon et photo temporaire réalisés, publication vérifiée ; restent les balises de partage, la police et les espacements définitifs, les contrastes, le README et la validation de la V1
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -101,11 +101,15 @@ La V1 sera composée d’une seule page.
 ### Présentation principale
 
 - Nom et prénom.
-- Intitulé envisagé : « Étudiant en mathématiques et informatique ».
+- Intitulé : « Étudiant en mathématiques et informatique ».
 - Introduction courte.
 - Sommaire.
 - Liens rapides.
-- Commande de changement de thème.
+
+### Commande de changement de thème
+
+- Bouton placé en haut à droite de la page, séparé de la présentation
+  principale et des colonnes (voir section 7).
 
 ### À propos
 
@@ -211,7 +215,6 @@ Il ne sera pas une copie conforme de ces références.
 
 Colonne gauche restant visible pendant le défilement :
 
-- commande de thème (bouton soleil/lune, premier élément de la colonne) ;
 - identité ;
 - courte présentation ;
 - navigation ;
@@ -225,6 +228,9 @@ Colonne droite :
 - Compétences ;
 - Contact et CV.
 
+Le bouton de thème n’appartient à aucune colonne : il est placé en haut à
+droite de la page (voir section 7).
+
 Mise en œuvre actuelle :
 
 - deux colonnes avec CSS Grid à partir de `64rem` de largeur ;
@@ -234,14 +240,21 @@ Mise en œuvre actuelle :
   fenêtre basse ;
 - ce seuil de hauteur a été retesté le 15 octobre 2026 avec le bouton de
   thème, puis le 20 octobre 2026 avec les liens rapides : l’en-tête
-  mesure alors 40,3 rem de haut, soit 43,3 rem avec le décalage de
-  3 rem, sous le seuil de 45 rem ; la mesure à 64 rem de large (colonne
-  la plus étroite) reste à faire.
+  mesurait alors 40,3 rem de haut, soit 43,3 rem avec le décalage de
+  3 rem, sous le seuil de 45 rem ;
+- depuis le déplacement du bouton de thème hors de l’en-tête
+  (20 octobre 2026), l’en-tête perd `4.75rem` (bouton de `2.75rem` et
+  marge de `2rem`) : environ 35,5 rem, soit 38,5 rem avec le décalage
+  (calcul, non mesuré) ; la mesure à 64 rem de large (colonne la plus
+  étroite) reste à faire.
 
 ### Téléphones et petits écrans
 
 - Une seule colonne.
 - Présentation en haut.
+- Bouton de thème en haut à droite, à hauteur de la première ligne du nom
+  (« Alexandre ») sans la toucher : vérifié à 320 px et 375 px de large le
+  20 octobre 2026.
 - Navigation compacte.
 - Sections successives.
 - Contact et CV en bas.
@@ -306,8 +319,19 @@ Mise en œuvre actuelle :
   principal `#0f172a`, texte secondaire `#475569`, accent `#0369a1`,
   survol `rgba(3, 105, 161, 0.06)` ; les contrastes ont été calculés mais
   restent à vérifier avec un outil dédié ;
-- bouton `button.theme-toggle`, premier élément de l’en-tête (colonne de
-  gauche), masqué (`hidden`) tant que JavaScript ne l’a pas affiché ;
+- bouton `button.theme-toggle` placé directement dans `<body>`, après le
+  lien d’évitement et hors de `div.page` ; masqué (`hidden`) tant que
+  JavaScript ne l’a pas affiché ;
+- position : `position: absolute`, à `1rem` du haut et du bord droit de la
+  page ; hors du flux, il ne réserve aucune place et ne déplace pas le
+  texte ; il n’est pas dans l’en-tête, car l’en-tête fixe (`sticky`)
+  servirait de repère et le garderait dans la colonne de gauche ;
+- à droite, car le lien d’évitement apparaît en haut à gauche ;
+- il défile avec la page (`absolute` et non `fixed`) : en `fixed`, il
+  passerait au-dessus du texte sur téléphone ; sur grand écran, il faut
+  donc remonter en haut de la page pour changer de thème (compromis
+  accepté, réglage rarement modifié) ;
+- ordre au clavier : lien d’évitement, bouton de thème, sommaire ;
 - icône du thème vers lequel on bascule : soleil en thème sombre, lune en
   thème clair ; nom accessible (`aria-label`) mis à jour à chaque
   changement (« Passer au thème clair » ou « Passer au thème sombre »),
@@ -547,7 +571,10 @@ Le code conservé doit être compris et testé.
   thème n’est pas fiable dans Safari : le défaut a été signalé avec
   Safari 26.3 et n’a pas été revérifié avec Safari 27.
 - `assets/images/favicon.svg` : lettres dessinées en tracés, sans
-  dépendance à une police.
+  dépendance à une police. Fichier réduit au dessin le 20 octobre 2026 :
+  le bloc `<metadata>` (manifeste C2PA d’environ 7,7 Ko, ajouté par l’outil
+  de génération, sans effet sur l’affichage) et la déclaration
+  `xmlns:c2pa` ont été retirés.
 - `favicon.ico` à la racine (16, 32 et 48 px) : repli pour les navigateurs
   qui ne lisent pas le SVG (Safari antérieur à 26) ou qui demandent
   `/favicon.ico` d’office.
@@ -555,6 +582,14 @@ Le code conservé doit être compris et testé.
   `sizes="32x32"`, puis le SVG.
 - Icône d’écran d’accueil de l’iPhone (`apple-touch-icon`) : reportée à la
   V2.
+- Cache de Safari : Safari garde les favicons dans une base séparée
+  (`~/Library/Safari/Favicon Cache/`) qu’il ne met pas à jour de lui-même.
+  Un site visité avant l’ajout de l’icône peut garder une lettre de
+  remplacement, même en navigation privée (observé le 20 octobre 2026 :
+  « G » à la place de « AM »). Solution : quitter Safari (⌘Q), vider le
+  contenu de ce dossier, relancer. Cela efface les icônes de tous les
+  sites, qui reviennent à la visite suivante. Un nouveau visiteur n’est
+  pas concerné.
 
 ### Tester en local
 
@@ -824,10 +859,10 @@ Elles reprennent mes règles générales de travail.
   (2026 – Aujourd’hui) puis Baccalauréat (2026), avec lieu, mention et
   moyenne sur une ligne séparée, spécialités. Section Projets (`ul.projects`)
   avec la carte du projet Serrure à frappes, entrée correspondante dans le
-  sommaire. Bouton de changement de thème en premier élément de l’en-tête,
-  et script d’initialisation du thème dans le `<head>`. Validation HTML sans
-  erreur le 14 octobre 2026 (avant l’ajout de la section Projets et du
-  bouton de thème).
+  sommaire. Bouton de changement de thème placé dans `<body>`, après le
+  lien d’évitement et hors de `div.page`, et script d’initialisation du
+  thème dans le `<head>`. Validation HTML sans erreur le 14 octobre 2026
+  (avant l’ajout de la section Projets et du bouton de thème).
 - `styles.css` : thème sombre de base, typographie système, mise en page
   responsive (une colonne, deux colonnes à partir de `64rem`, présentation
   fixe au défilement sous conditions de largeur et de hauteur), contour de
@@ -835,7 +870,7 @@ Elles reprennent mes règles générales de travail.
   `9rem` à partir de `40rem`, au-dessus du titre en dessous ; titre et date
   dans la couleur du texte principal), survol des étapes et carte de projet
   cliquable avec flèche (comportements décrits en section 7), thème clair
-  et style du bouton de thème.
+  et style du bouton de thème, positionné en haut à droite hors du flux.
 - Liens du sommaire : couleur secondaire au repos, sans soulignement
   visible, accent au survol et au focus clavier, transition de couleur de
   150 ms réservée aux utilisateurs n’ayant pas demandé de réduction des
@@ -872,13 +907,14 @@ Elles reprennent mes règles générales de travail.
   fenêtre basse, clavier dont le contour de focus arrondi de tous les
   liens, survol, thèmes clair et sombre, ouverture des liens, animation,
   réduction des animations, désactivation de JavaScript, section active).
-  Hauteur de l’en-tête mesurée à 40,3 rem.
+  Hauteur de l’en-tête mesurée à 40,3 rem (avant le déplacement du bouton
+  de thème).
 - Favicon (décrit en section 9) : initiales « AM » en SVG
   (`assets/images/favicon.svg`) avec repli `favicon.ico` à la racine, et
   deux balises dans le `<head>` (`index.html`). Testé par Alex dans
-  Safari 27.0.1 le 20 octobre 2026 via un serveur local : icône visible
-  dans l’onglet, fichiers servis sans erreur. Sans serveur (ouverture
-  directe du fichier), Safari n’affiche pas l’icône.
+  Safari 27.0.1 le 20 octobre 2026 via un serveur local, puis sur le site
+  publié après vidage du cache des favicons de Safari (section 9). Fichier
+  SVG réduit au dessin (métadonnées C2PA retirées) le 20 octobre 2026.
 - Photo temporaire (décrite en section 10) : la même que sur le CV,
   recadrée en carré (480 × 480 px, JPEG), placée dans À propos, à droite
   du texte à partir de `40rem` de large, sous le titre et avant le texte en
@@ -888,6 +924,21 @@ Elles reprennent mes règles générales de travail.
   une colonne, netteté, thèmes clair et sombre, largeur intermédiaire,
   zoom, section active, clavier, désactivation de JavaScript, réduction des
   animations, rechargement) ; emplacement et comportement validés par Alex.
+  Fichier de 41 Ko ; aucune métadonnée d’auteur ni de localisation dans
+  l’inspecteur d’Aperçu (vérifié par Alex le 20 octobre 2026).
+- Déplacement du bouton de thème (décrit en section 7) : sorti de
+  l’en-tête, en haut à droite de la page, hors du flux (`index.html`,
+  `styles.css`). Le décalage possible du titre et du sommaire à
+  l’apparition du bouton a disparu. Testé par Alex dans Safari le
+  20 octobre 2026 (320 et 375 px de large, grand écran, défilement, zoom à
+  200 %, clavier, thèmes clair et sombre, rechargement).
+- Publication GitHub Pages vérifiée par Alex le 20 octobre 2026 :
+  déploiement réussi dans l’onglet Actions, publication depuis la branche
+  `main` à la racine, site testé en fenêtre privée (animation, thème,
+  section active, carte de projet, liens e-mail, GitHub et LinkedIn,
+  CV public sans téléphone), aucune erreur dans la console ni de fichier
+  manquant dans l’onglet Réseau ; `favicon.ico` et `favicon.svg` servis
+  avec le code 200 et le bon type (contrôle avec `curl`).
 - CV public présent dans `assets/documents/`.
 - README minimal.
 
@@ -896,14 +947,14 @@ Elles reprennent mes règles générales de travail.
 - Description réelle du projet Serrure à frappes (à rédiger quand le projet
   aura avancé ; trop tôt pour l’instant, confirmé le 20 octobre 2026).
 - Photo définitive (une photo temporaire est en place).
+- Balises de partage (Open Graph) pour l’aperçu du lien sur LinkedIn et
+  dans les messageries, avec une image dédiée de 1200 × 630 px (nom,
+  intitulé et adresse du site sur le fond du thème sombre, sans photo,
+  décision du 20 octobre 2026).
 - Police et espacements définitifs (palette actuelle conservée), puis
   vérification des contrastes des deux thèmes avec un outil dédié.
-- Balises de partage (Open Graph) pour l’aperçu du lien dans les
-  messageries et sur LinkedIn ; l’image d’aperçu reste à choisir.
 - Mesure de la hauteur de l’en-tête à 64 rem de large (voir section 6).
 - README complet, avec la mention des icônes Feather Icons (licence MIT).
-- Vérification de la publication GitHub Pages, dont l’affichage du favicon
-  et de la photo sur le site publié.
 - Validation complète de la V1 (section 14), dont une nouvelle validation
   HTML.
 
@@ -920,12 +971,15 @@ Elles reprennent mes règles générales de travail.
   accède au code par ce dépôt, ce qui est autorisé par l’UE (confirmé le
   15 octobre 2026).
 - Thèmes : deux états en V1 (clair et sombre), avec bouton à icône
-  soleil/lune en haut de la colonne de gauche. Le thème clair est en blanc
-  légèrement cassé avec le même accent bleu, à ajuster si besoin.
-  Basculement instantané. L’état « suivre le système » et le fondu au
-  changement de thème sont prévus dans une version suivante (section 7).
-  Script d’initialisation séparé (`theme-init.js`) pour éviter l’éclair du
-  mauvais thème.
+  soleil/lune en haut à droite de la page, hors des colonnes. Le thème
+  clair est en blanc légèrement cassé avec le même accent bleu, à ajuster
+  si besoin. Basculement instantané. L’état « suivre le système » et le
+  fondu au changement de thème sont prévus dans une version suivante
+  (section 7). Script d’initialisation séparé (`theme-init.js`) pour
+  éviter l’éclair du mauvais thème.
+- Bouton de thème : `position: absolute` plutôt que `fixed` (pas de
+  recouvrement du texte sur téléphone) ; sur grand écran, il faut remonter
+  en haut de la page pour l’atteindre (compromis accepté).
 - Section active du sommaire : marque choisie = texte en couleur
   principale et soulignement fin (les liens du sommaire ne sont plus
   soulignés au repos). La valeur `aria-current="true"` n’a pas été testée
@@ -946,9 +1000,10 @@ Elles reprennent mes règles générales de travail.
   liens rapides.
 - Favicon : « AM » retenu plutôt que « AME » (lisibilité à 16 px), même
   icône pour les deux thèmes, icône d’écran d’accueil de l’iPhone reportée à
-  la V2. Non testés : le site publié, les autres navigateurs, les versions
-  de Safari antérieures à 26 (où seul l’ICO sert) ; le choix de Safari entre
-  l’ICO et le SVG n’a pas été relevé.
+  la V2. Testé en local et sur le site publié dans Safari 27.0.1. Non
+  testés : les autres navigateurs, les versions de Safari antérieures à 26
+  (où seul l’ICO sert) ; le choix de Safari entre l’ICO et le SVG n’a pas
+  été relevé.
 - Photo : carré aux coins arrondis (pas de cercle), choix d’Alex, à droite
   du texte sur grand écran (testé et validé) et avant le texte en une
   colonne. Photo temporaire, à remplacer en gardant le nom du fichier et le
@@ -957,40 +1012,33 @@ Elles reprennent mes règles générales de travail.
   l’image. Pas de `loading="lazy"`. Texte alternatif « Portrait d’Alexandre
   MAI--EMERY ». Limite : dans la grille de la section À propos, la photo
   couvre deux lignes (`span 2`) ; si un troisième paragraphe est ajouté, la
-  valeur doit passer à 3. Le poids du fichier et l’absence de métadonnées
-  de localisation sont à contrôler avant publication (section 10).
+  valeur doit passer à 3. Poids et métadonnées contrôlés le 20 octobre
+  2026 ; à refaire pour la photo définitive.
 - Police : Alex souhaite une police spécifique plutôt que la police système,
   pour une apparence identique chez tous les visiteurs. Une police web
   n’assure pas un rendu strictement identique et a un coût (fichier à
   héberger, temps de chargement, police de repli) : le choix se fait à
   l’étape « police et espacements », avec vérification des options et des
   licences. Palette de couleurs actuelle conservée.
-- Chargement : le bouton de thème est affiché par `main.js` (chargé avec
-  `defer`). Si la page est peinte avant l’exécution de ce script, le titre
-  et le sommaire peuvent descendre d’environ 76 px (`2.75rem` plus `2rem`
-  de marge) à l’apparition du bouton ; `theme-init.js` n’agit pas sur ce
-  point (il ne fait que poser le thème). Décalage non observé par Alex
-  dans Safari, non testé sur connexion lente, non traité.
 
 ### Prochaine étape
 
-À choisir au début de la prochaine session parmi les étapes de « Pas
-encore fait ». Le résultat attendu est défini avant d’écrire du code, avec
-l’intérêt pour un recruteur et le coût en complexité.
+Balises de partage (Open Graph) et image d’aperçu. Le résultat attendu
+est défini avant d’écrire du code, avec l’intérêt pour un recruteur et le
+coût en complexité.
 
 ### Ordre de travail convenu
 
 Ordre convenu le 20 octobre 2026 pour les étapes restantes, lancées une à
 la fois :
 
-1. Photo (faite, temporaire) et description de Serrure à frappes, dès que
-   le projet aura avancé.
-2. Balises de partage (Open Graph), pour pouvoir réutiliser l’image
-   choisie.
-3. Police et espacements définitifs (palette conservée), puis vérification
-   des contrastes.
+1. Balises de partage (Open Graph) et image d’aperçu.
+2. Police et espacements définitifs (palette conservée) ; l’image
+   d’aperçu est refaite si la police change.
+3. Vérification des contrastes des deux thèmes.
 4. README complet.
-5. Vérification de GitHub Pages et validation de la V1.
+5. Validation de la V1 (section 14).
 
-La mesure de la hauteur de l’en-tête à 64 rem de large peut se faire à
-n’importe quel moment.
+La description de Serrure à frappes sera rédigée quand le projet aura
+avancé. La mesure de la hauteur de l’en-tête à 64 rem de large peut se
+faire à n’importe quel moment.
