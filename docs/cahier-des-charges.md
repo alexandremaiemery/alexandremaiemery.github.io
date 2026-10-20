@@ -1,8 +1,8 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
 Date de cadrage : 1er octobre 2026  
-Dernière mise à jour : 19 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet, thèmes clair et sombre, indication de la section active et animation d’entrée réalisés, reste du JavaScript à développer
+Dernière mise à jour : 20 octobre 2026  
+Statut : développement en cours — structure HTML, mise en page de base, états du sommaire, chronologie du parcours, carte de projet, thèmes clair et sombre, indication de la section active, animation d’entrée et liens rapides réalisés, reste du JavaScript à développer
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -229,7 +229,10 @@ Mise en œuvre actuelle :
   afin qu’une présentation trop haute ne reste pas bloquée dans une
   fenêtre basse ;
 - ce seuil de hauteur a été retesté le 15 octobre 2026 avec le bouton de
-  thème ; il reste à retester lorsque les liens rapides seront ajoutés.
+  thème, puis le 20 octobre 2026 avec les liens rapides : l’en-tête
+  mesure alors 40,3 rem de haut, soit 43,3 rem avec le décalage de
+  3 rem, sous le seuil de 45 rem ; la mesure à 64 rem de large (colonne
+  la plus étroite) reste à faire.
 
 ### Téléphones et petits écrans
 
@@ -413,12 +416,13 @@ celui du thème) et en CSS :
 
 Mise en œuvre actuelle, en CSS seul (aucun JavaScript) :
 
-- au chargement de la page, le nom, le sous-titre, l’introduction et le
-  sommaire apparaissent l’un après l’autre par un fondu accompagné d’une
-  montée de `0.75rem` (`transform`, aucun déplacement dans la page) ; le
-  contenu principal apparaît ensuite par un fondu seul ;
-- rythme : 700 ms par apparition ; délais de 0, 100, 200 et 300 ms pour
-  l’en-tête, 400 ms pour le contenu principal ; durée totale : 1,1 s ;
+- au chargement de la page, le nom, le sous-titre, l’introduction, le
+  sommaire et les liens rapides apparaissent l’un après l’autre par un
+  fondu accompagné d’une montée de `0.75rem` (`transform`, aucun
+  déplacement dans la page) ; le contenu principal apparaît ensuite par
+  un fondu seul ;
+- rythme : 700 ms par apparition ; délais de 0, 100, 200, 300 et 400 ms
+  pour l’en-tête, 500 ms pour le contenu principal ; durée totale : 1,2 s ;
 - le bouton de thème est hors de l’animation : il est affiché par
   JavaScript à un instant imprévisible, et son animation démarrerait en
   retard ;
@@ -434,6 +438,37 @@ Mise en œuvre actuelle, en CSS seul (aucun JavaScript) :
 - sans JavaScript : l’animation se joue normalement ;
 - l’animation se rejoue à chaque chargement ou rechargement de la page,
   pas lors d’un clic sur le sommaire.
+
+### Liens rapides
+
+Mise en œuvre actuelle, en HTML et CSS seuls (aucun JavaScript) :
+
+- trois liens sous le sommaire, dans la colonne de gauche : GitHub,
+  LinkedIn et e-mail (`mailto:`) ; le CV reste dans la section Contact et
+  CV, pas dans les liens rapides ;
+- liste `ul.quick-links` nommée « Liens rapides » (`aria-label`), un lien
+  `a.quick-link` par icône ; icônes seules, sans texte visible ni
+  infobulle ; nom accessible porté par `aria-label` sur chaque lien
+  (« GitHub », « LinkedIn », « Envoyer un e-mail »), icône masquée aux
+  lecteurs d’écran ;
+- icônes en SVG dans le HTML, de la couleur du texte courant
+  (`currentColor`), donc du thème ; source : Feather Icons (Cole Bemis,
+  licence MIT) ; Simple Icons a été écarté, LinkedIn n’y figurant plus
+  depuis la version 14 ; la mention de la licence est à reporter dans le
+  README ;
+- zone cliquable de `2.75rem` (comme le bouton de thème), décalée de
+  `-0.75rem` à gauche pour aligner l’icône sur le texte ;
+- au repos : couleur secondaire ; au survol (appareils disposant d’un vrai
+  survol) et au focus clavier : couleur d’accent ; aucun déplacement ;
+  transition de couleur de 150 ms, supprimée pour les utilisateurs ayant
+  demandé la réduction des animations ;
+- contour de focus : celui de tous les liens du site (2 px d’accent,
+  décalé de 4 px, coins arrondis de `0.5rem`) ;
+- GitHub et LinkedIn s’ouvrent dans le même onglet, comme les autres
+  liens du site ;
+- ils apparaissent dans l’animation d’entrée, après le sommaire ;
+- sans JavaScript : visibles et fonctionnels ;
+- en une colonne : sous le sommaire, avant « À propos ».
 
 ## 8. Technologies et hébergement
 
@@ -707,7 +742,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 19 octobre 2026.
+État au 20 octobre 2026.
 
 ### Réalisé
 
@@ -761,6 +796,16 @@ Elles reprennent mes règles générales de travail.
   thème, survol et section active après l’animation, thèmes clair et
   sombre, réduction des animations, une colonne, rechargement au milieu de
   la page, clavier, désactivation de JavaScript).
+- Liens rapides (comportement décrit en section 7) : trois icônes (GitHub,
+  LinkedIn, e-mail) sous le sommaire, en HTML et CSS seuls, intégrées à
+  l’animation d’entrée (délai de 400 ms ; contenu principal décalé de
+  400 ms à 500 ms, durée totale 1,2 s) (`index.html`, `styles.css`).
+  Contour de focus arrondi sur tous les liens du site (`a:focus-visible`).
+  Testés par Alex dans Safari le 20 octobre 2026 (alignement, une colonne,
+  fenêtre basse, clavier dont le contour de focus arrondi de tous les
+  liens, survol, thèmes clair et sombre, ouverture des liens, animation,
+  réduction des animations, désactivation de JavaScript, section active).
+  Hauteur de l’en-tête mesurée à 40,3 rem.
 - CV public présent dans `assets/documents/`.
 - README minimal.
 
@@ -768,18 +813,22 @@ Elles reprennent mes règles générales de travail.
 
 - Description réelle du projet Serrure à frappes (à rédiger).
 - Photo.
-- Liens rapides dans la présentation.
 - Couleurs, police et espacements définitifs.
 - Vérification des contrastes des deux thèmes avec un outil dédié.
-- README complet.
+- Favicon : aucune balise `<link rel="icon">` dans le `<head>` (présence
+  d’un `favicon.ico` à la racine non vérifiée).
+- Balises de partage (Open Graph) pour l’aperçu du lien dans les
+  messageries et sur LinkedIn.
+- Mesure de la hauteur de l’en-tête à 64 rem de large (voir section 6).
+- README complet, avec la mention des icônes Feather Icons (licence MIT).
 - Vérification de la publication GitHub Pages.
 - Validation complète de la V1 (section 14), dont une nouvelle validation
   HTML.
 
 ### Décisions et limites connues
 
-- Les listes sans puces (sommaire, chronologie, projets) n’ont pas
-  d’attribut `role="list"`. Les lecteurs d’écran peuvent ne pas les
+- Les listes sans puces (sommaire, chronologie, projets, liens rapides) n’ont
+  pas d’attribut `role="list"`. Les lecteurs d’écran peuvent ne pas les
   annoncer comme des listes. Non testé avec VoiceOver. Choix actuel : ne
   pas traiter, à reconsidérer éventuellement à la validation finale.
 - Spécialité écrite « Numérique et Sciences Informatiques » (majuscules
@@ -803,8 +852,16 @@ Elles reprennent mes règles générales de travail.
   que lorsque la colonne de gauche est fixe.
 - Animation d’entrée : CSS seul, bouton de thème exclu de l’animation,
   contenu principal en fondu seul (section 7). Rythme porté de 500 ms à
-  700 ms par apparition (durée totale 1,1 s) après essai, la première
-  version paraissant trop rapide.
+  700 ms par apparition après essai, la première version paraissant trop
+  rapide ; durée totale de 1,2 s depuis l’ajout des liens rapides.
+- Liens rapides : GitHub, LinkedIn et e-mail ; le CV reste dans Contact et
+  CV. Icônes seules, sans texte visible ni infobulle (choix d’Alex) ; noms
+  accessibles par `aria-label`, non testés avec VoiceOver. Icônes de Feather
+  Icons (MIT), Simple Icons écarté car LinkedIn n’y figure plus depuis la
+  version 14.
+- Contour de focus : tous les liens du site ont les mêmes coins arrondis
+  (`0.5rem`, règle `a:focus-visible`), comme le bouton de thème et les
+  liens rapides.
 - Chargement : le bouton de thème est affiché par `main.js` (chargé avec
   `defer`). Si la page est peinte avant l’exécution de ce script, le titre
   et le sommaire peuvent descendre d’environ 76 px (`2.75rem` plus `2rem`
@@ -820,6 +877,7 @@ l’intérêt pour un recruteur et le coût en complexité.
 
 ### Ordre de travail proposé ensuite
 
-L’ordre des étapes restantes (photo, liens rapides, description du projet,
-couleurs et police définitifs, contrastes, README, validation de la V1)
-reste à fixer. Les étapes ne sont pas lancées simultanément.
+L’ordre des étapes restantes (photo, description du projet, couleurs et
+police définitifs, contrastes, favicon et balises de partage, README,
+validation de la V1) reste à fixer. Les étapes ne sont pas lancées
+simultanément.
