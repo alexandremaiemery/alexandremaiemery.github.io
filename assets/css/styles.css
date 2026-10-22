@@ -98,6 +98,11 @@ main li {
     color: var(--color-muted);
 }
 
+main p {
+    max-width: 60ch;
+}
+
+
 main ul {
     padding-left: 1.25rem;
 }
