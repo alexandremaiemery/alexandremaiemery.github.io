@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 22 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage et police Geist réalisés, publication vérifiée ; restent les contrastes, l’uniformisation et le nettoyage du code, le README et la validation de la V1
+Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist et vérification des contrastes réalisés, publication vérifiée ; restent l’uniformisation et le nettoyage du code, le README et la validation de la V1
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -202,8 +202,10 @@ Il ne sera pas une copie conforme de ces références.
 - Thème sombre de base : fond bleu très foncé (`#111827`), texte principal
   presque blanc (`#f1f5f9`), texte secondaire gris clair (`#a8b4c7`),
   accent bleu clair (`#7dd3fc`), définis par des variables CSS.
-- Palette actuelle conservée (décision d’Alex du 20 octobre 2026), sous
-  réserve de la vérification des contrastes.
+- Palette actuelle conservée (décision d’Alex du 20 octobre 2026) et
+  confirmée par la vérification des contrastes du 22 octobre 2026 (voir
+  « Contrastes » ci-dessous) : aucune couleur de la palette n’a été
+  modifiée.
 - Police : Geist (Vercel, licence SIL Open Font License 1.1), retenue le
   22 octobre 2026 après comparaison en local avec Inter, jugée trop grosse
   et aux espacements resserrés, et Manrope, jugée moins classique. Une
@@ -216,6 +218,88 @@ Il ne sera pas une copie conforme de ces références.
   courant : 45 à 75 caractères) ; les éléments de liste (`main li`) ne
   sont pas limités, pour ne pas rétrécir les cartes de projets ni la
   chronologie.
+
+### Contrastes
+
+Vérification faite le 22 octobre 2026, au niveau AA des WCAG (choix
+d’Alex), sur les deux thèmes, états de survol compris.
+
+- Seuils : 4,5:1 pour tout le texte, titres compris (seuls le titre
+  principal et les titres de section atteignent la taille du grand texte,
+  et ils sont dans la couleur la plus contrastée) ; 3:1 pour les éléments
+  qui ne sont pas du texte (icônes des liens rapides, bordure et icône du
+  bouton de thème, contour de focus, soumis au critère puisqu’il remplace
+  celui du navigateur). Un rapport n’est jamais arrondi à la hausse :
+  4,49:1 échoue.
+- Outil : WebAIM Contrast Checker
+  (`https://webaim.org/resources/contrastchecker/`), en saisissant les
+  valeurs hexadécimales du code. Pipettes non utilisées : celle de WebAIM
+  ne fonctionne pas dans Safari, et celle de macOS mesure les couleurs
+  après le profil de l’écran et le lissage du texte.
+- Calcul du rapport (formule WCAG) : chaque canal (0 à 255) est divisé
+  par 255 (valeur `c`), puis linéarisé (`c / 12,92` si `c ≤ 0,04045`,
+  sinon `((c + 0,055) / 1,055)^2,4`) ; luminance relative
+  `L = 0,2126 × R + 0,7152 × V + 0,0722 × B` ; rapport
+  `(L de la couleur claire + 0,05) / (L de la couleur foncée + 0,05)`.
+- Couleurs obtenues par transparence, calculées canal par canal :
+  `α × couleur du dessus + (1 − α) × couleur du dessous`, arrondi à
+  l’entier. Fond survolé : accent à 10 % sur le fond de la page. Éléments
+  atténués : couleur du texte à 82 % sur le fond de la page (le fond
+  teinté des éléments non survolés est transparent). Le navigateur peut
+  arrondir différemment d’une unité, soit environ 0,03 sur le rapport.
+
+Les 14 paires vérifiées (S : thème sombre, C : thème clair), avec les
+couleurs actuelles ; rapports avant et après la correction :
+
+| Paire | Rôle | Avant-plan | Fond | Avant | Après |
+|---|---|---|---|---|---|
+| S1 | texte principal | `#f1f5f9` | `#111827` | 16,19:1 | 16,19:1 |
+| S2 | texte secondaire, icônes, bordure du bouton de thème | `#a8b4c7` | `#111827` | 8,46:1 | 8,46:1 |
+| S3 | accent (liens, survol, contour de focus) | `#7dd3fc` | `#111827` | 10,64:1 | 10,64:1 |
+| S4 | accent sur fond survolé | `#7dd3fc` | `#1c2b3c` | 9,50:1 | 8,63:1 |
+| S5 | texte secondaire sur fond survolé | `#a8b4c7` | `#1c2b3c` | 7,55:1 | 6,86:1 |
+| S6 | texte principal atténué | `#c9cdd3` | `#111827` | 8,41:1 | 11,11:1 |
+| S7 | texte secondaire et flèche atténués | `#8d98aa` | `#111827` | 4,77:1 | 6,08:1 |
+| C1 | texte principal | `#0f172a` | `#f8fafc` | 17,06:1 | 17,06:1 |
+| C2 | texte secondaire, icônes, bordure du bouton de thème | `#475569` | `#f8fafc` | 7,24:1 | 7,24:1 |
+| C3 | accent (liens, survol, contour de focus) | `#0369a1` | `#f8fafc` | 5,67:1 | 5,67:1 |
+| C4 | accent sur fond survolé | `#0369a1` | `#e0ecf3` | 5,20:1 | 4,93:1 |
+| C5 | texte secondaire sur fond survolé | `#475569` | `#e0ecf3` | 6,64:1 | 6,30:1 |
+| C6 | texte principal atténué | `#394050` | `#f8fafc` | 6,50:1 | 9,92:1 |
+| C7 | texte secondaire et flèche atténués | `#677383` | `#f8fafc` | 3,52:1 | 4,61:1 |
+
+Avant la correction, les fonds survolés étaient `#172334` (sombre) et
+`#e9f1f7` (clair), et les textes atténués `#aeb3ba` (S6), `#7b8597`
+(S7), `#555b69` (C6) et `#7c8695` (C7). Les 14 paires ont alors été
+saisies dans WebAIM par Alex : 13 conformes, C7 en échec à 3,52:1, comme
+le calcul. C7 correspond au texte secondaire des étapes et des cartes non
+survolées, en thème clair, pendant le survol d’une autre.
+
+Correction retenue par Alex, sans modifier la palette :
+
+- opacité d’atténuation des étapes et des cartes passée de `0.7` à
+  `0.82`, identique dans les deux thèmes : C7 passe à 4,61:1 ; `0.81`
+  passait de justesse (4,52:1) et dépendait d’un arrondi ;
+- pour compenser une atténuation plus discrète, fond survolé
+  (`--color-hover`) passé de 6 % à 10 % de l’accent dans les deux
+  thèmes : la paire la plus faible sur ce fond, C4, passe de 5,20:1 à
+  4,93:1 ; 15 % a été écarté (C4 à 4,55:1, trop près du seuil).
+
+Options écartées : foncer le texte secondaire du thème clair (il aurait
+fallu environ `#2c3b52`, contraire à la palette conservée) ; atténuer
+les titres plus que les paragraphes (plus de code, et titres plus pâles
+que leur texte) ; garder `0.7` (non conforme AA).
+
+Limites :
+
+- après la correction, les rapports viennent du calcul seul et n’ont pas
+  été ressaisis dans WebAIM (avant la correction, le calcul et WebAIM
+  donnaient les mêmes résultats) ;
+- une opacité inférieure à `0.82`, un fond survolé supérieur à 10 % ou un
+  changement de couleur de la palette demandent de recalculer les paires
+  concernées ;
+- non vérifiés : la photo (ce n’est pas une paire de couleurs) et le
+  soulignement du sommaire actif (même couleur que S1 et C1).
 
 ## 6. Organisation selon la taille de l’écran
 
@@ -330,8 +414,9 @@ Mise en œuvre actuelle :
   déclaré pour chacun ;
 - palette claire : fond `#f8fafc` (blanc légèrement cassé), texte
   principal `#0f172a`, texte secondaire `#475569`, accent `#0369a1`,
-  survol `rgba(3, 105, 161, 0.06)` ; les contrastes ont été calculés mais
-  restent à vérifier avec un outil dédié ;
+  survol `rgba(3, 105, 161, 0.1)` (10 % de l’accent, comme le survol du
+  thème sombre, `rgba(125, 211, 252, 0.1)`) ; contrastes vérifiés le
+  22 octobre 2026 (section 5) ;
 - bouton `button.theme-toggle` placé directement dans `<body>`, après le
   lien d’évitement et hors de `div.page` ; masqué (`hidden`) tant que
   JavaScript ne l’a pas affiché ;
@@ -375,9 +460,10 @@ pour la V1). Mise en œuvre actuelle, en CSS seul :
 
 - titre et date de chaque étape dans la couleur du texte principal ;
 - au survol d’une étape (zone élargie autour du texte) : fond légèrement
-  teinté (variable `--color-hover`), date et titre en couleur d’accent,
-  autres étapes atténuées à `0.7` d’opacité (limite fixée pour conserver
-  un contraste lisible) ;
+  teinté (variable `--color-hover`, 10 % de l’accent), date et titre en
+  couleur d’accent, autres étapes atténuées à `0.82` d’opacité (sous
+  `0.81`, le texte secondaire atténué du thème clair passe sous le niveau
+  AA ; voir « Contrastes » en section 5) ;
 - curseur inchangé, puisque l’étape n’est pas cliquable ;
 - effet limité aux appareils disposant d’un vrai survol (`hover: hover`) ;
 - transition de 150 ms, supprimée pour les utilisateurs ayant demandé la
@@ -395,7 +481,7 @@ Mise en œuvre actuelle, en HTML et CSS seuls :
   (dépôt, démonstration ou page dédiée) ; sans destination, ce n’est pas
   un lien ;
 - au survol : même comportement que les étapes du parcours (fond teinté,
-  autres cartes atténuées à `0.7`), titre et flèche en couleur d’accent ;
+  autres cartes atténuées à `0.82`), titre et flèche en couleur d’accent ;
   la flèche se décale de 4 px vers le haut et la droite et grossit de
   15 % (`transform`, aucun déplacement dans la page) ;
 - au clavier : contour visible sur toute la carte et mêmes effets qu’au
@@ -1097,14 +1183,36 @@ Elles reprennent mes règles générales de travail.
   `curl`) et lue par Post Inspector de LinkedIn.
 - CV public présent dans `assets/documents/`.
 - README minimal.
+- Police Geist (décrite en sections 5 et 9) : fichier WOFF2 variable et
+  licence dans `assets/fonts/`, règle `@font-face` et police de repli
+  (`styles.css`), préchargement dans le `<head>` (`index.html`). Testée
+  par Alex dans Safari 27.0.1 le 22 octobre 2026, en local puis sur le
+  site publié (`document.fonts`, comparaison avec une police serif,
+  « l » de Geist visible, une seule requête réseau, fenêtre privée).
+  Paragraphes limités à `52ch` après mesure de la longueur des lignes
+  (`styles.css`) : 72 caractères au plus dans la carte de projet, contre
+  93 à 900 px de large et 78 à 1470 px auparavant. Hauteur de l’en-tête
+  mesurée à 560 px (35 rem) à 1030 px de large et colonne de gauche fixe
+  vérifiée (section 6). Image d’aperçu de partage refaite en Geist
+  (`assets/images/apercu-partage.png`) : 1200 × 630 px confirmés avec
+  `sips`, 52 766 octets, nouvelle image servie en ligne (contrôle avec
+  `curl`) et lue par Post Inspector de LinkedIn.
+- Vérification des contrastes (décrite en section 5) : 14 paires de
+  couleurs des deux thèmes, survol compris, au niveau AA, avec WebAIM
+  Contrast Checker et par le calcul. Seule paire en échec : texte
+  secondaire atténué du thème clair (3,52:1). Corrigée sans toucher à la
+  palette (`styles.css`) : opacité d’atténuation des étapes et des cartes
+  de `0.7` à `0.82`, fond survolé de 6 % à 10 % de l’accent, dans les
+  deux thèmes. Testée par Alex dans Safari 27.0.1 le 22 octobre 2026, en
+  local (valeurs lues dans l’inspecteur, survol dans les deux thèmes),
+  puis sur le site publié en fenêtre privée (survol dans les deux thèmes,
+  focus clavier sur la carte de projet).
 
 ### Pas encore fait
 
 - Description réelle du projet Serrure à frappes (à rédiger quand le projet
   aura avancé ; trop tôt pour l’instant, confirmé le 20 octobre 2026).
 - Photo définitive (une photo temporaire est en place).
-- Vérification des contrastes des deux thèmes avec un outil dédié
-  (palette actuelle conservée sous cette réserve).
 - Uniformisation et nettoyage du code (voir « Uniformisation et nettoyage
   du code » ci-dessous).
 - README complet, avec la mention des icônes Feather Icons (licence MIT)
@@ -1200,12 +1308,29 @@ Elles reprennent mes règles générales de travail.
   à 51 caractères par ligne selon la largeur, texte à côté de la photo)
   et Parcours (38 à 65 caractères, date à gauche du texte) restent telles
   quelles (décision d’Alex du 22 octobre 2026).
+  - Longueur des lignes : seuls les paragraphes (`main p`) sont limités, à
+  `52ch` (option retenue par Alex plutôt qu’une limite sur toute la page,
+  `.page`). Une valeur de `60ch` a d’abord été posée, puis ramenée à
+  `52ch` pour tenir compte de Geist : son « 0 », qui définit l’unité `ch`,
+  mesure environ 10 px, contre 7,7 px en moyenne par caractère, donc
+  `60ch` laissait passer environ 78 caractères. Les sections À propos (39
+  à 51 caractères par ligne selon la largeur, texte à côté de la photo)
+  et Parcours (38 à 65 caractères, date à gauche du texte) restent telles
+  quelles (décision d’Alex du 22 octobre 2026).
+- Contrastes : niveau AA (choix d’Alex), y compris pour les éléments qui
+  ne sont pas du texte et pour les états de survol ; niveau AAA non visé.
+  Palette inchangée ; seules l’opacité d’atténuation (`0.82`, même valeur
+  dans les deux thèmes) et la teinte du fond survolé (10 %) ont été
+  ajustées. Avec une seule opacité, une atténuation plus marquée n’est pas
+  possible sans passer sous AA : elle est plus discrète qu’avant, et le
+  fond survolé plus marqué compense. Valeurs limites, sauf nouveau calcul
+  (section 5) : opacité d’au moins `0.82`, fond survolé d’au plus 10 %.
 
 ### Prochaine étape
 
-Vérification des contrastes des deux thèmes, avec un outil dédié (palette
-conservée sauf contraste insuffisant). Le résultat attendu, l’outil et les
-seuils visés sont fixés avant toute modification.
+Uniformisation et nettoyage du code (voir ci-dessous), sans changement
+visible. Les conventions sont fixées au début de l’étape, avant toute
+modification.
 
 ### Ordre de travail convenu
 
@@ -1217,7 +1342,9 @@ Ordre convenu le 20 octobre 2026 pour les étapes restantes, complété le
    l’en-tête est mesurée avec la nouvelle police (voir section 6). Fait le
    22 octobre 2026 : police Geist, paragraphes limités à `52ch`, image
    refaite, en-tête mesuré.
-2. Vérification des contrastes des deux thèmes.
+2. Vérification des contrastes des deux thèmes. Fait le 22 octobre 2026 :
+   niveau AA atteint, opacité d’atténuation à `0.82` et fond survolé à
+   10 %, palette inchangée (section 5).
 3. Uniformisation et nettoyage du code (voir ci-dessous), sans
    changement visible.
 4. README complet.
