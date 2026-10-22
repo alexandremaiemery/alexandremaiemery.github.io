@@ -12,7 +12,7 @@
     --color-text: #f1f5f9;
     --color-muted: #a8b4c7;
     --color-accent: #7dd3fc;
-    --color-hover: rgba(125, 211, 252, 0.06);
+    --color-hover: rgba(125, 211, 252, 0.1);
 }
 
 :root[data-theme="light"] {
@@ -21,7 +21,7 @@
     --color-text: #0f172a;
     --color-muted: #475569;
     --color-accent: #0369a1;
-    --color-hover: rgba(3, 105, 161, 0.06);
+    --color-hover: rgba(3, 105, 161, 0.1);
 }
 
 body {
@@ -363,7 +363,7 @@ a:focus-visible {
     }
 
     .timeline:hover>.timeline-item:not(:hover) {
-        opacity: 0.7;
+        opacity: 0.82;
     }
 
     .timeline-item:hover .timeline-date,
@@ -378,7 +378,7 @@ a:focus-visible {
     }
 
     .projects:hover>.project-card:not(:hover) {
-        opacity: 0.7;
+        opacity: 0.82;
     }
 
     .project-card:hover .project-link,
