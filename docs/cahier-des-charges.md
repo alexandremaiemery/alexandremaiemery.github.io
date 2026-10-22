@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 22 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire et balises de partage réalisés, publication vérifiée ; restent la police et les espacements définitifs, les contrastes, l’uniformisation et le nettoyage du code, le README et la validation de la V1
+Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage et police Geist réalisés, publication vérifiée ; restent les contrastes, l’uniformisation et le nettoyage du code, le README et la validation de la V1
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -202,12 +202,20 @@ Il ne sera pas une copie conforme de ces références.
 - Thème sombre de base : fond bleu très foncé (`#111827`), texte principal
   presque blanc (`#f1f5f9`), texte secondaire gris clair (`#a8b4c7`),
   accent bleu clair (`#7dd3fc`), définis par des variables CSS.
-- Police système (`system-ui`), taille de base `1rem`, interligne `1.7`.
 - Palette actuelle conservée (décision d’Alex du 20 octobre 2026), sous
   réserve de la vérification des contrastes.
-- Police : Alex souhaite une police spécifique plutôt que la police système,
-  afin que l’apparence soit la même chez tous les visiteurs. Le choix de la
-  police et des espacements reste à faire.
+- Police : Geist (Vercel, licence SIL Open Font License 1.1), retenue le
+  22 octobre 2026 après comparaison en local avec Inter, jugée trop grosse
+  et aux espacements resserrés, et Manrope, jugée moins classique. Une
+  seule police, en version variable (graisses de 100 à 900), hébergée
+  dans le dépôt ; mise en œuvre décrite en section 9.
+- Taille de base `1rem`, interligne `1.7`, espacements inchangés après le
+  passage à Geist.
+- Paragraphes du contenu principal (`main p`) limités à `52ch`, soit au
+  plus 72 caractères par ligne mesurés dans la carte de projet (repère
+  courant : 45 à 75 caractères) ; les éléments de liste (`main li`) ne
+  sont pas limités, pour ne pas rétrécir les cartes de projets ni la
+  chronologie.
 
 ## 6. Organisation selon la taille de l’écran
 
@@ -242,11 +250,16 @@ Mise en œuvre actuelle :
   thème, puis le 20 octobre 2026 avec les liens rapides : l’en-tête
   mesurait alors 40,3 rem de haut, soit 43,3 rem avec le décalage de
   3 rem, sous le seuil de 45 rem ;
-- depuis le déplacement du bouton de thème hors de l’en-tête
-  (20 octobre 2026), l’en-tête perd `4.75rem` (bouton de `2.75rem` et
-  marge de `2rem`) : environ 35,5 rem, soit 38,5 rem avec le décalage
-  (calcul, non mesuré) ; la mesure à 64 rem de large (colonne la plus
-  étroite) reste à faire.
+- nouvelle mesure le 22 octobre 2026, après le déplacement du bouton de
+  thème hors de l’en-tête et le passage à la police Geist : 560 px
+  (35 rem) de haut à 1030 px de large, juste au-dessus du passage en deux
+  colonnes (colonne de gauche la plus étroite, donc en-tête le plus
+  haut), soit 38 rem (608 px) avec le décalage, sous le seuil de 45 rem
+  (720 px), avec une marge de 7 rem (112 px) ; le calcul précédent
+  donnait environ 35,5 rem ;
+- comportement vérifié le même jour : colonne de gauche fixe dans une
+  fenêtre assez haute ; dans une fenêtre de 500 px de haut, sous le
+  seuil, l’en-tête défile avec la page, comme prévu.
 
 ### Téléphones et petits écrans
 
@@ -547,6 +560,9 @@ Le code conservé doit être compris et testé.
 - `favicon.ico` (repli du favicon, à la racine)
 - `assets/css/styles.css` (au pluriel ; l’ancien `style.css` est supprimé
   et ne doit pas être recréé)
+- `assets/fonts/geist-variable.woff2` (police Geist, version variable)
+- `assets/fonts/OFL.txt` (licence de la police Geist, à conserver avec le
+  fichier de police)
 - `assets/images/favicon.svg` (favicon)
 - `assets/images/apercu-partage.png` (image d’aperçu des liens partagés,
   1200 × 630 px)
@@ -618,17 +634,23 @@ JavaScript) :
 
 Image d’aperçu (`assets/images/apercu-partage.png`) :
 
-- PNG de 1200 × 630 px (format recommandé par LinkedIn), 51 Ko ; PNG plutôt
-  que JPEG pour garder un texte net sur un fond uni ;
+- PNG de 1200 × 630 px (format recommandé par LinkedIn), 52 766 octets ;
+  PNG plutôt que JPEG pour garder un texte net sur un fond uni ;
 - fond `#111827` ; « Alexandre » puis « MAI--EMERY » sur deux lignes, en
-  gras, en `#f1f5f9` ; « Étudiant en mathématiques et informatique » en
-  `#a8b4c7` (environ 34 pt) ; « alexandremaiemery.github.io » en `#7dd3fc`
-  (environ 30 pt) ; texte centré, loin des bords, pour rester lisible si
+  graisse Medium, en `#f1f5f9` ; « Étudiant en mathématiques et
+  informatique » en `#a8b4c7` (environ 34 pt) et
+  « alexandremaiemery.github.io » en `#7dd3fc` (environ 30 pt), en
+  graisse Regular ; texte centré, loin des bords, pour rester lisible si
   une messagerie découpe un carré au centre ;
 - sans photo : la photo actuelle est temporaire, et LinkedIn affiche déjà
   la photo du profil à côté des publications ;
-- police Helvetica Neue, provisoire ; réalisée dans Keynote, fichier
-  source conservé hors du dépôt ;
+- police Geist, comme le site, depuis le 22 octobre 2026 ; la première
+  version, en Helvetica Neue, avait les mêmes graisses, tailles, couleurs
+  et positions : seule la police a changé ;
+- réalisée dans Keynote, avec Geist installée sur le Mac par le Livre des
+  polices ; fichiers sources conservés hors du dépôt :
+  `apercu-partage-geist.key` (version actuelle) et le fichier de la
+  première version, en Helvetica Neue ;
 - à refaire si la police du site, le nom, l’intitulé ou l’adresse du site
   changent ; mettre à jour `og:image:width` et `og:image:height` si les
   dimensions changent.
@@ -644,6 +666,54 @@ Caches :
 Domaine personnel : en cas de changement d’adresse, modifier `og:url`,
 `og:image` et le texte de l’image.
 
+### Police
+
+Choix décrit en section 5. Mise en œuvre actuelle, en HTML et CSS seuls
+(aucun JavaScript) :
+
+- fichier `assets/fonts/geist-variable.woff2` (69 760 octets) : version
+  variable de Geist (graisses de 100 à 900 dans un seul fichier), au
+  format WOFF2 ; texte de la licence dans `assets/fonts/OFL.txt`, à
+  garder avec le fichier, comme le demande la licence ;
+- règle `@font-face` en tête de `styles.css` : famille `"Geist"`, source
+  `url("../fonts/geist-variable.woff2") format("woff2")`,
+  `font-weight: 100 900`, `font-style: normal`, `font-display: swap` ;
+  le chemin part du dossier de la feuille de style (`assets/css/`) ;
+- `body { font-family: "Geist", system-ui, sans-serif; }` : la police
+  système sert de repli si Geist n’est pas encore chargée ou manque ;
+- `font-display: swap` : le texte s’affiche tout de suite avec la police
+  de repli, puis passe à Geist dès qu’elle est chargée ; pas de
+  `size-adjust`, le changement observé étant jugé négligeable (à revoir à
+  la validation si un saut devient visible) ;
+- préchargement dans le `<head>` d’`index.html`, avant `theme-init.js` :
+  `<link rel="preload" href="assets/fonts/geist-variable.woff2" as="font" type="font/woff2" crossorigin>` ;
+  ici le chemin part de la racine du site ; l’attribut `crossorigin` est
+  obligatoire, même pour un fichier du même site, sinon le navigateur ne
+  réutilise pas le fichier préchargé et télécharge la police une seconde
+  fois ;
+- seul le style droit est déclaré (`font-style: normal`) : un éventuel
+  texte en italique serait incliné artificiellement par le navigateur ;
+- réglages conservés après le passage à Geist : espacement des lettres du
+  titre principal (`-0.03em`), décalage de la flèche des cartes de
+  projets (`0.1rem`), décalage du soulignement du sommaire (`0.35em`).
+
+Vérifications du 22 octobre 2026, dans Safari 27.0.1, en local puis sur
+le site publié :
+
+- console : `document.fonts` contient Geist (graisses 100 à 900) à l’état
+  `loaded` ;
+- comparaison temporaire avec une police serif : rendu différent, la
+  règle s’applique bien ;
+- repère visuel : le « l » minuscule de Geist se termine en bas par un
+  petit crochet, absent de la police système ;
+- onglet Réseau : une seule requête pour `geist-variable.woff2`
+  (préchargement et feuille de style utilisent le même téléchargement) ;
+- fenêtre privée : même rendu.
+
+Difficultés rencontrées : le premier essai en local utilisait un mauvais
+nom de fichier (`geist.woff2` au lieu de `geist.ttf`), puis le cache de
+Safari a faussé plusieurs vérifications (voir « Tester en local »).
+
 ### Tester en local
 
 - Ouvrir `index.html` directement depuis le disque (`file://`) : Safari
@@ -654,6 +724,12 @@ Domaine personnel : en cas de changement d’adresse, modifier `og:url`,
   `http://localhost:8000` ; arrêt avec `Ctrl + C`.
 - Le terminal affiche chaque fichier demandé avec son code de réponse,
   ce qui permet de repérer un `404`.
+- Cache de Safari : Safari réutilise les fichiers déjà téléchargés
+  (feuille de style, police, images), ce qui a faussé plusieurs mesures
+  le 22 octobre 2026. Avant chaque test, recharger sans le cache (⌥⌘R,
+  menu Développement) ou désactiver le cache dans l’onglet Réseau de
+  l’inspecteur ; en cas de doute, vérifier dans l’onglet Réseau que le
+  fichier modifié a bien été téléchargé à nouveau.
 
 ## 10. Informations publiques, photo et CV
 
@@ -915,13 +991,15 @@ Elles reprennent mes règles générales de travail.
   sommaire. Bouton de changement de thème placé dans `<body>`, après le
   lien d’évitement et hors de `div.page`, et script d’initialisation du
   thème dans le `<head>`. Métadonnées du `<head>` : description, auteur,
-  favicon et balises de partage. Validation HTML sans erreur le
-  14 octobre 2026 (avant l’ajout de la section Projets, du bouton de thème
-  et des balises de partage).
-- `styles.css` : thème sombre de base, typographie système, mise en page
-  responsive (une colonne, deux colonnes à partir de `64rem`, présentation
-  fixe au défilement sous conditions de largeur et de hauteur), contour de
-  focus visible, chronologie du parcours (date à gauche sur une colonne de
+  favicon, balises de partage et préchargement de la police. Validation
+  HTML sans erreur le 14 octobre 2026 (avant l’ajout de la section
+  Projets, du bouton de thème, des balises de partage et du préchargement
+  de la police).
+- `styles.css` : thème sombre de base, police Geist (`@font-face`) et
+  largeur des paragraphes limitée à `52ch`, mise en page responsive (une
+  colonne, deux colonnes à partir de `64rem`, présentation fixe au
+  défilement sous conditions de largeur et de hauteur), contour de focus
+  visible, chronologie du parcours (date à gauche sur une colonne de
   `9rem` à partir de `40rem`, au-dessus du titre en dessous ; titre et date
   dans la couleur du texte principal), survol des étapes et carte de projet
   cliquable avec flèche (comportements décrits en section 7), thème clair
@@ -998,10 +1076,25 @@ Elles reprennent mes règles générales de travail.
   le `<head>` et image d’aperçu dédiée (`index.html`,
   `assets/images/apercu-partage.png`). Testées par Alex le 22 octobre
   2026 : dimensions de l’image confirmées avec `sips` (1200 × 630 px,
-  51 Ko) ; image servie en ligne avec le code 200 et le type `image/png`
-  (contrôle avec `curl`) ; aperçu iMessage avec l’image complète ;
-  Post Inspector de LinkedIn : image complète, titre complet et domaine
-  dans l’aperçu, titre, description, image et auteur correctement lus.
+  51 Ko pour la première version, en Helvetica Neue) ; image servie en
+  ligne avec le code 200 et le type `image/png` (contrôle avec `curl`) ;
+  aperçu iMessage avec l’image complète ; Post Inspector de LinkedIn :
+  image complète, titre complet et domaine dans l’aperçu, titre,
+  description, image et auteur correctement lus.
+- Police Geist (décrite en sections 5 et 9) : fichier WOFF2 variable et
+  licence dans `assets/fonts/`, règle `@font-face` et police de repli
+  (`styles.css`), préchargement dans le `<head>` (`index.html`). Testée
+  par Alex dans Safari 27.0.1 le 22 octobre 2026, en local puis sur le
+  site publié (`document.fonts`, comparaison avec une police serif,
+  « l » de Geist visible, une seule requête réseau, fenêtre privée).
+  Paragraphes limités à `52ch` après mesure de la longueur des lignes
+  (`styles.css`) : 72 caractères au plus dans la carte de projet, contre
+  93 à 900 px de large et 78 à 1470 px auparavant. Hauteur de l’en-tête
+  mesurée à 560 px (35 rem) à 1030 px de large et colonne de gauche fixe
+  vérifiée (section 6). Image d’aperçu de partage refaite en Geist
+  (`assets/images/apercu-partage.png`) : 1200 × 630 px confirmés avec
+  `sips`, 52 766 octets, nouvelle image servie en ligne (contrôle avec
+  `curl`) et lue par Post Inspector de LinkedIn.
 - CV public présent dans `assets/documents/`.
 - README minimal.
 
@@ -1010,18 +1103,13 @@ Elles reprennent mes règles générales de travail.
 - Description réelle du projet Serrure à frappes (à rédiger quand le projet
   aura avancé ; trop tôt pour l’instant, confirmé le 20 octobre 2026).
 - Photo définitive (une photo temporaire est en place).
-- Police et espacements définitifs (palette actuelle conservée), puis
-  vérification des contrastes des deux thèmes avec un outil dédié.
-  Décisions du 22 octobre 2026 : une seule police, hébergée dans le dépôt
-  (pas de service externe comme Google Fonts) ; Inter, Geist et Manrope
-  comparées en local avant le choix ; espacements actuels conservés,
-  longueur des lignes à vérifier avec la police retenue.
-- Mesure de la hauteur de l’en-tête à 64 rem de large (voir section 6),
-  avec la police définitive, qui modifie cette hauteur.
+- Vérification des contrastes des deux thèmes avec un outil dédié
+  (palette actuelle conservée sous cette réserve).
 - Uniformisation et nettoyage du code (voir « Uniformisation et nettoyage
   du code » ci-dessous).
 - README complet, avec la mention des icônes Feather Icons (licence MIT)
-  et celle de la licence de la police retenue.
+  et celle de la police Geist (SIL Open Font License 1.1, texte dans
+  `assets/fonts/OFL.txt`).
 - Validation complète de la V1 (section 14), dont une nouvelle validation
   HTML.
 
@@ -1082,28 +1170,42 @@ Elles reprennent mes règles générales de travail.
   valeur doit passer à 3. Poids et métadonnées contrôlés le 20 octobre
   2026 ; à refaire pour la photo définitive.
 - Balises de partage : image d’aperçu sans photo, en texte seul sur le
-  fond du thème sombre, police provisoire (Helvetica Neue) ; à refaire si
-  la police change. Comportements observés le 22 octobre 2026 et
-  acceptés : iMessage n’affiche que « Portfolio » comme titre
-  (probablement parce qu’il retire la partie identique à `og:site_name`),
-  le nom restant visible dans l’image ; Post Inspector indique le type
-  « Article » malgré `og:type` à `website` (catégorie propre à LinkedIn,
-  probable) et signale l’absence de date de publication (balise
-  d’article volontairement non ajoutée) ; LinkedIn n’affiche pas la
-  description sous l’aperçu. Non testés : WhatsApp, Discord, Slack et
-  les autres plateformes.
-- Police : Alex souhaite une police spécifique plutôt que la police système,
-  pour une apparence identique chez tous les visiteurs. Une police web
-  n’assure pas un rendu strictement identique et a un coût (fichier à
-  héberger, temps de chargement, police de repli) : le choix se fait à
-  l’étape « police et espacements », avec vérification des options et des
-  licences. Palette de couleurs actuelle conservée.
+  fond du thème sombre, en Geist comme le site depuis le 22 octobre 2026
+  (première version en Helvetica Neue) ; à refaire si la police, le nom,
+  l’intitulé ou l’adresse du site changent. Comportements observés le
+  22 octobre 2026 et acceptés : iMessage n’affiche que « Portfolio » comme
+  titre (probablement parce qu’il retire la partie identique à
+  `og:site_name`), le nom restant visible dans l’image ; Post Inspector
+  indique le type « Article » malgré `og:type` à `website` (catégorie
+  propre à LinkedIn, probable) et signale l’absence de date de
+  publication (balise d’article volontairement non ajoutée) ; LinkedIn
+  n’affiche pas la description sous l’aperçu. Non testés : WhatsApp,
+  Discord, Slack et les autres plateformes.
+- Police : Geist, retenue le 22 octobre 2026 plutôt que la police système,
+  pour une apparence plus homogène d’un appareil à l’autre ; Inter et
+  Manrope écartées après comparaison en local (section 5). Hébergée dans
+  le dépôt, sans service externe. Limites : une police web n’assure pas
+  un rendu strictement identique partout (écran, système, navigateur) ;
+  elle ajoute un fichier d’environ 70 Ko à la première visite ; pendant
+  son chargement, le texte s’affiche en police système
+  (`font-display: swap`), d’où un changement possible à l’arrivée de
+  Geist, jugé négligeable (pas de `size-adjust`). Tests faits dans
+  Safari 27.0.1 sur Mac.
+- Longueur des lignes : seuls les paragraphes (`main p`) sont limités, à
+  `52ch` (option retenue par Alex plutôt qu’une limite sur toute la page,
+  `.page`). Une valeur de `60ch` a d’abord été posée, puis ramenée à
+  `52ch` pour tenir compte de Geist : son « 0 », qui définit l’unité `ch`,
+  mesure environ 10 px, contre 7,7 px en moyenne par caractère, donc
+  `60ch` laissait passer environ 78 caractères. Les sections À propos (39
+  à 51 caractères par ligne selon la largeur, texte à côté de la photo)
+  et Parcours (38 à 65 caractères, date à gauche du texte) restent telles
+  quelles (décision d’Alex du 22 octobre 2026).
 
 ### Prochaine étape
 
-Police et espacements définitifs (palette conservée). Le résultat attendu
-est défini avant d’écrire du code, avec l’intérêt pour un recruteur et le
-coût en complexité.
+Vérification des contrastes des deux thèmes, avec un outil dédié (palette
+conservée sauf contraste insuffisant). Le résultat attendu, l’outil et les
+seuils visés sont fixés avant toute modification.
 
 ### Ordre de travail convenu
 
@@ -1112,15 +1214,14 @@ Ordre convenu le 20 octobre 2026 pour les étapes restantes, complété le
 
 1. Police et espacements définitifs (palette conservée) ; l’image
    d’aperçu de partage est refaite si la police change, et la hauteur de
-   l’en-tête est mesurée avec la nouvelle police (voir section 6).
+   l’en-tête est mesurée avec la nouvelle police (voir section 6). Fait le
+   22 octobre 2026 : police Geist, paragraphes limités à `52ch`, image
+   refaite, en-tête mesuré.
 2. Vérification des contrastes des deux thèmes.
 3. Uniformisation et nettoyage du code (voir ci-dessous), sans
    changement visible.
 4. README complet.
 5. Validation de la V1 (section 14).
-
-La description de Serrure à frappes sera rédigée quand le projet aura
-avancé.
 
 ### Uniformisation et nettoyage du code
 
