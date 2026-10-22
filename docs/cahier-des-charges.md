@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 22 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire et balises de partage réalisés, publication vérifiée ; restent la police et les espacements définitifs, les contrastes, le README et la validation de la V1
+Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire et balises de partage réalisés, publication vérifiée ; restent la police et les espacements définitifs, les contrastes, l’uniformisation et le nettoyage du code, le README et la validation de la V1
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -1012,8 +1012,16 @@ Elles reprennent mes règles générales de travail.
 - Photo définitive (une photo temporaire est en place).
 - Police et espacements définitifs (palette actuelle conservée), puis
   vérification des contrastes des deux thèmes avec un outil dédié.
-- Mesure de la hauteur de l’en-tête à 64 rem de large (voir section 6).
-- README complet, avec la mention des icônes Feather Icons (licence MIT).
+  Décisions du 22 octobre 2026 : une seule police, hébergée dans le dépôt
+  (pas de service externe comme Google Fonts) ; Inter, Geist et Manrope
+  comparées en local avant le choix ; espacements actuels conservés,
+  longueur des lignes à vérifier avec la police retenue.
+- Mesure de la hauteur de l’en-tête à 64 rem de large (voir section 6),
+  avec la police définitive, qui modifie cette hauteur.
+- Uniformisation et nettoyage du code (voir « Uniformisation et nettoyage
+  du code » ci-dessous).
+- README complet, avec la mention des icônes Feather Icons (licence MIT)
+  et celle de la licence de la police retenue.
 - Validation complète de la V1 (section 14), dont une nouvelle validation
   HTML.
 
@@ -1099,15 +1107,54 @@ coût en complexité.
 
 ### Ordre de travail convenu
 
-Ordre convenu le 20 octobre 2026 pour les étapes restantes, lancées une à
-la fois :
+Ordre convenu le 20 octobre 2026 pour les étapes restantes, complété le
+22 octobre 2026 (étape 3), lancées une à la fois :
 
 1. Police et espacements définitifs (palette conservée) ; l’image
-   d’aperçu de partage est refaite si la police change.
+   d’aperçu de partage est refaite si la police change, et la hauteur de
+   l’en-tête est mesurée avec la nouvelle police (voir section 6).
 2. Vérification des contrastes des deux thèmes.
-3. README complet.
-4. Validation de la V1 (section 14).
+3. Uniformisation et nettoyage du code (voir ci-dessous), sans
+   changement visible.
+4. README complet.
+5. Validation de la V1 (section 14).
 
 La description de Serrure à frappes sera rédigée quand le projet aura
-avancé. La mesure de la hauteur de l’en-tête à 64 rem de large peut se
-faire à n’importe quel moment.
+avancé.
+
+### Uniformisation et nettoyage du code
+
+Étape ajoutée le 22 octobre 2026 à la demande d’Alex. Placée après la
+police et les contrastes, dernières modifications visuelles prévues pour
+la V1, afin de ne réorganiser le code qu’une fois ; avant le README, qui
+décrira l’organisation obtenue ; avant la validation, qui servira aussi
+de contrôle après le nettoyage.
+
+Résultat attendu : un code sans doublons, rangé dans un ordre logique et
+écrit de façon homogène, sans aucun changement visible ni de comportement.
+
+Points relevés dans `styles.css` (état du 22 octobre 2026) :
+
+- règles en double : `.timeline-item::before` et `.project-card::before`
+  identiques, `.timeline` et `.projects` identiques, positionnement commun
+  à `.timeline-item` et `.project-card`, contour de focus du bouton de
+  thème identique à celui des liens ;
+- media queries dispersées : `prefers-reduced-motion: no-preference` dans
+  cinq blocs séparés (plus un combiné avec `hover: hover`),
+  `hover: hover` dans quatre blocs, `min-width: 40rem` dans deux ;
+- ordre peu logique : réinitialisation `box-sizing` placée après `body`
+  et `a`, règle `main` après `main li+li`, contour de focus des liens et
+  lien d’évitement au milieu des composants, règles de la photo après les
+  animations ;
+- écriture irrégulière : espaces autour des combinateurs
+  (`section+section`, `> :last-child`, mais `header > h1`).
+
+À relire avec la même méthode : `index.html` (indentation, lignes vides
+entre les blocs, retours à la ligne dans les textes) et les deux scripts.
+
+Les conventions retenues (ordre des règles, place des media queries,
+écriture des sélecteurs, variables éventuelles pour les espacements et
+les durées) seront fixées au début de l’étape, puis ajoutées à la
+section 13. Vérification : comparaison avant et après dans Safari (une
+colonne, deux colonnes, thèmes clair et sombre, survol, clavier,
+réduction des animations, désactivation de JavaScript).
