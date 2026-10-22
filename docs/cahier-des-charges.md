@@ -252,7 +252,7 @@ Les 14 paires vérifiées (S : thème sombre, C : thème clair), avec les
 couleurs actuelles ; rapports avant et après la correction :
 
 | Paire | Rôle | Avant-plan | Fond | Avant | Après |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | S1 | texte principal | `#f1f5f9` | `#111827` | 16,19:1 | 16,19:1 |
 | S2 | texte secondaire, icônes, bordure du bouton de thème | `#a8b4c7` | `#111827` | 8,46:1 | 8,46:1 |
 | S3 | accent (liens, survol, contour de focus) | `#7dd3fc` | `#111827` | 10,64:1 | 10,64:1 |
@@ -1183,20 +1183,6 @@ Elles reprennent mes règles générales de travail.
   `curl`) et lue par Post Inspector de LinkedIn.
 - CV public présent dans `assets/documents/`.
 - README minimal.
-- Police Geist (décrite en sections 5 et 9) : fichier WOFF2 variable et
-  licence dans `assets/fonts/`, règle `@font-face` et police de repli
-  (`styles.css`), préchargement dans le `<head>` (`index.html`). Testée
-  par Alex dans Safari 27.0.1 le 22 octobre 2026, en local puis sur le
-  site publié (`document.fonts`, comparaison avec une police serif,
-  « l » de Geist visible, une seule requête réseau, fenêtre privée).
-  Paragraphes limités à `52ch` après mesure de la longueur des lignes
-  (`styles.css`) : 72 caractères au plus dans la carte de projet, contre
-  93 à 900 px de large et 78 à 1470 px auparavant. Hauteur de l’en-tête
-  mesurée à 560 px (35 rem) à 1030 px de large et colonne de gauche fixe
-  vérifiée (section 6). Image d’aperçu de partage refaite en Geist
-  (`assets/images/apercu-partage.png`) : 1200 × 630 px confirmés avec
-  `sips`, 52 766 octets, nouvelle image servie en ligne (contrôle avec
-  `curl`) et lue par Post Inspector de LinkedIn.
 - Vérification des contrastes (décrite en section 5) : 14 paires de
   couleurs des deux thèmes, survol compris, au niveau AA, avec WebAIM
   Contrast Checker et par le calcul. Seule paire en échec : texte
@@ -1300,15 +1286,6 @@ Elles reprennent mes règles générales de travail.
   Geist, jugé négligeable (pas de `size-adjust`). Tests faits dans
   Safari 27.0.1 sur Mac.
 - Longueur des lignes : seuls les paragraphes (`main p`) sont limités, à
-  `52ch` (option retenue par Alex plutôt qu’une limite sur toute la page,
-  `.page`). Une valeur de `60ch` a d’abord été posée, puis ramenée à
-  `52ch` pour tenir compte de Geist : son « 0 », qui définit l’unité `ch`,
-  mesure environ 10 px, contre 7,7 px en moyenne par caractère, donc
-  `60ch` laissait passer environ 78 caractères. Les sections À propos (39
-  à 51 caractères par ligne selon la largeur, texte à côté de la photo)
-  et Parcours (38 à 65 caractères, date à gauche du texte) restent telles
-  quelles (décision d’Alex du 22 octobre 2026).
-  - Longueur des lignes : seuls les paragraphes (`main p`) sont limités, à
   `52ch` (option retenue par Alex plutôt qu’une limite sur toute la page,
   `.page`). Une valeur de `60ch` a d’abord été posée, puis ramenée à
   `52ch` pour tenir compte de Geist : son « 0 », qui définit l’unité `ch`,
