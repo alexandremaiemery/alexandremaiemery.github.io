@@ -60,7 +60,7 @@
     const entries = Array.from(document.querySelectorAll('nav a[href^="#"]'))
         .map(function (link) {
             const section = document.querySelector(link.getAttribute("href"));
-            return section ? { link: link, section: section } : null;
+            return section ? { link, section } : null;
         })
         .filter(function (entry) {
             return entry !== null;
@@ -163,5 +163,6 @@
             unlock();
         }
     });
+
     updateActiveLink();
 })();
