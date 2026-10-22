@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 22 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist et vérification des contrastes réalisés, publication vérifiée ; restent l’uniformisation et le nettoyage du code, le README et la validation de la V1
+Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, vérification des contrastes et uniformisation du code réalisés, publication vérifiée ; restent la correction du lien e-mail de la section Contact, le README et la validation de la V1
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -816,6 +816,19 @@ Safari a faussé plusieurs vérifications (voir « Tester en local »).
   menu Développement) ou désactiver le cache dans l’onglet Réseau de
   l’inspecteur ; en cas de doute, vérifier dans l’onglet Réseau que le
   fichier modifié a bien été téléchargé à nouveau.
+- Rechargement sans le cache (⌥⌘R) et préchargement : après ⌥⌘R, Safari
+  télécharge deux fois la police, la feuille de style, `main.js` et la
+  photo, et signale que la police préchargée n’a pas été utilisée
+  (observé le 22 octobre 2026). En chargement normal dans une fenêtre
+  privée, sur le site publié, chaque fichier n’est demandé qu’une fois
+  et aucun avertissement n’apparaît. Cause probable : avec ⌥⌘R, Safari ne
+  réutilise pas les fichiers téléchargés à l’avance (non confirmé par la
+  documentation de WebKit). Pour vérifier le préchargement, faire un
+  chargement normal en fenêtre privée, et non ⌥⌘R.
+- Messages de la console venant des extensions de Safari (AdGuard,
+  Coupert, fichiers comme `content.js`) : sans rapport avec le site. La
+  fenêtre privée les évite tant que les extensions n’y sont pas
+  autorisées.
 
 ## 10. Informations publiques, photo et CV
 
@@ -1038,6 +1051,94 @@ Elles reprennent mes règles générales de travail.
 - Ne pas ajouter de suivi des visiteurs par défaut.
 - Ne jamais versionner de secret ou de document privé.
 
+### Conventions de code
+
+Fixées le 22 octobre 2026, au début de l’étape d’uniformisation
+(section 15).
+
+Principes :
+
+- Le formateur intégré de VS Code (⌥⇧F) fait foi : un fichier ne doit
+  pas changer quand on le reformate. Pour le CSS et le HTML, ce
+  formateur est basé sur JS Beautify : lignes HTML de 120 caractères au
+  plus, attributs repliés automatiquement avec un retrait
+  supplémentaire, ligne vide imposée avant `<head>`, `<body>` et
+  `</html>`, espaces retirés autour des combinateurs CSS.
+- Ne changer que ce qui est irrégulier ou en double ; ce qui est déjà
+  homogène reste tel quel (fonctions écrites avec `function`, couleurs
+  transparentes en `rgba()`, media queries en `min-width`, guillemets
+  doubles). Sans norme externe, l’usage majoritaire du code existant
+  l’emporte.
+- Retrait de 4 espaces dans tous les fichiers.
+- Pas de commentaires de section : les blocs sont séparés par des lignes
+  vides.
+
+CSS (`styles.css`) :
+
+- Ordre du général au particulier (MDN, « Organizing your CSS » ; ITCSS) :
+  `@font-face`, variables des thèmes, réinitialisation, éléments
+  (`body`, titres, paragraphes et listes, liens, focus), mise en page
+  (`.page`, `header`, `main`, `footer`), composants dans l’ordre de la
+  page (lien d’évitement, bouton de thème, sous-titre et introduction,
+  sommaire, liens rapides, contenu principal, photo, partie commune à la
+  chronologie et aux projets, chronologie, projets), `@keyframes`, puis
+  media queries.
+- Dans un composant : la règle de base, puis ses états.
+- Media queries regroupées en fin de fichier, un seul bloc par
+  condition, dans cet ordre : `(min-width: 40rem)`, `(min-width: 64rem)`,
+  `(min-width: 64rem) and (min-height: 45rem)`, `(hover: hover)`,
+  `(prefers-reduced-motion: no-preference)`,
+  `(hover: hover) and (prefers-reduced-motion: no-preference)`. Dans
+  chaque bloc, même ordre que la partie principale. Une nouvelle règle
+  conditionnelle va dans le bloc existant de sa condition. Il n’existe
+  pas de norme unique sur ce point (autre usage courant : la media query
+  à côté de son composant) ; le regroupement a été retenu parce qu’il
+  supprime les blocs en double.
+- `@keyframes` au niveau principal, jamais dans une media query.
+- Déclarations groupées par type, dans cet ordre : position, affichage
+  et mise en page, dimensions, marges extérieures et intérieures,
+  bordure et coins, fond, couleur et texte, divers.
+- Combinateurs `>`, `+` et `~` sans espaces (`header>h1`,
+  `main section+section`, `.timeline-content>:last-child`).
+- Règles identiques fusionnées en sélecteurs groupés. Un sélecteur
+  contenant `:has()` n’est jamais groupé avec d’autres : un navigateur
+  qui ne le reconnaît pas (Safari antérieur à 15.4) ignorerait toute la
+  règle.
+- Ordre de cascade à respecter : l’état actif du sommaire
+  (`nav a[aria-current]`) avant le survol et le focus ; les délais
+  d’animation après la règle `animation`, dont le raccourci remet le
+  délai à 0 ; chaque media query après la règle qu’elle modifie.
+- Variables réservées aux couleurs des thèmes ; pas de variables pour
+  les durées ni les espacements (abstraction inutile).
+
+HTML (`index.html`) :
+
+- Pas de ligne vide juste après une balise ouvrante ni juste avant une
+  balise fermante, hors lignes imposées par le formateur ; une seule
+  ligne vide entre deux blocs voisins ; aucune entre les `<li>` d’une
+  liste.
+- Texte long écrit en bloc (balise ouvrante, texte, balise fermante) ;
+  libellé court sur une seule ligne. Un lien suivi d’une ponctuation
+  reste sur la même ligne qu’elle : un retour à la ligne dans le lien
+  crée un espace visible.
+- Icônes SVG : attributs de tracé portés par `<svg>` (convention de
+  Feather Icons), dans cet ordre : `class`, `viewBox`, `width`, `height`,
+  `fill`, `stroke`, `stroke-width`, `stroke-linecap`, `stroke-linejoin`,
+  `aria-hidden` ; éléments enfants avec balise fermante explicite.
+
+JavaScript (`theme-init.js`, `main.js`) :
+
+- Guillemets doubles ; guillemets simples seulement si la chaîne
+  contient des guillemets doubles (règle de Prettier).
+- `const` par défaut, `let` seulement pour une variable réaffectée ;
+  variable déclarée avant son utilisation.
+- Propriétés abrégées dans les objets (`{ link, section }`).
+- Bloc `catch` vide écrit sur deux lignes (`catch {` puis `}`), sans
+  commentaire : ESLint (`no-empty`) demanderait un commentaire, exclu par
+  la règle sur les commentaires.
+- Lignes vides entre les blocs logiques et avant l’appel final d’un
+  bloc.
+
 ## 14. Critères de validation de la V1
 
 - [ ] Présentation et parcours exacts.
@@ -1193,14 +1294,25 @@ Elles reprennent mes règles générales de travail.
   local (valeurs lues dans l’inspecteur, survol dans les deux thèmes),
   puis sur le site publié en fenêtre privée (survol dans les deux thèmes,
   focus clavier sur la carte de projet).
+- Uniformisation et nettoyage du code (décrits dans « Uniformisation et
+  nettoyage du code » ci-dessous, conventions en section 13), sans
+  changement visible ni de comportement (`styles.css`, `index.html`,
+  `main.js` ; `theme-init.js` inchangé). Testés par Alex dans
+  Safari 27.0.1 le 22 octobre 2026, en local puis sur le site publié en
+  fenêtre privée (une colonne, largeur intermédiaire, deux colonnes,
+  colonne de gauche fixe dans une fenêtre haute et non fixe dans une
+  fenêtre basse, thèmes clair et sombre et bouton de thème, sommaire,
+  liens rapides, survol des étapes et de la carte de projet, clavier,
+  lien d’évitement, réduction des animations, animation d’entrée,
+  désactivation de JavaScript, console et onglet Réseau).
 
 ### Pas encore fait
 
 - Description réelle du projet Serrure à frappes (à rédiger quand le projet
   aura avancé ; trop tôt pour l’instant, confirmé le 20 octobre 2026).
 - Photo définitive (une photo temporaire est en place).
-- Uniformisation et nettoyage du code (voir « Uniformisation et nettoyage
-  du code » ci-dessous).
+- Correction du lien e-mail de la section Contact (défaut décrit dans
+  « Uniformisation et nettoyage du code » ci-dessous).
 - README complet, avec la mention des icônes Feather Icons (licence MIT)
   et celle de la police Geist (SIL Open Font License 1.1, texte dans
   `assets/fonts/OFL.txt`).
@@ -1305,9 +1417,10 @@ Elles reprennent mes règles générales de travail.
 
 ### Prochaine étape
 
-Uniformisation et nettoyage du code (voir ci-dessous), sans changement
-visible. Les conventions sont fixées au début de l’étape, avant toute
-modification.
+Correction du lien e-mail de la section Contact (une ligne
+d’`index.html`, commit séparé, changement visible limité à l’espace
+avant le point), puis README complet (étape 4 de l’ordre de travail). Le
+contenu du README sera fixé au début de l’étape, avant sa rédaction.
 
 ### Ordre de travail convenu
 
@@ -1323,7 +1436,8 @@ Ordre convenu le 20 octobre 2026 pour les étapes restantes, complété le
    niveau AA atteint, opacité d’atténuation à `0.82` et fond survolé à
    10 %, palette inchangée (section 5).
 3. Uniformisation et nettoyage du code (voir ci-dessous), sans
-   changement visible.
+   changement visible. Fait le 22 octobre 2026 : conventions fixées
+   (section 13), `styles.css`, `index.html` et `main.js` nettoyés.
 4. README complet.
 5. Validation de la V1 (section 14).
 
@@ -1332,16 +1446,18 @@ avancé.
 
 ### Uniformisation et nettoyage du code
 
-Étape ajoutée le 22 octobre 2026 à la demande d’Alex. Placée après la
-police et les contrastes, dernières modifications visuelles prévues pour
-la V1, afin de ne réorganiser le code qu’une fois ; avant le README, qui
-décrira l’organisation obtenue ; avant la validation, qui servira aussi
-de contrôle après le nettoyage.
+Étape ajoutée le 22 octobre 2026 à la demande d’Alex et réalisée le même
+jour. Placée après la police et les contrastes, dernières modifications
+visuelles prévues pour la V1, afin de ne réorganiser le code qu’une
+fois ; avant le README, qui décrira l’organisation obtenue ; avant la
+validation, qui servira aussi de contrôle après le nettoyage.
 
-Résultat attendu : un code sans doublons, rangé dans un ordre logique et
-écrit de façon homogène, sans aucun changement visible ni de comportement.
+Résultat : un code sans doublons, rangé dans un ordre logique et écrit
+de façon homogène, sans aucun changement visible ni de comportement. Les
+conventions ont été fixées au début de l’étape, avant toute
+modification, et sont décrites en section 13.
 
-Points relevés dans `styles.css` (état du 22 octobre 2026) :
+Points relevés dans `styles.css` avant le nettoyage :
 
 - règles en double : `.timeline-item::before` et `.project-card::before`
   identiques, `.timeline` et `.projects` identiques, positionnement commun
@@ -1357,12 +1473,35 @@ Points relevés dans `styles.css` (état du 22 octobre 2026) :
 - écriture irrégulière : espaces autour des combinateurs
   (`section+section`, `> :last-child`, mais `header > h1`).
 
-À relire avec la même méthode : `index.html` (indentation, lignes vides
-entre les blocs, retours à la ligne dans les textes) et les deux scripts.
+Modifications :
 
-Les conventions retenues (ordre des règles, place des media queries,
-écriture des sélecteurs, variables éventuelles pour les espacements et
-les durées) seront fixées au début de l’étape, puis ajoutées à la
-section 13. Vérification : comparaison avant et après dans Safari (une
-colonne, deux colonnes, thèmes clair et sombre, survol, clavier,
-réduction des animations, désactivation de JavaScript).
+- `styles.css` : règles réordonnées du général au particulier ; règles
+  identiques fusionnées en sélecteurs groupés (`.timeline` et
+  `.projects`, `.timeline-item` et `.project-card` avec leur
+  pseudo-élément `::before`, dernier enfant des étapes et des cartes,
+  contour de focus du bouton de thème avec celui des liens) ; media
+  queries regroupées en fin de fichier, un bloc par condition ;
+  `@keyframes` sortis du bloc de réduction des animations ; combinateurs
+  sans espaces ; déclarations du lien d’évitement remises dans l’ordre
+  commun (bordure avant fond). Aucune valeur modifiée.
+- `index.html` : lignes vides harmonisées ; icônes SVG du bouton de
+  thème et flèche de la carte de projet réécrites (attributs de tracé
+  portés par `<svg>`, comme pour les liens rapides, dans un ordre fixe) ;
+  paragraphe de la carte de projet écrit en bloc.
+- `main.js` : propriétés abrégées (`{ link, section }`) et ligne vide
+  avant l’appel final.
+- `theme-init.js` : inchangé, déjà conforme.
+
+Défaut repéré pendant la relecture, non corrigé dans cette étape parce
+que sa correction change l’affichage : dans la section Contact, le lien
+e-mail est écrit sur trois lignes (balise ouvrante, adresse, balise
+fermante suivie du point). Les retours à la ligne créent un espace
+visible et souligné avant le point, et le point peut passer seul à la
+ligne. Correction prévue dans un commit séparé : lien et point sur une
+seule ligne,
+`<a href="mailto:alexandremaiemery@gmail.com">alexandremaiemery@gmail.com</a>.`
+
+Vérification : comparaison dans Safari avant et après, en local puis
+sur le site publié (détail des tests dans « Réalisé »). Les requêtes en
+double et l’avertissement sur la police préchargée, observés pendant ces
+tests, ne viennent que de ⌥⌘R (section 9, « Tester en local »).
