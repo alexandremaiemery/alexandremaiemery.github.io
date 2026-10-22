@@ -1,8 +1,8 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
 Date de cadrage : 1er octobre 2026  
-Dernière mise à jour : 20 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon et photo temporaire réalisés, publication vérifiée ; restent les balises de partage, la police et les espacements définitifs, les contrastes, le README et la validation de la V1
+Dernière mise à jour : 22 octobre 2026  
+Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire et balises de partage réalisés, publication vérifiée ; restent la police et les espacements définitifs, les contrastes, le README et la validation de la V1
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -548,6 +548,8 @@ Le code conservé doit être compris et testé.
 - `assets/css/styles.css` (au pluriel ; l’ancien `style.css` est supprimé
   et ne doit pas être recréé)
 - `assets/images/favicon.svg` (favicon)
+- `assets/images/apercu-partage.png` (image d’aperçu des liens partagés,
+  1200 × 630 px)
 - `assets/images/photo-alexandre-mai-emery.jpg` (photo de la section
   À propos, temporaire)
 - `assets/js/theme-init.js` (applique le thème avant le premier affichage ;
@@ -590,6 +592,57 @@ Le code conservé doit être compris et testé.
   contenu de ce dossier, relancer. Cela efface les icônes de tous les
   sites, qui reviennent à la visite suivante. Un nouveau visiteur n’est
   pas concerné.
+
+### Balises de partage (Open Graph)
+
+Objectif : maîtriser l’aperçu affiché quand l’adresse du site est collée
+sur LinkedIn ou dans une messagerie (image, titre, description), au lieu
+d’un aperçu incomplet ou d’un rectangle gris.
+
+Mise en œuvre actuelle, dans le `<head>` d’`index.html` (aucun
+JavaScript) :
+
+- balises `<meta property="og:...">` (attribut `property`, et non `name`) :
+  `og:type` (`website`), `og:locale` (`fr_FR`), `og:site_name`, `og:url`,
+  `og:title`, `og:description`, `og:image`, `og:image:width`,
+  `og:image:height`, `og:image:alt` ;
+- `og:title` et `og:description` reprennent exactement `<title>` et
+  `<meta name="description">` : un seul message à maintenir ;
+- `og:url` et `og:image` en adresses absolues
+  (`https://alexandremaiemery.github.io/...`), car les plateformes lisent
+  la page depuis leurs propres serveurs ;
+- pas de balises `twitter:` : LinkedIn ne les lit pas et les autres
+  plateformes se rabattent sur Open Graph ;
+- pas de balise `article:published_time` : la page n’est pas un article
+  daté, et une date fixe deviendrait fausse à la première modification.
+
+Image d’aperçu (`assets/images/apercu-partage.png`) :
+
+- PNG de 1200 × 630 px (format recommandé par LinkedIn), 51 Ko ; PNG plutôt
+  que JPEG pour garder un texte net sur un fond uni ;
+- fond `#111827` ; « Alexandre » puis « MAI--EMERY » sur deux lignes, en
+  gras, en `#f1f5f9` ; « Étudiant en mathématiques et informatique » en
+  `#a8b4c7` (environ 34 pt) ; « alexandremaiemery.github.io » en `#7dd3fc`
+  (environ 30 pt) ; texte centré, loin des bords, pour rester lisible si
+  une messagerie découpe un carré au centre ;
+- sans photo : la photo actuelle est temporaire, et LinkedIn affiche déjà
+  la photo du profil à côté des publications ;
+- police Helvetica Neue, provisoire ; réalisée dans Keynote, fichier
+  source conservé hors du dépôt ;
+- à refaire si la police du site, le nom, l’intitulé ou l’adresse du site
+  changent ; mettre à jour `og:image:width` et `og:image:height` si les
+  dimensions changent.
+
+Caches :
+
+- LinkedIn copie l’image sur ses propres serveurs (`media.licdn.com`) et
+  garde l’aperçu en cache pendant environ 7 jours ; après une
+  modification, relancer Post Inspector
+  (`https://www.linkedin.com/post-inspector/`) pour forcer une nouvelle
+  lecture.
+
+Domaine personnel : en cas de changement d’adresse, modifier `og:url`,
+`og:image` et le texte de l’image.
 
 ### Tester en local
 
@@ -844,7 +897,7 @@ Elles reprennent mes règles générales de travail.
 
 ## 15. État et prochaines étapes
 
-État au 20 octobre 2026.
+État au 22 octobre 2026.
 
 ### Réalisé
 
@@ -861,8 +914,10 @@ Elles reprennent mes règles générales de travail.
   avec la carte du projet Serrure à frappes, entrée correspondante dans le
   sommaire. Bouton de changement de thème placé dans `<body>`, après le
   lien d’évitement et hors de `div.page`, et script d’initialisation du
-  thème dans le `<head>`. Validation HTML sans erreur le 14 octobre 2026
-  (avant l’ajout de la section Projets et du bouton de thème).
+  thème dans le `<head>`. Métadonnées du `<head>` : description, auteur,
+  favicon et balises de partage. Validation HTML sans erreur le
+  14 octobre 2026 (avant l’ajout de la section Projets, du bouton de thème
+  et des balises de partage).
 - `styles.css` : thème sombre de base, typographie système, mise en page
   responsive (une colonne, deux colonnes à partir de `64rem`, présentation
   fixe au défilement sous conditions de largeur et de hauteur), contour de
@@ -939,6 +994,14 @@ Elles reprennent mes règles générales de travail.
   CV public sans téléphone), aucune erreur dans la console ni de fichier
   manquant dans l’onglet Réseau ; `favicon.ico` et `favicon.svg` servis
   avec le code 200 et le bon type (contrôle avec `curl`).
+- Balises de partage (décrites en section 9) : dix balises Open Graph dans
+  le `<head>` et image d’aperçu dédiée (`index.html`,
+  `assets/images/apercu-partage.png`). Testées par Alex le 22 octobre
+  2026 : dimensions de l’image confirmées avec `sips` (1200 × 630 px,
+  51 Ko) ; image servie en ligne avec le code 200 et le type `image/png`
+  (contrôle avec `curl`) ; aperçu iMessage avec l’image complète ;
+  Post Inspector de LinkedIn : image complète, titre complet et domaine
+  dans l’aperçu, titre, description, image et auteur correctement lus.
 - CV public présent dans `assets/documents/`.
 - README minimal.
 
@@ -947,10 +1010,6 @@ Elles reprennent mes règles générales de travail.
 - Description réelle du projet Serrure à frappes (à rédiger quand le projet
   aura avancé ; trop tôt pour l’instant, confirmé le 20 octobre 2026).
 - Photo définitive (une photo temporaire est en place).
-- Balises de partage (Open Graph) pour l’aperçu du lien sur LinkedIn et
-  dans les messageries, avec une image dédiée de 1200 × 630 px (nom,
-  intitulé et adresse du site sur le fond du thème sombre, sans photo,
-  décision du 20 octobre 2026).
 - Police et espacements définitifs (palette actuelle conservée), puis
   vérification des contrastes des deux thèmes avec un outil dédié.
 - Mesure de la hauteur de l’en-tête à 64 rem de large (voir section 6).
@@ -1014,6 +1073,17 @@ Elles reprennent mes règles générales de travail.
   couvre deux lignes (`span 2`) ; si un troisième paragraphe est ajouté, la
   valeur doit passer à 3. Poids et métadonnées contrôlés le 20 octobre
   2026 ; à refaire pour la photo définitive.
+- Balises de partage : image d’aperçu sans photo, en texte seul sur le
+  fond du thème sombre, police provisoire (Helvetica Neue) ; à refaire si
+  la police change. Comportements observés le 22 octobre 2026 et
+  acceptés : iMessage n’affiche que « Portfolio » comme titre
+  (probablement parce qu’il retire la partie identique à `og:site_name`),
+  le nom restant visible dans l’image ; Post Inspector indique le type
+  « Article » malgré `og:type` à `website` (catégorie propre à LinkedIn,
+  probable) et signale l’absence de date de publication (balise
+  d’article volontairement non ajoutée) ; LinkedIn n’affiche pas la
+  description sous l’aperçu. Non testés : WhatsApp, Discord, Slack et
+  les autres plateformes.
 - Police : Alex souhaite une police spécifique plutôt que la police système,
   pour une apparence identique chez tous les visiteurs. Une police web
   n’assure pas un rendu strictement identique et a un coût (fichier à
@@ -1023,7 +1093,7 @@ Elles reprennent mes règles générales de travail.
 
 ### Prochaine étape
 
-Balises de partage (Open Graph) et image d’aperçu. Le résultat attendu
+Police et espacements définitifs (palette conservée). Le résultat attendu
 est défini avant d’écrire du code, avec l’intérêt pour un recruteur et le
 coût en complexité.
 
@@ -1032,12 +1102,11 @@ coût en complexité.
 Ordre convenu le 20 octobre 2026 pour les étapes restantes, lancées une à
 la fois :
 
-1. Balises de partage (Open Graph) et image d’aperçu.
-2. Police et espacements définitifs (palette conservée) ; l’image
-   d’aperçu est refaite si la police change.
-3. Vérification des contrastes des deux thèmes.
-4. README complet.
-5. Validation de la V1 (section 14).
+1. Police et espacements définitifs (palette conservée) ; l’image
+   d’aperçu de partage est refaite si la police change.
+2. Vérification des contrastes des deux thèmes.
+3. README complet.
+4. Validation de la V1 (section 14).
 
 La description de Serrure à frappes sera rédigée quand le projet aura
 avancé. La mesure de la hauteur de l’en-tête à 64 rem de large peut se
