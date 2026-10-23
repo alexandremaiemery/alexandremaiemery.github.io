@@ -1,8 +1,8 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
 Date de cadrage : 1er octobre 2026  
-Dernière mise à jour : 22 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, vérification des contrastes et uniformisation du code réalisés, publication vérifiée ; restent la correction du lien e-mail de la section Contact, le README et la validation de la V1
+Dernière mise à jour : 23 octobre 2026  
+Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, vérification des contrastes, uniformisation du code et correction des liens de la section Contact réalisés, publication vérifiée ; restent le README et la validation de la V1
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -1054,7 +1054,7 @@ Elles reprennent mes règles générales de travail.
 ### Conventions de code
 
 Fixées le 22 octobre 2026, au début de l’étape d’uniformisation
-(section 15).
+(section 15) ; écriture des liens précisée le 23 octobre 2026.
 
 Principes :
 
@@ -1117,10 +1117,19 @@ HTML (`index.html`) :
   balise fermante, hors lignes imposées par le formateur ; une seule
   ligne vide entre deux blocs voisins ; aucune entre les `<li>` d’une
   liste.
-- Texte long écrit en bloc (balise ouvrante, texte, balise fermante) ;
-  libellé court sur une seule ligne. Un lien suivi d’une ponctuation
-  reste sur la même ligne qu’elle : un retour à la ligne dans le lien
-  crée un espace visible.
+- Texte long écrit en bloc (balise ouvrante, texte, balise fermante).
+- Libellé court : l’élément entier sur une seule ligne, balises
+  comprises (`<li><a href="#a-propos">À propos</a></li>`). Si cette
+  ligne dépasse 120 caractères, le conteneur (`<li>`, `<p>`) est écrit
+  en bloc et le lien reste entier sur sa propre ligne. Les liens d’une
+  même section s’écrivent tous de la même façon : dans Contact et CV,
+  le lien LinkedIn dépasserait 120 caractères, donc les trois liens ont
+  leur conteneur en bloc.
+- Un lien suivi d’une ponctuation reste sur la même ligne qu’elle, sans
+  espace : un retour à la ligne entre le texte du lien et sa balise
+  fermante crée un espace visible et souligné.
+- Quand le formateur coupe lui-même une ligne (titre `<h1>` avec son
+  `<br>`, lien du titre de la carte de projet), sa sortie fait foi.
 - Icônes SVG : attributs de tracé portés par `<svg>` (convention de
   Feather Icons), dans cet ordre : `class`, `viewBox`, `width`, `height`,
   `fill`, `stroke`, `stroke-width`, `stroke-linecap`, `stroke-linejoin`,
@@ -1160,7 +1169,7 @@ JavaScript (`theme-init.js`, `main.js`) :
 
 ## 15. État et prochaines étapes
 
-État au 22 octobre 2026.
+État au 23 octobre 2026.
 
 ### Réalisé
 
@@ -1305,14 +1314,22 @@ JavaScript (`theme-init.js`, `main.js`) :
   liens rapides, survol des étapes et de la carte de projet, clavier,
   lien d’évitement, réduction des animations, animation d’entrée,
   désactivation de JavaScript, console et onglet Réseau).
+- Correction des liens de la section Contact (`index.html`, deux commits
+  séparés, le 23 octobre 2026) : lien e-mail et point final écrits sur
+  une seule ligne, ce qui supprime l’espace souligné avant le point et la
+  coupure possible avant lui (seul changement visible) ; liens GitHub,
+  LinkedIn et CV écrits chacun sur une ligne, sans changement visible
+  (convention de la section 13). Testés par Alex dans Safari 27.0.1, en
+  local puis sur le site publié en fenêtre privée (point collé à
+  l’adresse, soulignement, largeur de 320 px, contour de focus, ouverture
+  de Mail, de GitHub et de LinkedIn, téléchargement du CV, thèmes clair et
+  sombre, console).
 
 ### Pas encore fait
 
 - Description réelle du projet Serrure à frappes (à rédiger quand le projet
   aura avancé ; trop tôt pour l’instant, confirmé le 20 octobre 2026).
 - Photo définitive (une photo temporaire est en place).
-- Correction du lien e-mail de la section Contact (défaut décrit dans
-  « Uniformisation et nettoyage du code » ci-dessous).
 - README complet, avec la mention des icônes Feather Icons (licence MIT)
   et celle de la police Geist (SIL Open Font License 1.1, texte dans
   `assets/fonts/OFL.txt`).
@@ -1417,10 +1434,8 @@ JavaScript (`theme-init.js`, `main.js`) :
 
 ### Prochaine étape
 
-Correction du lien e-mail de la section Contact (une ligne
-d’`index.html`, commit séparé, changement visible limité à l’espace
-avant le point), puis README complet (étape 4 de l’ordre de travail). Le
-contenu du README sera fixé au début de l’étape, avant sa rédaction.
+README complet (étape 4 de l’ordre de travail). Le contenu du README
+sera fixé au début de l’étape, avant sa rédaction.
 
 ### Ordre de travail convenu
 
@@ -1438,6 +1453,7 @@ Ordre convenu le 20 octobre 2026 pour les étapes restantes, complété le
 3. Uniformisation et nettoyage du code (voir ci-dessous), sans
    changement visible. Fait le 22 octobre 2026 : conventions fixées
    (section 13), `styles.css`, `index.html` et `main.js` nettoyés.
+   Complété le 23 octobre 2026 : liens de la section Contact corrigés.
 4. README complet.
 5. Validation de la V1 (section 14).
 
@@ -1492,14 +1508,17 @@ Modifications :
   avant l’appel final.
 - `theme-init.js` : inchangé, déjà conforme.
 
-Défaut repéré pendant la relecture, non corrigé dans cette étape parce
-que sa correction change l’affichage : dans la section Contact, le lien
-e-mail est écrit sur trois lignes (balise ouvrante, adresse, balise
-fermante suivie du point). Les retours à la ligne créent un espace
-visible et souligné avant le point, et le point peut passer seul à la
-ligne. Correction prévue dans un commit séparé : lien et point sur une
-seule ligne,
+Défaut repéré pendant la relecture, corrigé à part le 23 octobre 2026
+parce que sa correction change l’affichage : dans la section Contact, le
+lien e-mail était écrit sur trois lignes (balise ouvrante, adresse,
+balise fermante suivie du point). Le retour à la ligne entre l’adresse
+et la balise fermante créait un espace visible et souligné avant le
+point, et le point pouvait passer seul à la ligne. Lien et point sont
+désormais sur une seule ligne,
 `<a href="mailto:alexandremaiemery@gmail.com">alexandremaiemery@gmail.com</a>.`
+Dans un second commit, les liens GitHub, LinkedIn et CV de la même
+section, écrits eux aussi sur trois lignes sans défaut visible, ont été
+mis sur une ligne pour suivre la convention (section 13).
 
 Vérification : comparaison dans Safari avant et après, en local puis
 sur le site publié (détail des tests dans « Réalisé »). Les requêtes en
