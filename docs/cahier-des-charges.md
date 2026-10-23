@@ -1654,23 +1654,30 @@ est ajoutée ici avant d’être commencée.
 
 ### Numérotation des versions
 
-- Chaque version est marquée dans Git par une étiquette annotée
-  (`v1.0`, `v1.1`, `v2.0`) posée sur le commit vérifié.
-- `v1.0` : validation de la V1 (critères en section 14).
-- `v1.1`, `v1.2`, etc. : un ensemble de modifications visibles terminé
-  et vérifié, par exemple le remplacement de la photo ; pas une
-  étiquette par commit ni par petite correction.
-- `v2.0` : quand les évolutions prévues pour la V2 sont réalisées.
+- Seules les versions majeures sont numérotées : `v1.0`, `v2.0`,
+  `v3.0`, etc. (décision d’Alex, 23 octobre 2026).
+- Chaque version est marquée dans Git par une étiquette annotée, posée
+  sur le commit vérifié ; `v1.0` correspond à la validation de la V1
+  (critères en section 14).
+- Entre deux versions, les modifications sont de simples commits, sans
+  étiquette ni numéro intermédiaire (pas de `v1.1`).
+- Une nouvelle version est décidée quand un ensemble d’évolutions est
+  réalisé et vérifié, par exemple celles prévues pour la V2.
 - Une étiquette ne modifie ni les fichiers ni le site publié ; une
   étiquette oubliée peut être posée plus tard sur un commit plus ancien.
 
-### Prévu dans une version 1.x
+### Modifications prévues sans changement de version
 
 - Photo définitive, en gardant le nom du fichier, le format JPEG et le
   format carré ; poids et métadonnées à recontrôler (section 10).
 - Description réelle du projet Serrure à frappes, et retrait de la
   mention « (en cours de réalisation) » à la fin du projet
   (section 11).
+- Enseignements du second semestre : remplacer, au début du second
+  semestre, la phrase « Enseignements du premier semestre » du
+  Parcours (et la mention correspondante du CV, s’il y en a une).
+- CV : âge indiqué sans date de naissance, à mettre à jour à chaque
+  anniversaire.
 
 ### Prévu pour la V2
 
