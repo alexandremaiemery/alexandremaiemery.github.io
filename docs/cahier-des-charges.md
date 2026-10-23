@@ -661,9 +661,6 @@ Le code conservé doit être compris et testé.
   chargé avec `defer`)
 - `assets/documents/cv-alexandre-mai-emery.pdf` (CV public)
 - `docs/cahier-des-charges.md` (ce document)
-- `docs/instructions-ia.md` (instructions de projet à fournir aux
-  assistants IA)
-- `docs/prompt-type.md` (prompt type pour reprendre le travail)
 - `README.md`, `.gitignore`, `.nojekyll`
 
 ### Favicon
