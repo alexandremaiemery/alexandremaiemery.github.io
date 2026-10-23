@@ -81,9 +81,9 @@ Font License 1.1. Le texte complet de la licence se trouve dans
 ### Icônes
 
 Les icônes des liens rapides (GitHub, LinkedIn, e-mail), la flèche
-des cartes de projet, le soleil et la lune du bouton de thème proviennent de
-Feather Icons, par Cole Bemis, sous licence MIT. Leur notice de
-licence est reproduite ci-dessous :
+des cartes de projet, le soleil et la lune du bouton de thème
+proviennent de Feather Icons, par Cole Bemis, sous licence MIT. Leur
+notice de licence est reproduite ci-dessous :
 
 ```text
 The MIT License (MIT)
