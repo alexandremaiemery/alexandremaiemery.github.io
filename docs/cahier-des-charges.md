@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 23 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, vérification des contrastes, uniformisation du code et correction des liens de la section Contact réalisés, publication vérifiée ; restent le README et la validation de la V1
+Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, vérification des contrastes, uniformisation du code, correction des liens de la section Contact et README réalisés, publication vérifiée ; reste la validation de la V1
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -434,6 +434,13 @@ Mise en œuvre actuelle :
   thème clair ; nom accessible (`aria-label`) mis à jour à chaque
   changement (« Passer au thème clair » ou « Passer au thème sombre »),
   sans `aria-pressed` ;
+- icônes `sun` et `moon` de Feather Icons (Cole Bemis, licence MIT,
+  notice dans le README), en SVG dans le HTML (`currentColor`) ;
+  générées à l’origine avec Claude, elles reprenaient la lune de Feather
+  avec des valeurs arrondies et le soleil de Lucide (licence ISC) ; le
+  23 octobre 2026, les deux tracés ont été remplacés par ceux de
+  Feather, pour que toutes les icônes du site viennent d’une seule
+  collection et d’une seule licence ;
 - zone cliquable de `2.75rem`, contour de focus visible, survol limité aux
   appareils disposant d’un vrai survol, transition de couleur supprimée
   pour les utilisateurs ayant demandé la réduction des animations ;
@@ -475,8 +482,8 @@ pour la V1). Mise en œuvre actuelle, en CSS seul :
 Mise en œuvre actuelle, en HTML et CSS seuls :
 
 - carte entièrement cliquable (lien étiré : le lien du titre couvre toute
-  la carte), avec une flèche décorative en haut à droite, masquée aux
-  lecteurs d’écran ;
+  la carte), avec une flèche décorative en haut à droite (icône
+  `arrow-up-right` de Feather Icons), masquée aux lecteurs d’écran ;
 - une carte n’est cliquable que si elle mène à une destination réelle
   (dépôt, démonstration ou page dédiée) ; sans destination, ce n’est pas
   un lien ;
@@ -580,9 +587,9 @@ Mise en œuvre actuelle, en HTML et CSS seuls (aucun JavaScript) :
   lecteurs d’écran ;
 - icônes en SVG dans le HTML, de la couleur du texte courant
   (`currentColor`), donc du thème ; source : Feather Icons (Cole Bemis,
-  licence MIT) ; Simple Icons a été écarté, LinkedIn n’y figurant plus
-  depuis la version 14 ; la mention de la licence est à reporter dans le
-  README ;
+  licence MIT), notice reproduite dans la section « Crédits » du README ;
+  Simple Icons a été écarté, LinkedIn n’y figurant plus depuis la
+  version 14 ;
 - zone cliquable de `2.75rem` (comme le bouton de thème), décalée de
   `-0.75rem` à gauche pour aligner l’icône sur le texte ;
 - au repos : couleur secondaire ; au survol (appareils disposant d’un vrai
@@ -633,6 +640,10 @@ séparément et présentées depuis le portfolio.
 - Safari 27.0.1 : navigateur de test principal.
 - Visual Studio Code.
 - Git utilisé dans le terminal.
+- Identité Git (réglage global) : nom « Alexandre MAI--EMERY », adresse
+  `182100228+alexandremaiemery@users.noreply.github.com` (adresse sans
+  réponse fournie par GitHub, au nouveau pseudo depuis le
+  23 octobre 2026).
 - Accès GitHub par SSH configuré (HTTPS reste utilisable).
 - GitHub Student Developer Pack activé.
 - Claude accède au dépôt par un connecteur GitHub en lecture seule.
@@ -661,7 +672,40 @@ Le code conservé doit être compris et testé.
   chargé avec `defer`)
 - `assets/documents/cv-alexandre-mai-emery.pdf` (CV public)
 - `docs/cahier-des-charges.md` (ce document)
-- `README.md`, `.gitignore`, `.nojekyll`
+- `README.md` (présentation, lancement en local, publication, crédits et
+  droits), `.gitignore`, `.nojekyll`
+
+### Fichiers de travail hors du dépôt
+
+- Dossier iCloud Drive `Projets/Portfolio`
+  (`~/Library/Mobile Documents/com~apple~CloudDocs/Projets/Portfolio`).
+- Contenu : `apercu-partage-geist.key` et `apercu-partage.key` (sources
+  Keynote de l’image d’aperçu), `instructions-ia.md` (instructions de
+  projet données aux assistants IA) et `prompt-type.md` (message type
+  pour reprendre le travail).
+- Aucun document de travail personnel ne doit être placé dans le dossier
+  du dépôt, même temporairement : avant chaque commit, `git status`
+  signale les fichiers nouveaux (« Fichiers non suivis »).
+- iCloud Drive synchronise mais ne sauvegarde pas : une suppression ou
+  une modification se répercute sur tous les appareils. Sauvegarde à
+  mettre en place après la V1 (section 15).
+
+### Historique du dépôt
+
+- Les documents de travail (instructions de projet et prompt type),
+  d’abord versionnés dans `docs/`, ont été retirés du dépôt le
+  23 octobre 2026, puis de son historique le même jour.
+- L’historique a été réécrit et le dépôt recréé le 23 octobre 2026
+  (retrait des documents de travail, adresse des commits mise à jour),
+  avec git-filter-repo. Conséquences : les identifiants (SHA) de tous
+  les commits ont changé et les anciens ne fonctionnent plus ; le
+  commit qui ne contenait que les instructions a disparu ;
+  l’« Initial commit », créé sur le site de GitHub, n’a plus la mention
+  « Verified » ; l’onglet Activity et l’historique des déploiements
+  commencent à cette date.
+- Deux messages de commit du 13 octobre 2026 mentionnent encore ces
+  documents : conservés (décision d’Alex), car ils n’en révèlent pas le
+  contenu.
 
 ### Favicon
 
@@ -671,11 +715,11 @@ Le code conservé doit être compris et testé.
 - Même icône pour les thèmes clair et sombre. Un SVG qui change selon le
   thème n’est pas fiable dans Safari : le défaut a été signalé avec
   Safari 26.3 et n’a pas été revérifié avec Safari 27.
-- `assets/images/favicon.svg` : lettres dessinées en tracés, sans
-  dépendance à une police. Fichier réduit au dessin le 20 octobre 2026 :
-  le bloc `<metadata>` (manifeste C2PA d’environ 7,7 Ko, ajouté par l’outil
-  de génération, sans effet sur l’affichage) et la déclaration
-  `xmlns:c2pa` ont été retirés.
+- `assets/images/favicon.svg` : généré avec Claude ; lettres dessinées en
+  tracés, sans dépendance à une police. Fichier réduit au dessin le
+  20 octobre 2026 : le bloc `<metadata>` (manifeste C2PA d’environ
+  7,7 Ko, ajouté par Claude à la génération, sans effet sur l’affichage)
+  et la déclaration `xmlns:c2pa` ont été retirés.
 - `favicon.ico` à la racine (16, 32 et 48 px) : repli pour les navigateurs
   qui ne lisent pas le SVG (Safari antérieur à 26) ou qui demandent
   `/favicon.ico` d’office.
@@ -731,9 +775,10 @@ Image d’aperçu (`assets/images/apercu-partage.png`) :
   version, en Helvetica Neue, avait les mêmes graisses, tailles, couleurs
   et positions : seule la police a changé ;
 - réalisée dans Keynote, avec Geist installée sur le Mac par le Livre des
-  polices ; fichiers sources conservés hors du dépôt :
-  `apercu-partage-geist.key` (version actuelle) et le fichier de la
-  première version, en Helvetica Neue ;
+  polices ; fichiers sources conservés hors du dépôt (voir « Fichiers de
+  travail hors du dépôt ») : `apercu-partage-geist.key` (version
+  actuelle) et `apercu-partage.key` (première version, en Helvetica
+  Neue) ;
 - à refaire si la police du site, le nom, l’intitulé ou l’adresse du site
   changent ; mettre à jour `og:image:width` et `og:image:height` si les
   dimensions changent.
@@ -793,9 +838,11 @@ le site publié :
   (préchargement et feuille de style utilisent le même téléchargement) ;
 - fenêtre privée : même rendu.
 
-Difficultés rencontrées : le premier essai en local utilisait un mauvais
-nom de fichier (`geist.woff2` au lieu de `geist.ttf`), puis le cache de
-Safari a faussé plusieurs vérifications (voir « Tester en local »).
+Difficultés rencontrées : au premier essai en local, le code appelait un
+fichier WOFF2 alors que le fichier téléchargé était un TTF ; le fichier
+WOFF2 a été récupéré et son nom exact (`geist-variable.woff2`) écrit
+dans le code. Ensuite, le cache de Safari a faussé plusieurs
+vérifications (voir « Tester en local »).
 
 ### Tester en local
 
@@ -881,6 +928,11 @@ Photo réelle pour le portfolio et le CV.
 
 Photo actuelle : temporaire, la même que sur le CV ; une photo définitive
 la remplacera plus tard.
+
+Origine de la photo actuelle : photo prise par Alexandre MAI--EMERY,
+recadrée et élargie par génération d’image, avec un fond modifié, à
+l’aide de ChatGPT. L’élargissement a été fait parce que la photo
+d’origine était trop resserrée sur le visage.
 
 Mise en œuvre actuelle, en HTML et CSS seuls (aucun JavaScript) :
 
@@ -1046,12 +1098,15 @@ Elles reprennent mes règles générales de travail.
 - Tester les liens, les thèmes, les interactions et la version mobile.
 - Prévoir la navigation au clavier et des contrastes lisibles.
 - Ne pas ajouter de suivi des visiteurs par défaut.
-- Ne jamais versionner de secret ou de document privé.
+- Ne jamais versionner de secret, de document privé ni de document de
+  travail personnel, même temporairement : un fichier poussé reste dans
+  l’historique (section 9, « Historique du dépôt »).
 
 ### Conventions de code
 
 Fixées le 22 octobre 2026, au début de l’étape d’uniformisation
-(section 15) ; écriture des liens précisée le 23 octobre 2026.
+(section 15) ; écriture des liens précisée et conventions Markdown
+ajoutées le 23 octobre 2026.
 
 Principes :
 
@@ -1060,7 +1115,9 @@ Principes :
   formateur est basé sur JS Beautify : lignes HTML de 120 caractères au
   plus, attributs repliés automatiquement avec un retrait
   supplémentaire, ligne vide imposée avant `<head>`, `<body>` et
-  `</html>`, espaces retirés autour des combinateurs CSS.
+  `</html>`, espaces retirés autour des combinateurs CSS. VS Code n’a
+  pas de formateur Markdown intégré : les fichiers `.md` suivent les
+  règles écrites plus bas.
 - Ne changer que ce qui est irrégulier ou en double ; ce qui est déjà
   homogène reste tel quel (fonctions écrites avec `function`, couleurs
   transparentes en `rgba()`, media queries en `min-width`, guillemets
@@ -1130,7 +1187,8 @@ HTML (`index.html`) :
 - Icônes SVG : attributs de tracé portés par `<svg>` (convention de
   Feather Icons), dans cet ordre : `class`, `viewBox`, `width`, `height`,
   `fill`, `stroke`, `stroke-width`, `stroke-linecap`, `stroke-linejoin`,
-  `aria-hidden` ; éléments enfants avec balise fermante explicite.
+  `aria-hidden` ; éléments enfants avec balise fermante explicite ;
+  tracés repris tels quels de Feather Icons, sans arrondir les valeurs.
 
 JavaScript (`theme-init.js`, `main.js`) :
 
@@ -1144,6 +1202,26 @@ JavaScript (`theme-init.js`, `main.js`) :
   la règle sur les commentaires.
 - Lignes vides entre les blocs logiques et avant l’appel final d’un
   bloc.
+
+Markdown (`README.md`, `docs/cahier-des-charges.md` et tout futur
+fichier `.md`) :
+
+- Lignes d’environ 72 caractères au plus, coupées à la main. Exceptions :
+  lignes d’en-tête du cahier (date, mise à jour, statut), lignes de
+  tableau, adresses, commandes, code et textes reproduits tels quels
+  (notice de licence).
+- Apostrophe typographique (’) dans le texte ; apostrophe droite (')
+  seulement dans le code et les commandes.
+- Tiret demi-cadratin (–) entouré d’espaces pour les périodes
+  (section 2) ; tiret cadratin (—) pour séparer les parties d’un titre.
+- Guillemets français (« ») avec espaces intérieurs.
+- Pas de badges ni d’émojis.
+- Adresses web entre chevrons (`<https://…>`) ; liens relatifs vers les
+  fichiers du dépôt.
+- Blocs de code avec le nom du langage (`sh`, `html`, `text`).
+- Retours à la ligne forcés de l’en-tête du cahier : deux espaces en fin
+  de ligne, à ne pas supprimer.
+- Fichier terminé par un retour à la ligne.
 
 ## 14. Critères de validation de la V1
 
@@ -1171,7 +1249,9 @@ JavaScript (`theme-init.js`, `main.js`) :
 ### Réalisé
 
 - Choix de GitHub Pages, périmètre de la V1 et direction visuelle validés.
-- Changement du pseudo GitHub et actualisation des réglages Git.
+- Changement du pseudo GitHub et actualisation des réglages Git ;
+  adresse des commits passée au nouveau pseudo le 23 octobre 2026, y
+  compris dans l’historique (section 9).
 - Décision de créer deux versions du CV.
 - Dépôt public créé et cloné.
 - `index.html` : structure sémantique (en-tête, navigation, contenu
@@ -1289,7 +1369,6 @@ JavaScript (`theme-init.js`, `main.js`) :
   `sips`, 52 766 octets, nouvelle image servie en ligne (contrôle avec
   `curl`) et lue par Post Inspector de LinkedIn.
 - CV public présent dans `assets/documents/`.
-- README minimal.
 - Vérification des contrastes (décrite en section 5) : 14 paires de
   couleurs des deux thèmes, survol compris, au niveau AA, avec WebAIM
   Contrast Checker et par le calcul. Seule paire en échec : texte
@@ -1321,17 +1400,42 @@ JavaScript (`theme-init.js`, `main.js`) :
   l’adresse, soulignement, largeur de 320 px, contour de focus, ouverture
   de Mail, de GitHub et de LinkedIn, téléchargement du CV, thèmes clair et
   sombre, console).
+- Icônes du bouton de thème (décrites en section 7) : soleil et lune
+  remplacés par les icônes `sun` et `moon` de Feather Icons
+  (`index.html`, deux commits, le 23 octobre 2026), tracés comparés
+  élément par élément avec le dépôt de Feather. Testées par Alex dans
+  Safari 27.0.1, en local puis sur le site publié en fenêtre privée
+  (soleil en thème sombre, lune en thème clair, basculement, clavier).
+- README complet (`README.md`, le 23 octobre 2026) : présentation,
+  contenu du site, choix techniques, lancement en local, publication,
+  lien vers ce cahier, crédits (police Geist et icônes Feather Icons,
+  avec la notice MIT complète), droits (tous droits réservés, sans
+  licence libre) et contact. Une ligne trop longue corrigée dans un
+  second commit.
+- Retrait des documents de travail (décrit en section 9) : instructions
+  de projet et prompt type retirés du dépôt, puis de son historique avec
+  git-filter-repo ; dépôt supprimé puis recréé avec l’historique nettoyé
+  et l’adresse des commits mise à jour, le 23 octobre 2026. Vérifié :
+  aucun commit ne contient plus ces fichiers, anciens commits
+  introuvables sur GitHub, fichiers identiques à ceux d’avant, réglage
+  de GitHub Pages refait et déploiement réussi, site testé en fenêtre
+  privée, anciennes adresses des documents en erreur 404, onglet
+  Activity limité au nouveau push. Copies locales de l’ancien historique
+  supprimées.
 
 ### Pas encore fait
 
 - Description réelle du projet Serrure à frappes (à rédiger quand le projet
   aura avancé ; trop tôt pour l’instant, confirmé le 20 octobre 2026).
 - Photo définitive (une photo temporaire est en place).
-- README complet, avec la mention des icônes Feather Icons (licence MIT)
-  et celle de la police Geist (SIL Open Font License 1.1, texte dans
-  `assets/fonts/OFL.txt`).
 - Validation complète de la V1 (section 14), dont une nouvelle validation
   HTML.
+- Vérification de l’absence de copie des documents de travail dans
+  l’Internet Archive (la recherche par motif de la Wayback Machine a
+  échoué le 23 octobre 2026).
+- Sauvegarde du dossier de travail (iCloud Drive, section 9) et du dépôt
+  local, à mettre en place après la V1 : iCloud Drive synchronise mais
+  ne sauvegarde pas.
 
 ### Décisions et limites connues
 
@@ -1346,12 +1450,12 @@ JavaScript (`theme-init.js`, `main.js`) :
   accède au code par ce dépôt, ce qui est autorisé par l’UE (confirmé le
   15 octobre 2026).
 - Thèmes : deux états en V1 (clair et sombre), avec bouton à icône
-  soleil/lune en haut à droite de la page, hors des colonnes. Le thème
-  clair est en blanc légèrement cassé avec le même accent bleu, à ajuster
-  si besoin. Basculement instantané. L’état « suivre le système » et le
-  fondu au changement de thème sont prévus dans une version suivante
-  (section 7). Script d’initialisation séparé (`theme-init.js`) pour
-  éviter l’éclair du mauvais thème.
+  soleil/lune (icônes de Feather Icons) en haut à droite de la page, hors
+  des colonnes. Le thème clair est en blanc légèrement cassé avec le même
+  accent bleu, à ajuster si besoin. Basculement instantané. L’état
+  « suivre le système » et le fondu au changement de thème sont prévus
+  dans une version suivante (section 7). Script d’initialisation séparé
+  (`theme-init.js`) pour éviter l’éclair du mauvais thème.
 - Bouton de thème : `position: absolute` plutôt que `fixed` (pas de
   recouvrement du texte sur téléphone) ; sur grand écran, il faut remonter
   en haut de la page pour l’atteindre (compromis accepté).
@@ -1370,6 +1474,10 @@ JavaScript (`theme-init.js`, `main.js`) :
   accessibles par `aria-label`, non testés avec VoiceOver. Icônes de Feather
   Icons (MIT), Simple Icons écarté car LinkedIn n’y figure plus depuis la
   version 14.
+- Icônes : toutes viennent de Feather Icons (liens rapides, flèche des
+  cartes de projets, soleil et lune du bouton de thème), pour une seule
+  licence à créditer. Une icône d’une autre collection demanderait son
+  propre crédit et sa propre notice dans le README.
 - Contour de focus : tous les liens du site ont les mêmes coins arrondis
   (`0.5rem`, règle `a:focus-visible`), comme le bouton de thème et les
   liens rapides.
@@ -1389,6 +1497,9 @@ JavaScript (`theme-init.js`, `main.js`) :
   couvre deux lignes (`span 2`) ; si un troisième paragraphe est ajouté, la
   valeur doit passer à 3. Poids et métadonnées contrôlés le 20 octobre
   2026 ; à refaire pour la photo définitive.
+- Origine des images : favicon généré avec Claude (section 9) ; photo
+  prise par Alex, retouchée avec ChatGPT (section 10). Indiquée par
+  transparence (décision d’Alex du 23 octobre 2026).
 - Balises de partage : image d’aperçu sans photo, en texte seul sur le
   fond du thème sombre, en Geist comme le site depuis le 22 octobre 2026
   (première version en Helvetica Neue) ; à refaire si la police, le nom,
@@ -1428,11 +1539,21 @@ JavaScript (`theme-init.js`, `main.js`) :
   possible sans passer sous AA : elle est plus discrète qu’avant, et le
   fond survolé plus marqué compense. Valeurs limites, sauf nouveau calcul
   (section 5) : opacité d’au moins `0.82`, fond survolé d’au plus 10 %.
+- README : en français, pour les recruteurs et les enseignants ;
+  présentation courte puis informations pratiques, détails renvoyés à ce
+  cahier. Aucune mention de l’IA dans le README (les mentions restent
+  dans ce cahier). Pas de capture d’écran. Pas de licence libre : code,
+  textes, images et CV tous droits réservés ; les conditions
+  d’utilisation de GitHub permettent quand même à tous de consulter et
+  de forker un dépôt public. Notice MIT de Feather reproduite en entier,
+  comme l’exige la licence. Ligne « Statut » du README à changer à la
+  validation de la V1.
 
 ### Prochaine étape
 
-README complet (étape 4 de l’ordre de travail). Le contenu du README
-sera fixé au début de l’étape, avant sa rédaction.
+Validation de la V1 (étape 5 de l’ordre de travail, critères en
+section 14), dont une nouvelle validation HTML. La méthode de validation
+sera fixée au début de l’étape.
 
 ### Ordre de travail convenu
 
@@ -1451,7 +1572,9 @@ Ordre convenu le 20 octobre 2026 pour les étapes restantes, complété le
    changement visible. Fait le 22 octobre 2026 : conventions fixées
    (section 13), `styles.css`, `index.html` et `main.js` nettoyés.
    Complété le 23 octobre 2026 : liens de la section Contact corrigés.
-4. README complet.
+4. README complet. Fait le 23 octobre 2026 : README rédigé, icônes du
+   bouton de thème reprises de Feather Icons pour un crédit unique,
+   documents de travail retirés du dépôt et de son historique.
 5. Validation de la V1 (section 14).
 
 La description de Serrure à frappes sera rédigée quand le projet aura
