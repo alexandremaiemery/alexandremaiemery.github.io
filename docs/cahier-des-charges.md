@@ -1644,3 +1644,66 @@ Vérification : comparaison dans Safari avant et après, en local puis
 sur le site publié (détail des tests dans « Réalisé »). Les requêtes en
 double et l’avertissement sur la police préchargée, observés pendant ces
 tests, ne viennent que de ⌥⌘R (section 9, « Tester en local »).
+
+## 16. Évolutions après la V1
+
+Liste créée le 23 octobre 2026 : tout ce qui a été évoqué pendant le
+développement de la V1 sans y être fait, volontairement. Les détails
+restent dans la section indiquée entre parenthèses. Une idée nouvelle
+est ajoutée ici avant d’être commencée.
+
+### Numérotation des versions
+
+- Chaque version est marquée dans Git par une étiquette annotée
+  (`v1.0`, `v1.1`, `v2.0`) posée sur le commit vérifié.
+- `v1.0` : validation de la V1 (critères en section 14).
+- `v1.1`, `v1.2`, etc. : un ensemble de modifications visibles terminé
+  et vérifié, par exemple le remplacement de la photo ; pas une
+  étiquette par commit ni par petite correction.
+- `v2.0` : quand les évolutions prévues pour la V2 sont réalisées.
+- Une étiquette ne modifie ni les fichiers ni le site publié ; une
+  étiquette oubliée peut être posée plus tard sur un commit plus ancien.
+
+### Prévu dans une version 1.x
+
+- Photo définitive, en gardant le nom du fichier, le format JPEG et le
+  format carré ; poids et métadonnées à recontrôler (section 10).
+- Description réelle du projet Serrure à frappes, et retrait de la
+  mention « (en cours de réalisation) » à la fin du projet
+  (section 11).
+
+### Prévu pour la V2
+
+- Troisième état du thème, « suivre le système » (Système / Clair /
+  Sombre), pour revenir au réglage du système après un choix
+  (section 7).
+- Fondu au changement de thème ; piste : API View Transitions, prise en
+  charge par Safari à vérifier (section 7).
+- Icône d’écran d’accueil de l’iPhone (`apple-touch-icon`) (section 9).
+- Test avec VoiceOver, reporté le 23 octobre 2026 (décision d’Alex) :
+  annonce des listes sans puces (sommaire, chronologie, projets, liens
+  rapides) et décision sur `role="list"` ; annonce de la section active
+  du sommaire (`aria-current="true"` ou `"location"`) ; noms accessibles
+  des liens rapides (sections 7 et 15).
+
+### Envisagé, à décider
+
+- Pages dédiées aux projets, avec une fiche complète (section 11).
+- Rétrospective du projet NSI du lycée (section 11).
+- Domaine personnel (petite dépense possible) ; à l’ajout, modifier
+  `og:url`, `og:image` et le texte de l’image d’aperçu (sections 1, 8
+  et 9).
+- Formulaire de contact, exclu de la V1 (section 10).
+- Applications nécessitant un serveur, hébergées séparément et
+  présentées depuis le portfolio (section 8).
+
+### Vérifications reportées
+
+- Favicon : autres navigateurs que Safari, versions de Safari
+  antérieures à 26, choix de Safari entre l’ICO et le SVG ; favicon
+  adapté au thème à réessayer avec Safari 27 (section 9).
+- Aperçu de partage : WhatsApp, Discord, Slack et autres plateformes
+  (section 9).
+- Contrastes : rapports obtenus après la correction à ressaisir dans
+  WebAIM ; photo et soulignement du sommaire actif non vérifiés
+  (section 5).
