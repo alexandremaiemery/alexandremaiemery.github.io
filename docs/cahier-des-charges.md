@@ -1,8 +1,8 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
 Date de cadrage : 1er octobre 2026  
-Dernière mise à jour : 23 octobre 2026  
-Statut : développement en cours — structure HTML, mise en page, thèmes clair et sombre, section active du sommaire, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, vérification des contrastes, uniformisation du code, correction des liens de la section Contact et README réalisés, publication vérifiée ; reste la validation de la V1
+Dernière mise à jour : 26 octobre 2026  
+Statut : validation de la V1 en cours — fonctionnalités de la V1 réalisées (structure, mise en page, thèmes, section active, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, contrastes, code uniformisé), README rédigé, publication vérifiée ; contrôles 5.1 à 5.6 faits (validations HTML et CSS, contenu, affichage, interaction, liens et fichiers) ; restent les métadonnées de deux images, une relecture par une autre IA et la finalisation (5.7)
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -114,7 +114,11 @@ La V1 sera composée d’une seule page.
 ### À propos
 
 - Présentation personnelle concise.
-- Formation actuelle et motivation.
+- Formation actuelle. Pas de phrase de motivation en V1 (décision
+  d’Alex du 23 octobre 2026) : une phrase ne sera ajoutée que si elle
+  est vraie et précise.
+- Mention de l’aide d’outils d’intelligence artificielle pour la
+  réalisation du portfolio (décision d’Alex du 26 octobre 2026).
 - Photo réelle, de taille modérée.
 - Aucun texte générique ni spécialisation inventée.
 
@@ -1105,8 +1109,8 @@ Elles reprennent mes règles générales de travail.
 ### Conventions de code
 
 Fixées le 22 octobre 2026, au début de l’étape d’uniformisation
-(section 15) ; écriture des liens précisée et conventions Markdown
-ajoutées le 23 octobre 2026.
+(section 15) ; écriture des liens précisée, conventions Markdown et
+espaces insécables ajoutées le 23 octobre 2026.
 
 Principes :
 
@@ -1182,6 +1186,11 @@ HTML (`index.html`) :
 - Un lien suivi d’une ponctuation reste sur la même ligne qu’elle, sans
   espace : un retour à la ligne entre le texte du lien et sa balise
   fermante crée un espace visible et souligné.
+- Espace insécable avant le deux-points dans le texte du site, écrite
+  avec l’entité `&nbsp;` (visible dans le code, contrairement au
+  caractère insécable, qui ressemble à une espace ordinaire). Même
+  règle avant « ; », « ! », « ? » et à l’intérieur des guillemets
+  français, s’ils apparaissent un jour dans le texte du site.
 - Quand le formateur coupe lui-même une ligne (titre `<h1>` avec son
   `<br>`, lien du titre de la carte de projet), sa sortie fait foi.
 - Icônes SVG : attributs de tracé portés par `<svg>` (convention de
@@ -1225,26 +1234,49 @@ fichier `.md`) :
 
 ## 14. Critères de validation de la V1
 
-- [ ] Présentation et parcours exacts.
-- [ ] Textes relus et sans contenu artificiel.
-- [ ] Photo réelle adaptée.
-- [ ] Compétences décrites honnêtement.
-- [ ] Affichage propre sur téléphone et ordinateur.
-- [ ] Aucun débordement horizontal gênant.
-- [ ] Thèmes clair et sombre lisibles.
-- [ ] Navigation au clavier utilisable, focus visible.
-- [ ] Animations discrètes et adaptées aux préférences utilisateur.
-- [ ] Contenu accessible même sans JavaScript.
-- [ ] Liens GitHub, LinkedIn et e-mail fonctionnels.
-- [ ] CV public téléchargeable et vérifié.
-- [ ] Aucun document privé ni secret dans le dépôt.
-- [ ] README utile et à jour.
-- [ ] Publication GitHub Pages fonctionnelle.
-- [ ] Aucun lien ou fichier manquant.
+Contrôles faits du 23 au 26 octobre 2026 (détail dans « Validation de
+la V1 », section 15), dans Safari 27.0.1 sauf mention contraire. Une
+case n’est cochée qu’après un contrôle réel.
+
+- [x] Présentation et parcours exacts. Faits confirmés par Alex le
+  23 octobre 2026.
+- [x] Textes relus et sans contenu artificiel. Relecture le
+  23 octobre 2026, deux corrections.
+- [x] Photo réelle adaptée. Photo temporaire retenue pour la V1
+  (décision d’Alex du 23 octobre 2026).
+- [x] Compétences décrites honnêtement. Formulation sur JavaScript
+  corrigée le 23 octobre 2026, aide de l’IA mentionnée le
+  26 octobre 2026.
+- [x] Affichage propre sur téléphone et ordinateur. Mode de conception
+  adaptative de Safari, Chrome sur Mac et iPhone, le 26 octobre 2026.
+- [x] Aucun débordement horizontal gênant. Mesure dans la console de
+  320 à 1440 px et zoom à 200 %, le 26 octobre 2026.
+- [x] Thèmes clair et sombre lisibles. Toutes les largeurs testées dans
+  les deux thèmes, le 26 octobre 2026.
+- [x] Navigation au clavier utilisable, focus visible. Parcours complet
+  avec ⌥Tab dans les deux thèmes, le 26 octobre 2026.
+- [x] Animations discrètes et adaptées aux préférences utilisateur.
+  Préférences simulées dans l’Inspecteur web, le 26 octobre 2026.
+- [x] Contenu accessible même sans JavaScript. JavaScript désactivé
+  dans l’Inspecteur web, le 26 octobre 2026.
+- [x] Liens GitHub, LinkedIn et e-mail fonctionnels. Fenêtre privée sans
+  connexion et e-mail de test reçu, le 26 octobre 2026.
+- [x] CV public téléchargeable et vérifié. Téléchargement, contenu et
+  métadonnées contrôlés le 26 octobre 2026.
+- [ ] Aucun document privé ni secret dans le dépôt. Historique Git,
+  recherche de secrets et analyse de GitHub sans résultat le
+  26 octobre 2026 ; reste le contenu des blocs EXIF de la photo et de
+  l’image d’aperçu.
+- [ ] README utile et à jour. Ligne « Statut » à changer à la
+  validation.
+- [ ] Publication GitHub Pages fonctionnelle. Contrôle final après le
+  dernier commit de la validation.
+- [x] Aucun lien ou fichier manquant. Onglet Réseau, fichiers publiés
+  ouverts un par un et liens testés, le 26 octobre 2026.
 
 ## 15. État et prochaines étapes
 
-État au 23 octobre 2026.
+État au 26 octobre 2026.
 
 ### Réalisé
 
@@ -1267,7 +1299,8 @@ fichier `.md`) :
   favicon, balises de partage et préchargement de la police. Validation
   HTML sans erreur le 14 octobre 2026 (avant l’ajout de la section
   Projets, du bouton de thème, des balises de partage et du préchargement
-  de la police).
+  de la police). Nouvelle validation sans erreur ni avertissement les
+  23 et 26 octobre 2026 (« Validation de la V1 » ci-dessous).
 - `styles.css` : thème sombre de base, police Geist (`@font-face`) et
   largeur des paragraphes limitée à `52ch`, mise en page responsive (une
   colonne, deux colonnes à partir de `64rem`, présentation fixe au
@@ -1422,39 +1455,58 @@ fichier `.md`) :
   privée, anciennes adresses des documents en erreur 404, onglet
   Activity limité au nouveau push. Copies locales de l’ancien historique
   supprimées.
+- Vérification de l’Internet Archive, le 23 octobre 2026 : interface
+  CDX de la Wayback Machine (`https://web.archive.org/cdx/search/cdx`,
+  recherche par préfixe), aucune capture des documents de travail sur
+  le site publié, sur github.com ni sur raw.githubusercontent.com, avec
+  le pseudo actuel et l’ancien (`AlexME77`).
+- Liste des évolutions après la V1 et règle de numérotation des
+  versions (section 16, le 23 octobre 2026).
+- Corrections du contenu (`index.html`, deux commits, le 23 octobre
+  2026) : formulation sur JavaScript dans À propos (bases en HTML et CSS
+  à approfondir, initiation à JavaScript) ; espaces insécables avant les
+  deux-points du Parcours et des Compétences (section 13).
+- Mention de l’aide de l’intelligence artificielle, le 26 octobre 2026 :
+  dans À propos (`index.html`) et dans une section « Réalisation » du
+  README (`README.md`), qui reprend aussi l’origine du favicon et de la
+  photo.
+- Validation de la V1 : sous-étapes 5.1 à 5.6 faites du 23 au
+  26 octobre 2026 (« Validation de la V1 » ci-dessous).
 
 ### Pas encore fait
 
-- Description réelle du projet Serrure à frappes (à rédiger quand le projet
-  aura avancé ; trop tôt pour l’instant, confirmé le 20 octobre 2026).
-- Photo définitive (une photo temporaire est en place).
-- Validation complète de la V1 (section 14), dont une nouvelle validation
-  HTML.
-- Vérification de l’absence de copie des documents de travail dans
-  l’Internet Archive (la recherche par motif de la Wayback Machine a
-  échoué le 23 octobre 2026).
+- Fin de la validation de la V1 (section 14) : contenu des blocs EXIF
+  de la photo et de l’image d’aperçu à vérifier, relecture du site par
+  une autre IA (demande d’Alex), puis sous-étape 5.7 (« Validation de
+  la V1 » ci-dessous).
 - Sauvegarde du dossier de travail (iCloud Drive, section 9) et du dépôt
   local, à mettre en place après la V1 : iCloud Drive synchronise mais
   ne sauvegarde pas.
+- Photo définitive et description réelle du projet Serrure à frappes :
+  prévues sans changement de version (section 16).
 
 ### Décisions et limites connues
 
 - Les listes sans puces (sommaire, chronologie, projets, liens rapides) n’ont
   pas d’attribut `role="list"`. Les lecteurs d’écran peuvent ne pas les
-  annoncer comme des listes. Non testé avec VoiceOver. Choix actuel : ne
-  pas traiter, à reconsidérer éventuellement à la validation finale.
+  annoncer comme des listes. Non testé avec VoiceOver. Choix pour la V1 :
+  ne pas traiter ; test avec VoiceOver et décision reportés à la V2
+  (décision d’Alex du 23 octobre 2026, section 16).
 - Spécialité écrite « Numérique et Sciences Informatiques » (majuscules
   choisies pour faire ressortir les initiales de NSI ; le texte officiel
   est en minuscules).
 - Le dépôt du projet Serrure à frappes est public : l’équipe enseignante
   accède au code par ce dépôt, ce qui est autorisé par l’UE (confirmé le
-  15 octobre 2026).
+  15 octobre 2026). Publication dès le début du projet probablement
+  imposée par l’UE, chaque étudiant ayant un projet différent (supposé,
+  à confirmer sur Moodle). Dépôt accessible sans être connecté à GitHub
+  (vérifié le 26 octobre 2026).
 - Thèmes : deux états en V1 (clair et sombre), avec bouton à icône
   soleil/lune (icônes de Feather Icons) en haut à droite de la page, hors
   des colonnes. Le thème clair est en blanc légèrement cassé avec le même
   accent bleu, à ajuster si besoin. Basculement instantané. L’état
   « suivre le système » et le fondu au changement de thème sont prévus
-  dans une version suivante (section 7). Script d’initialisation séparé
+  pour la V2 (sections 7 et 16). Script d’initialisation séparé
   (`theme-init.js`) pour éviter l’éclair du mauvais thème.
 - Bouton de thème : `position: absolute` plutôt que `fixed` (pas de
   recouvrement du texte sur téléphone) ; sur grand écran, il faut remonter
@@ -1462,18 +1514,19 @@ fichier `.md`) :
 - Section active du sommaire : marque choisie = texte en couleur
   principale et soulignement fin (les liens du sommaire ne sont plus
   soulignés au repos). La valeur `aria-current="true"` n’a pas été testée
-  avec VoiceOver. Faire glisser la barre de défilement avec la souris ne
-  libère pas le lien cliqué : comportement accepté. L’effet n’est visible
-  que lorsque la colonne de gauche est fixe.
+  avec VoiceOver (test reporté à la V2, section 16). Faire glisser la
+  barre de défilement avec la souris ne libère pas le lien cliqué :
+  comportement accepté. L’effet n’est visible que lorsque la colonne de
+  gauche est fixe.
 - Animation d’entrée : CSS seul, bouton de thème exclu de l’animation,
   contenu principal en fondu seul (section 7). Rythme porté de 500 ms à
   700 ms par apparition après essai, la première version paraissant trop
   rapide ; durée totale de 1,2 s depuis l’ajout des liens rapides.
 - Liens rapides : GitHub, LinkedIn et e-mail ; le CV reste dans Contact et
   CV. Icônes seules, sans texte visible ni infobulle (choix d’Alex) ; noms
-  accessibles par `aria-label`, non testés avec VoiceOver. Icônes de Feather
-  Icons (MIT), Simple Icons écarté car LinkedIn n’y figure plus depuis la
-  version 14.
+  accessibles par `aria-label`, non testés avec VoiceOver (test reporté à
+  la V2, section 16). Icônes de Feather Icons (MIT), Simple Icons écarté
+  car LinkedIn n’y figure plus depuis la version 14.
 - Icônes : toutes viennent de Feather Icons (liens rapides, flèche des
   cartes de projets, soleil et lune du bouton de thème), pour une seule
   licence à créditer. Une icône d’une autre collection demanderait son
@@ -1481,25 +1534,40 @@ fichier `.md`) :
 - Contour de focus : tous les liens du site ont les mêmes coins arrondis
   (`0.5rem`, règle `a:focus-visible`), comme le bouton de thème et les
   liens rapides.
+- Lien d’évitement : quand le contenu principal (`main`,
+  `tabindex="-1"`) reçoit le focus, Safari l’entoure d’un contour
+  (observé le 26 octobre 2026). Conservé : il montre où le focus est
+  arrivé et n’apparaît qu’au clavier (décision d’Alex du 26 octobre
+  2026 ; masquage envisagé en section 16).
 - Favicon : « AM » retenu plutôt que « AME » (lisibilité à 16 px), même
   icône pour les deux thèmes, icône d’écran d’accueil de l’iPhone reportée à
-  la V2. Testé en local et sur le site publié dans Safari 27.0.1. Non
-  testés : les autres navigateurs, les versions de Safari antérieures à 26
-  (où seul l’ICO sert) ; le choix de Safari entre l’ICO et le SVG n’a pas
-  été relevé.
+  la V2. Testé en local et sur le site publié dans Safari 27.0.1, et
+  affiché dans Chrome sur Mac (26 octobre 2026). Dans Safari, la requête
+  du favicon n’apparaît pas dans l’onglet Réseau, même en fenêtre privée
+  (chargement à part, probable) ; les deux fichiers ont été ouverts à
+  leur adresse. Non testés : Firefox, les navigateurs Android, les
+  versions de Safari antérieures à 26 (où seul l’ICO sert) ; le choix de
+  Safari entre l’ICO et le SVG n’a pas été relevé.
 - Photo : carré aux coins arrondis (pas de cercle), choix d’Alex, à droite
   du texte sur grand écran (testé et validé) et avant le texte en une
-  colonne. Photo temporaire, à remplacer en gardant le nom du fichier et le
+  colonne. Photo temporaire, retenue pour la V1 (décision d’Alex du
+  23 octobre 2026), à remplacer en gardant le nom du fichier et le
   format carré. Dimensions fixées dans le HTML (480 × 480) et taille fixe
   de `10rem` en CSS, pour qu’aucune section ne se décale au chargement de
   l’image. Pas de `loading="lazy"`. Texte alternatif « Portrait d’Alexandre
   MAI--EMERY ». Limite : dans la grille de la section À propos, la photo
   couvre deux lignes (`span 2`) ; si un troisième paragraphe est ajouté, la
   valeur doit passer à 3. Poids et métadonnées contrôlés le 20 octobre
-  2026 ; à refaire pour la photo définitive.
+  2026 ; bloc EXIF trouvé le 26 octobre 2026, contenu à vérifier ; à
+  refaire pour la photo définitive.
 - Origine des images : favicon généré avec Claude (section 9) ; photo
   prise par Alex, retouchée avec ChatGPT (section 10). Indiquée par
   transparence (décision d’Alex du 23 octobre 2026).
+- Aide de l’intelligence artificielle : code du site écrit avec l’aide
+  de Claude ; Alex fournit le contenu, prend les décisions et teste
+  chaque modification, et n’a encore compris qu’une partie du code.
+  Mentionnée sur le site (À propos) et dans le README (décision d’Alex
+  du 26 octobre 2026). Copilot, très peu utilisé, n’est pas nommé.
 - Balises de partage : image d’aperçu sans photo, en texte seul sur le
   fond du thème sombre, en Geist comme le site depuis le 22 octobre 2026
   (première version en Helvetica Neue) ; à refaire si la police, le nom,
@@ -1511,7 +1579,8 @@ fichier `.md`) :
   propre à LinkedIn, probable) et signale l’absence de date de
   publication (balise d’article volontairement non ajoutée) ; LinkedIn
   n’affiche pas la description sous l’aperçu. Non testés : WhatsApp,
-  Discord, Slack et les autres plateformes.
+  Discord, Slack et les autres plateformes. Bloc EXIF trouvé dans l’image
+  d’aperçu le 26 octobre 2026, contenu à vérifier.
 - Police : Geist, retenue le 22 octobre 2026 plutôt que la police système,
   pour une apparence plus homogène d’un appareil à l’autre ; Inter et
   Manrope écartées après comparaison en local (section 5). Hébergée dans
@@ -1521,7 +1590,8 @@ fichier `.md`) :
   son chargement, le texte s’affiche en police système
   (`font-display: swap`), d’où un changement possible à l’arrivée de
   Geist, jugé négligeable (pas de `size-adjust`). Tests faits dans
-  Safari 27.0.1 sur Mac.
+  Safari 27.0.1 sur Mac, puis dans Chrome sur Mac et Safari sur iPhone
+  le 26 octobre 2026.
 - Longueur des lignes : seuls les paragraphes (`main p`) sont limités, à
   `52ch` (option retenue par Alex plutôt qu’une limite sur toute la page,
   `.page`). Une valeur de `60ch` a d’abord été posée, puis ramenée à
@@ -1539,21 +1609,32 @@ fichier `.md`) :
   possible sans passer sous AA : elle est plus discrète qu’avant, et le
   fond survolé plus marqué compense. Valeurs limites, sauf nouveau calcul
   (section 5) : opacité d’au moins `0.82`, fond survolé d’au plus 10 %.
+- CV public : métadonnées relues le 26 octobre 2026 dans l’inspecteur
+  d’Aperçu (auteur « Alexandre Mai - - Emery », nom du compte Canva ;
+  titre « CV » ; créateur Canva) ; rien de personnel, conservées en
+  l’état (décision d’Alex), nom à corriger au prochain export
+  (section 16). Âge indiqué, sans date de naissance.
+- Navigateurs testés pour la V1 : Safari 27.0.1 sur Mac (tous les
+  tests), Chrome sur Mac et Safari sur iPhone (affichage, le 26 octobre
+  2026). Firefox et Android non testés (section 16).
 - README : en français, pour les recruteurs et les enseignants ;
   présentation courte puis informations pratiques, détails renvoyés à ce
-  cahier. Aucune mention de l’IA dans le README (les mentions restent
-  dans ce cahier). Pas de capture d’écran. Pas de licence libre : code,
-  textes, images et CV tous droits réservés ; les conditions
-  d’utilisation de GitHub permettent quand même à tous de consulter et
-  de forker un dépôt public. Notice MIT de Feather reproduite en entier,
-  comme l’exige la licence. Ligne « Statut » du README à changer à la
-  validation de la V1.
+  cahier. Section « Réalisation » sur l’aide de l’IA et l’origine des
+  images, ajoutée le 26 octobre 2026. Pas de capture d’écran. Pas de
+  licence libre : code, textes, images et CV tous droits réservés ; les
+  conditions d’utilisation de GitHub permettent quand même à tous de
+  consulter et de forker un dépôt public. Notice MIT de Feather
+  reproduite en entier, comme l’exige la licence. Ligne « Statut » du
+  README à changer à la validation de la V1.
 
 ### Prochaine étape
 
-Validation de la V1 (étape 5 de l’ordre de travail, critères en
-section 14), dont une nouvelle validation HTML. La méthode de validation
-sera fixée au début de l’étape.
+Fin de la validation de la V1 (étape 5) : vérifier le contenu des blocs
+EXIF de la photo et de l’image d’aperçu, faire relire le site par une
+autre IA, puis sous-étape 5.7 (ligne « Statut » du README, mise à jour
+de ce cahier, contrôle final du site publié en fenêtre privée,
+étiquette `v1.0`, section 16). Ensuite : sauvegarde du dossier de
+travail et du dépôt local.
 
 ### Ordre de travail convenu
 
@@ -1575,10 +1656,12 @@ Ordre convenu le 20 octobre 2026 pour les étapes restantes, complété le
 4. README complet. Fait le 23 octobre 2026 : README rédigé, icônes du
    bouton de thème reprises de Feather Icons pour un crédit unique,
    documents de travail retirés du dépôt et de son historique.
-5. Validation de la V1 (section 14).
+5. Validation de la V1 (section 14). Commencée le 23 octobre 2026 :
+   sous-étapes 5.1 à 5.6 faites, 5.7 à faire (« Validation de la V1 »
+   ci-dessous).
 
 La description de Serrure à frappes sera rédigée quand le projet aura
-avancé.
+avancé (section 16).
 
 ### Uniformisation et nettoyage du code
 
@@ -1645,12 +1728,72 @@ sur le site publié (détail des tests dans « Réalisé »). Les requêtes en
 double et l’avertissement sur la police préchargée, observés pendant ces
 tests, ne viennent que de ⌥⌘R (section 9, « Tester en local »).
 
+### Validation de la V1
+
+Méthode fixée le 23 octobre 2026 : sept sous-étapes, une à la fois ;
+une correction par commit, puis reprise des contrôles concernés ;
+d’abord ce qui peut modifier le code ou le contenu, puis les tests
+manuels sur la version définitive, enfin les contrôles du site publié ;
+tests en ligne dans une fenêtre privée.
+
+- 5.1 Validation HTML, avec le Nu Html Checker du W3C
+  (<https://validator.w3.org/nu/>, adresse du site publié, plan des
+  titres et rapport d’images) : aucune erreur ni avertissement le
+  23 octobre 2026, puis le 26 octobre 2026 après les corrections du
+  contenu ; plan des titres conforme (un `h1`, cinq `h2`, des `h3` dans
+  Parcours et Projets) ; une seule image, avec son texte alternatif ;
+  encodage UTF-8 annoncé par GitHub Pages.
+- 5.2 Validation CSS, avec le validateur CSS du W3C
+  (<https://jigsaw.w3.org/css-validator/>, profil CSS niveau 3 + SVG) :
+  aucune erreur ni avertissement le 23 octobre 2026. Badge « CSS
+  Valide ! » non ajouté (dépendance extérieure, section 8).
+- 5.3 Contenu, le 23 octobre 2026 : faits confirmés par Alex (Parcours,
+  projet, liens, CV) ; espaces insécables avant les deux-points ;
+  formulation sur JavaScript corrigée ; introduction conservée ; pas de
+  phrase de motivation ajoutée ; photo temporaire retenue. Aide de l’IA
+  mentionnée le 26 octobre 2026.
+- 5.4 Affichage, le 26 octobre 2026 : mode de conception adaptative de
+  Safari à 320, 375, 639, 640, 1023, 1024 et 1440 px dans les deux
+  thèmes, débordement horizontal mesuré à 0 dans la console
+  (`scrollWidth - clientWidth`) ; en-tête défilant à 1024 × 700 px et
+  fixe à 1024 × 800 px ; zoom à 200 % ; Chrome à 375 et 1440 px (police,
+  favicon, thème du système) ; iPhone avec Safari, en portrait et en
+  paysage (pas de défilement horizontal, aucun effet de survol resté
+  affiché, bouton de thème, sommaire, Mail, CV).
+- 5.5 Interaction, le 26 octobre 2026 : parcours au clavier (⌥Tab) des
+  15 éléments dans l’ordre prévu, contour visible dans les deux thèmes ;
+  lien d’évitement, bouton de thème (Espace et Entrée), sommaire et
+  section active, carte de projet, CV ; préférences simulées dans
+  l’Inspecteur web (réduction des animations activée et non demandée,
+  thème du système suivi puis remplacé par le choix mémorisé) ;
+  JavaScript désactivé dans l’Inspecteur web (thème sombre, bouton
+  absent, aucun lien actif, contenu et liens fonctionnels). VoiceOver
+  reporté à la V2 (section 16).
+- 5.6 Liens, fichiers et confidentialité, le 26 octobre 2026 : onglet
+  Réseau en fenêtre privée (fichiers du site seulement, police chargée
+  une fois, aucune dépendance extérieure) ; favicons, image d’aperçu,
+  licence de la police et cahier ouverts à leur adresse ; liens testés
+  sans être connecté (profils GitHub et LinkedIn, dépôt du projet,
+  Mail) ; e-mail de test envoyé depuis la messagerie universitaire et
+  reçu ; CV téléchargé, contenu et métadonnées relus ; recherche de
+  marqueurs de métadonnées avec `grep` : rien dans le favicon et le CV,
+  un bloc EXIF dans la photo et dans l’image d’aperçu (contenu à
+  vérifier) ; historique Git : aucun document privé (seul ancien nom de
+  fichier : `assets/css/style.css`), recherche de termes liés aux
+  secrets sans résultat hors des règles de ce cahier ; analyse des
+  secrets de GitHub sans alerte.
+- Avant 5.7 : relecture du site par une autre IA (demande d’Alex).
+- 5.7 Finalisation, à faire : ligne « Statut » du README, mise à jour
+  de ce cahier, contrôle final du site publié en fenêtre privée,
+  étiquette `v1.0` (section 16).
+
 ## 16. Évolutions après la V1
 
-Liste créée le 23 octobre 2026 : tout ce qui a été évoqué pendant le
-développement de la V1 sans y être fait, volontairement. Les détails
-restent dans la section indiquée entre parenthèses. Une idée nouvelle
-est ajoutée ici avant d’être commencée.
+Liste créée le 23 octobre 2026 et complétée le 26 octobre 2026 : tout
+ce qui a été évoqué pendant le développement de la V1 sans y être
+fait, volontairement. Les détails restent dans la section indiquée
+entre parenthèses. Une idée nouvelle est ajoutée ici avant d’être
+commencée.
 
 ### Numérotation des versions
 
@@ -1677,7 +1820,10 @@ est ajoutée ici avant d’être commencée.
   semestre, la phrase « Enseignements du premier semestre » du
   Parcours (et la mention correspondante du CV, s’il y en a une).
 - CV : âge indiqué sans date de naissance, à mettre à jour à chaque
-  anniversaire.
+  anniversaire ; au prochain export depuis Canva, corriger le nom de
+  l’auteur dans les métadonnées (actuellement « Alexandre Mai - -
+  Emery », nom du compte Canva) en « Alexandre MAI--EMERY » ;
+  métadonnées à recontrôler (section 15).
 
 ### Prévu pour la V2
 
@@ -1703,10 +1849,14 @@ est ajoutée ici avant d’être commencée.
 - Formulaire de contact, exclu de la V1 (section 10).
 - Applications nécessitant un serveur, hébergées séparément et
   présentées depuis le portfolio (section 8).
+- Masquer le contour que Safari affiche autour du contenu principal
+  après le lien d’évitement (règle `main:focus { outline: none; }`) ;
+  conservé en V1, réalisation incertaine (décision d’Alex du
+  26 octobre 2026, section 15).
 
 ### Vérifications reportées
 
-- Favicon : autres navigateurs que Safari, versions de Safari
+- Favicon : Firefox et navigateurs Android, versions de Safari
   antérieures à 26, choix de Safari entre l’ICO et le SVG ; favicon
   adapté au thème à réessayer avec Safari 27 (section 9).
 - Aperçu de partage : WhatsApp, Discord, Slack et autres plateformes
@@ -1714,3 +1864,8 @@ est ajoutée ici avant d’être commencée.
 - Contrastes : rapports obtenus après la correction à ressaisir dans
   WebAIM ; photo et soulignement du sommaire actif non vérifiés
   (section 5).
+- Navigateurs : Firefox et Chrome sur Android non testés ; la V1 a été
+  testée dans Safari (Mac et iPhone) et dans Chrome sur Mac, le
+  26 octobre 2026 (section 15).
+- Règle de l’UE UL1IN021 : publication du dépôt du projet dès le début
+  supposée imposée, à confirmer sur Moodle (section 15).
