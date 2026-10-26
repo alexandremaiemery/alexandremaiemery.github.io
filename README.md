@@ -63,6 +63,18 @@ déploiement, dont le déroulement se suit dans l’onglet Actions du
 dépôt. Le fichier `.nojekyll` désactive le traitement par Jekyll :
 les fichiers sont publiés tels quels.
 
+## Réalisation
+
+Le code du site (HTML, CSS et JavaScript) a été écrit avec l’aide
+d’assistants d’intelligence artificielle, principalement Claude
+(Anthropic). L’auteur a fourni le contenu, pris les décisions, testé
+et vérifié chaque modification ; il se sert de ce projet pour
+s’initier au développement web.
+
+Le favicon a été généré par Claude. La photo a été prise par
+l’auteur, puis recadrée et élargie par génération d’image, et son
+fond modifié, avec ChatGPT.
+
 ## Documentation
 
 Le cahier des charges décrit les objectifs, le contenu, les choix
