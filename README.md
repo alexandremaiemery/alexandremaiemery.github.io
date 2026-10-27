@@ -29,7 +29,8 @@ LinkedIn, e-mail) et un bouton de changement de thème.
 - Une colonne sur téléphone, deux colonnes sur grand écran.
 - Thèmes clair et sombre : le site suit la préférence du système, et
   le choix fait avec le bouton de thème est mémorisé.
-- Utilisable sans JavaScript : seul le bouton de thème est alors masqué.
+- Utilisable sans JavaScript : le site reste alors en thème sombre,
+  sans bouton de thème ni indication de la section active.
 - Accessibilité : navigation au clavier, lien d’évitement, focus
   visible et respect du réglage de réduction des animations.
 - Contrastes conformes au niveau AA des WCAG dans les deux thèmes.
