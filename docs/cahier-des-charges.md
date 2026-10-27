@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 27 octobre 2026  
-Statut : V1 terminée le 27 octobre 2026 (étiquette `v1.0`) — fonctionnalités de la V1 réalisées (structure, mise en page, thèmes, section active, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, contrastes, code uniformisé), README à jour, validation complète (5.1 à 5.7, relecture par deux autres IA), publication vérifiée ; prochaines étapes : sauvegarde, puis évolutions de la section 16
+Statut : V1 terminée le 27 octobre 2026 (étiquette `v1.0`) — fonctionnalités de la V1 réalisées (structure, mise en page, thèmes, section active, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, contrastes, code uniformisé), README à jour, validation complète (5.1 à 5.7, relecture par deux autres IA), publication vérifiée ; sauvegarde du dépôt et des documents de travail en place (section 9) ; prochaine étape à définir
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -682,17 +682,92 @@ Le code conservé doit être compris et testé.
 ### Fichiers de travail hors du dépôt
 
 - Dossier iCloud Drive `Projets/Portfolio`
-  (`~/Library/Mobile Documents/com~apple~CloudDocs/Projets/Portfolio`).
+  (`~/Library/Mobile Documents/com~apple~CloudDocs/Projets/Portfolio`),
+  non partagé, réglé sur « Toujours conserver sur cet appareil ».
 - Contenu : `apercu-partage-geist.key` et `apercu-partage.key` (sources
-  Keynote de l’image d’aperçu), `instructions-ia.md` (instructions de
-  projet données aux assistants IA) et `prompt-type.md` (message type
-  pour reprendre le travail).
+  Keynote de l’image d’aperçu), `instructions-ia-portfolio.md`
+  (instructions de projet données aux assistants IA), `prompt-type.md`
+  (message type pour reprendre le travail) et le sous-dossier
+  `Sauvegardes` (voir « Sauvegarde » ci-dessous).
+- Copie du dépôt téléchargée sur GitHub le 19 octobre 2026 (« Download
+  ZIP », sans historique) supprimée le 27 octobre 2026 après contrôle :
+  tous ses fichiers figuraient dans l’historique du dépôt, sauf les deux
+  documents de travail, identiques octet par octet à ceux du dossier.
 - Aucun document de travail personnel ne doit être placé dans le dossier
   du dépôt, même temporairement : avant chaque commit, `git status`
   signale les fichiers nouveaux (« Fichiers non suivis »).
 - iCloud Drive synchronise mais ne sauvegarde pas : une suppression ou
-  une modification se répercute sur tous les appareils. Sauvegarde à
-  mettre en place après la V1 (section 15).
+  une modification se répercute sur tous les appareils. D’où la
+  sauvegarde décrite ci-dessous.
+
+### Sauvegarde
+
+Mise en place le 27 octobre 2026, après la pose de l’étiquette `v1.0`.
+
+- Emplacement : sous-dossier `Sauvegardes` du dossier de travail
+  (`Projets/Portfolio/Sauvegardes`, sur iCloud Drive). Une seule copie
+  hors du Mac, sur iCloud ; OneDrive écarté (décision d’Alex du
+  27 octobre 2026).
+- Deux fichiers par sauvegarde, datés du jour :
+  - `depot-portfolio-AAAA-MM-JJ.bundle`, avec `-vX.0` avant l’extension
+    pour une sauvegarde de version : dépôt complet en un seul fichier
+    (`git bundle` avec `--all` : branches, étiquettes et historique),
+    sans la configuration locale ;
+  - `documents-portfolio-AAAA-MM-JJ.zip` : fichiers du dossier de
+    travail, sans le sous-dossier `Sauvegardes` ni les `.DS_Store`.
+- Archives créées avec les commandes ci-dessous, et non avec
+  « Compresser » dans le Finder, qui ajoute un dossier englobant, des
+  entrées `__MACOSX` et les `.DS_Store` (observé le 27 octobre 2026).
+  Si le zip du jour existe déjà, le supprimer avant de relancer `zip`,
+  qui sinon le complète au lieu de le remplacer.
+- Fréquence : à chaque nouvelle version, au début de chaque mois tant
+  que le site évolue, et avant toute opération risquée (réécriture de
+  l’historique, par exemple).
+- Copies gardées : toutes les sauvegardes de version et les trois
+  dernières sauvegardes mensuelles ; les plus anciennes sont
+  supprimées.
+- Après chaque sauvegarde : vérifier les archives (commandes
+  ci-dessous) et contrôler dans le Finder, ou sur iCloud.com, que les
+  fichiers sont envoyés sur iCloud.
+- Un fichier supprimé d’iCloud Drive reste récupérable pendant
+  30 jours (« Supprimés récemment », sur iCloud.com).
+
+Création et vérification, depuis la racine du dépôt (remplacer
+`AAAA-MM-JJ` par la date, et ajouter `-vX.0` au nom du bundle pour une
+version) :
+
+```sh
+PORTFOLIO="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Projets/Portfolio"
+SAUVEGARDES="$PORTFOLIO/Sauvegardes"
+git bundle create "$SAUVEGARDES/depot-portfolio-AAAA-MM-JJ.bundle" --all
+git bundle verify "$SAUVEGARDES/depot-portfolio-AAAA-MM-JJ.bundle"
+(cd "$PORTFOLIO" && zip -r "$SAUVEGARDES/documents-portfolio-AAAA-MM-JJ.zip" . -x "*Sauvegardes/*" "*.DS_Store")
+unzip -l "$SAUVEGARDES/documents-portfolio-AAAA-MM-JJ.zip"
+unzip -tq "$SAUVEGARDES/documents-portfolio-AAAA-MM-JJ.zip"
+```
+
+Restauration du dépôt, depuis le dossier où le recréer :
+
+```sh
+git clone chemin/vers/depot-portfolio-AAAA-MM-JJ.bundle alexandremaiemery.github.io
+cd alexandremaiemery.github.io
+git remote set-url origin git@github.com:alexandremaiemery/alexandremaiemery.github.io.git
+git --no-pager log --oneline -1
+git --no-pager tag
+git rev-list --count HEAD
+```
+
+Après un clone depuis le bundle, `origin` désigne le fichier bundle :
+la troisième commande le redirige vers GitHub. Sur un nouveau Mac,
+l’identité Git et l’accès SSH sont à refaire (réglages hors du dépôt).
+Le zip se décompresse avec `unzip` ou par un double-clic.
+
+Sauvegarde du 27 octobre 2026 (version `v1.0`) :
+`depot-portfolio-2026-10-27-v1.0.bundle` (591 003 octets : `main`,
+étiquette `v1.0`, 75 commits) et `documents-portfolio-2026-10-27.zip`
+(les quatre documents de travail). Archives vérifiées ; restauration
+testée par un clone du bundle dans `/tmp` : dernier commit, étiquette
+annotée `v1.0` et 75 commits retrouvés.
 
 ### Historique du dépôt
 
@@ -1511,12 +1586,18 @@ case n’est cochée qu’après un contrôle réel.
   bouton de thème, sommaire et survol, étapes et carte de projet,
   clavier, liens rapides et liens de Contact, CV corrigé) et Safari sur
   iPhone (sommaire, bouton de thème, CV).
+- Sauvegarde mise en place le 27 octobre 2026, après la pose de
+  l’étiquette `v1.0` (décrite en section 9, « Sauvegarde ») : dépôt
+  complet (`git bundle`, étiquette comprise) et documents de travail
+  (zip) dans le sous-dossier `Sauvegardes` du dossier iCloud ; archives
+  vérifiées ; restauration testée par un clone du bundle (dernier
+  commit, étiquette annotée `v1.0`, 75 commits). Ancienne copie du
+  dépôt du 19 octobre 2026 supprimée après contrôle de son contenu ;
+  nom du fichier d’instructions corrigé dans ce cahier
+  (`instructions-ia-portfolio.md`).
 
 ### Pas encore fait
 
-- Sauvegarde du dossier de travail (iCloud Drive, section 9) et du dépôt
-  local, à mettre en place juste après la V1 : iCloud Drive synchronise
-  mais ne sauvegarde pas.
 - Photo définitive et description réelle du projet Serrure à frappes :
   prévues sans changement de version (section 16).
 
@@ -1691,9 +1772,7 @@ case n’est cochée qu’après un contrôle réel.
 
 ### Prochaine étape
 
-Sauvegarde du dossier de travail et du dépôt local (section 9).
-Ensuite : modifications prévues sans changement de version et
-évolutions après la V1 (section 16).
+À définir.
 
 ### Ordre de travail convenu
 
