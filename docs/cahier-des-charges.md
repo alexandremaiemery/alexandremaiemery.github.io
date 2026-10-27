@@ -1,8 +1,8 @@
 # Portfolio d’Alexandre MAI--EMERY — Cahier des charges
 
 Date de cadrage : 1er octobre 2026  
-Dernière mise à jour : 26 octobre 2026  
-Statut : validation de la V1 presque terminée — fonctionnalités de la V1 réalisées (structure, mise en page, thèmes, section active, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, contrastes, code uniformisé), README à jour, publication vérifiée ; contrôles 5.1 à 5.6 faits, métadonnées des images vérifiées, relecture par deux autres IA faite et corrections appliquées ; restent le contrôle final du site publié et l’étiquette `v1.0` (5.7)
+Dernière mise à jour : 27 octobre 2026  
+Statut : V1 terminée le 27 octobre 2026 (étiquette `v1.0`) — fonctionnalités de la V1 réalisées (structure, mise en page, thèmes, section active, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, contrastes, code uniformisé), README à jour, validation complète (5.1 à 5.7, relecture par deux autres IA), publication vérifiée ; prochaines étapes : sauvegarde, puis évolutions de la section 16
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -1279,8 +1279,9 @@ case n’est cochée qu’après un contrôle réel.
   avec ExifTool le 27 octobre 2026, rien de personnel.
 - [x] README utile et à jour. Phrase sur l’utilisation sans JavaScript
   corrigée et ligne « Statut » changée le 27 octobre 2026.
-- [ ] Publication GitHub Pages fonctionnelle. Contrôle final après le
-  dernier commit de la validation.
+- [x] Publication GitHub Pages fonctionnelle. Déploiement réussi et
+  contrôle final du site publié en fenêtre privée, sur Mac et sur
+  iPhone, le 27 octobre 2026.
 - [x] Aucun lien ou fichier manquant. Onglet Réseau, fichiers publiés
   ouverts un par un et liens testés, le 26 octobre 2026.
 
@@ -1482,7 +1483,8 @@ case n’est cochée qu’après un contrôle réel.
   README (`README.md`), qui reprend aussi l’origine du favicon et de la
   photo.
 - Validation de la V1 : sous-étapes 5.1 à 5.6 faites du 23 au
-  26 octobre 2026, relecture par deux autres IA et corrections le
+  26 octobre 2026, relecture par deux autres IA, corrections et
+  sous-étape 5.7 le 27 octobre 2026 ; étiquette `v1.0` posée le
   27 octobre 2026 (« Validation de la V1 » ci-dessous).
 - Corrections du CSS après la relecture (`styles.css`, trois commits,
   le 27 octobre 2026), sans changement visible sur ordinateur : marge
@@ -1496,23 +1498,25 @@ case n’est cochée qu’après un contrôle réel.
   dans chaque thème, rechargement, désactivation de JavaScript).
 - CV public réexporté depuis Canva le 27 octobre 2026 (deux commits,
   section 15 « Décisions et limites connues ») : intitulé de la
-  spécialité NSI corrigé, nom affiché, titre du document et auteur des
-  métadonnées alignés sur « MAI--EMERY ». Métadonnées relues avec
-  ExifTool ; téléchargement, contenu et sélection du texte testés par
-  Alex en local.
+  spécialité NSI corrigé, compétence SQLite écrite comme sur le site,
+  nom affiché, titre du document et auteur des métadonnées alignés sur
+  « MAI--EMERY ». Métadonnées relues avec ExifTool ; téléchargement,
+  contenu et sélection du texte testés par Alex en local.
 - README corrigé le 27 octobre 2026 : phrase sur l’utilisation sans
   JavaScript (thème sombre, ni bouton de thème ni section active) et
   ligne « Statut » passée à « V1 terminée ».
+- Contrôle final du site publié par Alex le 27 octobre 2026, après le
+  déploiement des dernières corrections, en fenêtre privée : Safari
+  27.0.1 sur Mac (console et onglet Réseau sans erreur, deux thèmes et
+  bouton de thème, sommaire et survol, étapes et carte de projet,
+  clavier, liens rapides et liens de Contact, CV corrigé) et Safari sur
+  iPhone (sommaire, bouton de thème, CV).
 
 ### Pas encore fait
 
-- Fin de la sous-étape 5.7 (« Validation de la V1 » ci-dessous) :
-  contrôle final du site publié en fenêtre privée, sur Mac et sur
-  iPhone, case « Publication GitHub Pages fonctionnelle » (section 14)
-  et étiquette `v1.0`.
 - Sauvegarde du dossier de travail (iCloud Drive, section 9) et du dépôt
-  local, à mettre en place après la V1 : iCloud Drive synchronise mais
-  ne sauvegarde pas.
+  local, à mettre en place juste après la V1 : iCloud Drive synchronise
+  mais ne sauvegarde pas.
 - Photo définitive et description réelle du projet Serrure à frappes :
   prévues sans changement de version (section 16).
 
@@ -1657,7 +1661,8 @@ case n’est cochée qu’après un contrôle réel.
 - CV public : réexporté depuis Canva le 27 octobre 2026 (PDF standard,
   non aplati). Intitulé de la spécialité NSI corrigé (« Numérique et
   Sciences de l’Informatique » était faux) et mis au pluriel
-  (« spécialités ») ; nom affiché « MAI--EMERY ». Métadonnées relues
+  (« spécialités ») ; compétence SQLite écrite comme sur le site (au
+  lieu de « SQL ») ; nom affiché « MAI--EMERY ». Métadonnées relues
   avec ExifTool : titre « CV Alexandre MAI--EMERY » (nom du design
   dans Canva), auteur « Alexandre MAI--EMERY » (nom du compte Canva,
   modifié pour l’occasion), créateur Canva ; PDF balisé, en français,
@@ -1686,10 +1691,9 @@ case n’est cochée qu’après un contrôle réel.
 
 ### Prochaine étape
 
-Fin de la sous-étape 5.7 : contrôle final du site publié en fenêtre
-privée, sur Mac et sur iPhone, case « Publication GitHub Pages
-fonctionnelle » (section 14), puis étiquette `v1.0` (section 16).
-Ensuite : sauvegarde du dossier de travail et du dépôt local.
+Sauvegarde du dossier de travail et du dépôt local (section 9).
+Ensuite : modifications prévues sans changement de version et
+évolutions après la V1 (section 16).
 
 ### Ordre de travail convenu
 
@@ -1711,10 +1715,10 @@ Ordre convenu le 20 octobre 2026 pour les étapes restantes, complété le
 4. README complet. Fait le 23 octobre 2026 : README rédigé, icônes du
    bouton de thème reprises de Feather Icons pour un crédit unique,
    documents de travail retirés du dépôt et de son historique.
-5. Validation de la V1 (section 14). Commencée le 23 octobre 2026 :
-   sous-étapes 5.1 à 5.6 faites, relecture par deux autres IA et
-   corrections le 27 octobre 2026, 5.7 en cours (« Validation de la
-   V1 » ci-dessous).
+5. Validation de la V1 (section 14). Faite du 23 au 27 octobre 2026 :
+   sous-étapes 5.1 à 5.7, relecture par deux autres IA et corrections ;
+   étiquette `v1.0` posée le 27 octobre 2026 (« Validation de la V1 »
+   ci-dessous).
 
 La description de Serrure à frappes sera rédigée quand le projet aura
 avancé (section 16).
@@ -1852,12 +1856,16 @@ tests en ligne dans une fenêtre privée.
   d’animation (section 13). Notés sans correction : cas où le lien
   cliqué du sommaire reste marqué, retour à la ligne en fin de fichier
   (section 16) ; ancien pseudo cité dans ce cahier, conservé (décision
-  d’Alex du 27 octobre 2026).
-- 5.7 Finalisation, en cours : phrase du README sur l’utilisation sans
-  JavaScript corrigée, ligne « Statut » changée et cahier mis à jour le
-  27 octobre 2026 ; restent le contrôle final du site publié en fenêtre
-  privée (Mac et iPhone), la case « Publication GitHub Pages
-  fonctionnelle » (section 14) et l’étiquette `v1.0` (section 16).
+  d’Alex du 27 octobre 2026). Nouvelle relecture non jugée nécessaire
+  avant `v1.0` : toutes les modifications suivantes ont été vérifiées
+  dans le dépôt.
+- 5.7 Finalisation, le 27 octobre 2026 : phrase du README sur
+  l’utilisation sans JavaScript corrigée, ligne « Statut » changée et
+  cahier mis à jour ; contrôle final du site publié en fenêtre privée,
+  sur Mac et sur iPhone (détail dans « Réalisé ») ; case « Publication
+  GitHub Pages fonctionnelle » cochée (section 14) ; date de mise à
+  jour et retour à la ligne final de ce cahier rétablis ; étiquette
+  annotée `v1.0` posée sur le commit de cette mise à jour (section 16).
 
 ## 16. Évolutions après la V1
 
