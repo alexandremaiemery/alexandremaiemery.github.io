@@ -179,7 +179,6 @@ nav a[aria-current] {
     text-decoration-color: var(--color-text);
 }
 
-nav a:hover,
 nav a:focus-visible {
     color: var(--color-accent);
 }
@@ -440,6 +439,10 @@ main li+li {
 @media (hover: hover) {
     .theme-toggle:hover {
         border-color: var(--color-accent);
+        color: var(--color-accent);
+    }
+
+    nav a:hover {
         color: var(--color-accent);
     }
 
