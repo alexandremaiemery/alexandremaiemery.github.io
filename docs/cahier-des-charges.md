@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 26 octobre 2026  
-Statut : validation de la V1 en cours — fonctionnalités de la V1 réalisées (structure, mise en page, thèmes, section active, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, contrastes, code uniformisé), README rédigé, publication vérifiée ; contrôles 5.1 à 5.6 faits (validations HTML et CSS, contenu, affichage, interaction, liens et fichiers) ; restent les métadonnées de deux images, une relecture par une autre IA et la finalisation (5.7)
+Statut : validation de la V1 presque terminée — fonctionnalités de la V1 réalisées (structure, mise en page, thèmes, section active, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, contrastes, code uniformisé), README à jour, publication vérifiée ; contrôles 5.1 à 5.6 faits, métadonnées des images vérifiées, relecture par deux autres IA faite et corrections appliquées ; restent le contrôle final du site publié et l’étiquette `v1.0` (5.7)
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -88,7 +88,7 @@ Le niveau sera présenté honnêtement, sans revendiquer une expertise.
 
 - HTML et CSS : bases acquises au lycée, à approfondir avec ce portfolio.
 - PHP et SQLite : initiation.
-- Git et GitHub : bases du versionnement et utilisation du terminal.
+- Git et GitHub : versionnement et utilisation en ligne de commande.
 - JavaScript : apprentissage progressif pendant le développement du site.
 
 Les compétences seront décrites par des notions ou des usages concrets.
@@ -1110,7 +1110,9 @@ Elles reprennent mes règles générales de travail.
 
 Fixées le 22 octobre 2026, au début de l’étape d’uniformisation
 (section 15) ; écriture des liens précisée, conventions Markdown et
-espaces insécables ajoutées le 23 octobre 2026.
+espaces insécables ajoutées le 23 octobre 2026 ; règle de fusion et
+ordre du bloc d’animation précisés le 27 octobre 2026, après la
+relecture par deux autres IA.
 
 Principes :
 
@@ -1147,21 +1149,28 @@ CSS (`styles.css`) :
   `(min-width: 64rem) and (min-height: 45rem)`, `(hover: hover)`,
   `(prefers-reduced-motion: no-preference)`,
   `(hover: hover) and (prefers-reduced-motion: no-preference)`. Dans
-  chaque bloc, même ordre que la partie principale. Une nouvelle règle
-  conditionnelle va dans le bloc existant de sa condition. Il n’existe
-  pas de norme unique sur ce point (autre usage courant : la media query
-  à côté de son composant) ; le regroupement a été retenu parce qu’il
-  supprime les blocs en double.
+  chaque bloc, même ordre que la partie principale ; seule exception :
+  dans le bloc `(prefers-reduced-motion: no-preference)`, les règles de
+  l’animation d’entrée (éléments de l’en-tête et `main`) sont regroupées
+  à la fin. Une nouvelle règle conditionnelle va dans le bloc existant
+  de sa condition. Il n’existe pas de norme unique sur ce point (autre
+  usage courant : la media query à côté de son composant) ; le
+  regroupement a été retenu parce qu’il supprime les blocs en double.
 - `@keyframes` au niveau principal, jamais dans une media query.
 - Déclarations groupées par type, dans cet ordre : position, affichage
   et mise en page, dimensions, marges extérieures et intérieures,
   bordure et coins, fond, couleur et texte, divers.
 - Combinateurs `>`, `+` et `~` sans espaces (`header>h1`,
   `main section+section`, `.timeline-content>:last-child`).
-- Règles identiques fusionnées en sélecteurs groupés. Un sélecteur
-  contenant `:has()` n’est jamais groupé avec d’autres : un navigateur
-  qui ne le reconnaît pas (Safari antérieur à 15.4) ignorerait toute la
-  règle.
+- Règles identiques fusionnées en sélecteurs groupés lorsqu’elles sont
+  voisines (les trois règles qui masquent le bouton de thème et ses
+  icônes) ou qu’elles forment une partie commune (chronologie et
+  projets, contour de focus des liens et du bouton de thème). Une
+  déclaration identique dans des composants éloignés (couleur d’accent
+  au survol, par exemple) reste dans son composant, pour garder l’ordre
+  de la page. Un sélecteur contenant `:has()` n’est jamais groupé avec
+  d’autres : un navigateur qui ne le reconnaît pas (Safari antérieur à
+  15.4) ignorerait toute la règle.
 - Ordre de cascade à respecter : l’état actif du sommaire
   (`nav a[aria-current]`) avant le survol et le focus ; les délais
   d’animation après la règle `animation`, dont le raccourci remet le
@@ -1234,7 +1243,7 @@ fichier `.md`) :
 
 ## 14. Critères de validation de la V1
 
-Contrôles faits du 23 au 26 octobre 2026 (détail dans « Validation de
+Contrôles faits du 23 au 27 octobre 2026 (détail dans « Validation de
 la V1 », section 15), dans Safari 27.0.1 sauf mention contraire. Une
 case n’est cochée qu’après un contrôle réel.
 
@@ -1262,13 +1271,14 @@ case n’est cochée qu’après un contrôle réel.
 - [x] Liens GitHub, LinkedIn et e-mail fonctionnels. Fenêtre privée sans
   connexion et e-mail de test reçu, le 26 octobre 2026.
 - [x] CV public téléchargeable et vérifié. Téléchargement, contenu et
-  métadonnées contrôlés le 26 octobre 2026.
-- [ ] Aucun document privé ni secret dans le dépôt. Historique Git,
+  métadonnées contrôlés le 26 octobre 2026 ; nouvel export (intitulé
+  NSI, nom, auteur) contrôlé le 27 octobre 2026.
+- [x] Aucun document privé ni secret dans le dépôt. Historique Git,
   recherche de secrets et analyse de GitHub sans résultat le
-  26 octobre 2026 ; reste le contenu des blocs EXIF de la photo et de
-  l’image d’aperçu.
-- [ ] README utile et à jour. Ligne « Statut » à changer à la
-  validation.
+  26 octobre 2026 ; blocs EXIF de la photo et de l’image d’aperçu lus
+  avec ExifTool le 27 octobre 2026, rien de personnel.
+- [x] README utile et à jour. Phrase sur l’utilisation sans JavaScript
+  corrigée et ligne « Statut » changée le 27 octobre 2026.
 - [ ] Publication GitHub Pages fonctionnelle. Contrôle final après le
   dernier commit de la validation.
 - [x] Aucun lien ou fichier manquant. Onglet Réseau, fichiers publiés
@@ -1276,7 +1286,7 @@ case n’est cochée qu’après un contrôle réel.
 
 ## 15. État et prochaines étapes
 
-État au 26 octobre 2026.
+État au 27 octobre 2026.
 
 ### Réalisé
 
@@ -1311,7 +1321,8 @@ case n’est cochée qu’après un contrôle réel.
   cliquable avec flèche (comportements décrits en section 7), thème clair
   et style du bouton de thème, positionné en haut à droite hors du flux.
 - Liens du sommaire : couleur secondaire au repos, sans soulignement
-  visible, accent au survol et au focus clavier, transition de couleur de
+  visible, accent au survol (appareils disposant d’un vrai survol, depuis
+  le 27 octobre 2026) et au focus clavier, transition de couleur de
   150 ms réservée aux utilisateurs n’ayant pas demandé de réduction des
   animations.
 - Thèmes clair et sombre (comportement décrit en section 7) : choix du
@@ -1471,14 +1482,34 @@ case n’est cochée qu’après un contrôle réel.
   README (`README.md`), qui reprend aussi l’origine du favicon et de la
   photo.
 - Validation de la V1 : sous-étapes 5.1 à 5.6 faites du 23 au
-  26 octobre 2026 (« Validation de la V1 » ci-dessous).
+  26 octobre 2026, relecture par deux autres IA et corrections le
+  27 octobre 2026 (« Validation de la V1 » ci-dessous).
+- Corrections du CSS après la relecture (`styles.css`, trois commits,
+  le 27 octobre 2026), sans changement visible sur ordinateur : marge
+  sans effet retirée de la règle `h3` (écrasée par les règles des étapes
+  et des cartes) ; survol du sommaire déplacé dans le bloc
+  `(hover: hover)`, comme les autres survols, le focus clavier restant
+  hors du bloc ; trois règles `display: none` du bouton de thème et de
+  ses icônes regroupées. Testées par Alex dans Safari 27.0.1 en local
+  (titres `h3` comparés au site publié, survol du sommaire dans les deux
+  thèmes y compris sur le lien actif, clavier, une seule icône de thème
+  dans chaque thème, rechargement, désactivation de JavaScript).
+- CV public réexporté depuis Canva le 27 octobre 2026 (deux commits,
+  section 15 « Décisions et limites connues ») : intitulé de la
+  spécialité NSI corrigé, nom affiché, titre du document et auteur des
+  métadonnées alignés sur « MAI--EMERY ». Métadonnées relues avec
+  ExifTool ; téléchargement, contenu et sélection du texte testés par
+  Alex en local.
+- README corrigé le 27 octobre 2026 : phrase sur l’utilisation sans
+  JavaScript (thème sombre, ni bouton de thème ni section active) et
+  ligne « Statut » passée à « V1 terminée ».
 
 ### Pas encore fait
 
-- Fin de la validation de la V1 (section 14) : contenu des blocs EXIF
-  de la photo et de l’image d’aperçu à vérifier, relecture du site par
-  une autre IA (demande d’Alex), puis sous-étape 5.7 (« Validation de
-  la V1 » ci-dessous).
+- Fin de la sous-étape 5.7 (« Validation de la V1 » ci-dessous) :
+  contrôle final du site publié en fenêtre privée, sur Mac et sur
+  iPhone, case « Publication GitHub Pages fonctionnelle » (section 14)
+  et étiquette `v1.0`.
 - Sauvegarde du dossier de travail (iCloud Drive, section 9) et du dépôt
   local, à mettre en place après la V1 : iCloud Drive synchronise mais
   ne sauvegarde pas.
@@ -1492,9 +1523,12 @@ case n’est cochée qu’après un contrôle réel.
   annoncer comme des listes. Non testé avec VoiceOver. Choix pour la V1 :
   ne pas traiter ; test avec VoiceOver et décision reportés à la V2
   (décision d’Alex du 23 octobre 2026, section 16).
-- Spécialité écrite « Numérique et Sciences Informatiques » (majuscules
-  choisies pour faire ressortir les initiales de NSI ; le texte officiel
-  est en minuscules).
+- Spécialité écrite « Numérique et Sciences Informatiques » sur le site
+  (majuscules choisies pour faire ressortir les initiales de NSI ; le
+  texte officiel est en minuscules). Le CV, réexporté le 27 octobre
+  2026, suit l’écriture officielle, « Numérique et sciences
+  informatiques » : différence acceptée (décision d’Alex du 27 octobre
+  2026).
 - Le dépôt du projet Serrure à frappes est public : l’équipe enseignante
   accède au code par ce dépôt, ce qui est autorisé par l’UE (confirmé le
   15 octobre 2026). Publication dès le début du projet probablement
@@ -1516,8 +1550,17 @@ case n’est cochée qu’après un contrôle réel.
   soulignés au repos). La valeur `aria-current="true"` n’a pas été testée
   avec VoiceOver (test reporté à la V2, section 16). Faire glisser la
   barre de défilement avec la souris ne libère pas le lien cliqué :
-  comportement accepté. L’effet n’est visible que lorsque la colonne de
-  gauche est fixe.
+  comportement accepté. Autres cas signalés à la relecture du
+  27 octobre 2026, non testés un par un (probables d’après le code) :
+  le lien cliqué reste marqué après un retour en arrière du navigateur,
+  le lien d’évitement ou une recherche dans la page (⌘F), et un clic
+  avec ⌘ (ouverture dans un nouvel onglet) marque le lien sans faire
+  défiler la page. Défauts mineurs, non corrigés en V1 (section 16).
+  L’effet n’est visible que lorsque la colonne de gauche est fixe.
+  Survol du sommaire limité aux appareils disposant d’un vrai survol
+  depuis le 27 octobre 2026 ; avant, un lien touché pouvait garder la
+  couleur d’accent sur un écran tactile assez large pour la colonne
+  fixe (iPad en paysage, supposé ; aucun iPad testé, section 16).
 - Animation d’entrée : CSS seul, bouton de thème exclu de l’animation,
   contenu principal en fondu seul (section 7). Rythme porté de 500 ms à
   700 ms par apparition après essai, la première version paraissant trop
@@ -1558,8 +1601,9 @@ case n’est cochée qu’après un contrôle réel.
   MAI--EMERY ». Limite : dans la grille de la section À propos, la photo
   couvre deux lignes (`span 2`) ; si un troisième paragraphe est ajouté, la
   valeur doit passer à 3. Poids et métadonnées contrôlés le 20 octobre
-  2026 ; bloc EXIF trouvé le 26 octobre 2026, contenu à vérifier ; à
-  refaire pour la photo définitive.
+  2026 ; bloc EXIF trouvé le 26 octobre 2026, lu avec ExifTool le
+  27 octobre 2026 : rien de personnel ; à refaire pour la photo
+  définitive.
 - Origine des images : favicon généré avec Claude (section 9) ; photo
   prise par Alex, retouchée avec ChatGPT (section 10). Indiquée par
   transparence (décision d’Alex du 23 octobre 2026).
@@ -1580,7 +1624,8 @@ case n’est cochée qu’après un contrôle réel.
   publication (balise d’article volontairement non ajoutée) ; LinkedIn
   n’affiche pas la description sous l’aperçu. Non testés : WhatsApp,
   Discord, Slack et les autres plateformes. Bloc EXIF trouvé dans l’image
-  d’aperçu le 26 octobre 2026, contenu à vérifier.
+  d’aperçu le 26 octobre 2026, lu avec ExifTool le 27 octobre 2026 :
+  rien de personnel.
 - Police : Geist, retenue le 22 octobre 2026 plutôt que la police système,
   pour une apparence plus homogène d’un appareil à l’autre ; Inter et
   Manrope écartées après comparaison en local (section 5). Hébergée dans
@@ -1609,11 +1654,22 @@ case n’est cochée qu’après un contrôle réel.
   possible sans passer sous AA : elle est plus discrète qu’avant, et le
   fond survolé plus marqué compense. Valeurs limites, sauf nouveau calcul
   (section 5) : opacité d’au moins `0.82`, fond survolé d’au plus 10 %.
-- CV public : métadonnées relues le 26 octobre 2026 dans l’inspecteur
-  d’Aperçu (auteur « Alexandre Mai - - Emery », nom du compte Canva ;
-  titre « CV » ; créateur Canva) ; rien de personnel, conservées en
-  l’état (décision d’Alex), nom à corriger au prochain export
-  (section 16). Âge indiqué, sans date de naissance.
+- CV public : réexporté depuis Canva le 27 octobre 2026 (PDF standard,
+  non aplati). Intitulé de la spécialité NSI corrigé (« Numérique et
+  Sciences de l’Informatique » était faux) et mis au pluriel
+  (« spécialités ») ; nom affiché « MAI--EMERY ». Métadonnées relues
+  avec ExifTool : titre « CV Alexandre MAI--EMERY » (nom du design
+  dans Canva), auteur « Alexandre MAI--EMERY » (nom du compte Canva,
+  modifié pour l’occasion), créateur Canva ; PDF balisé, en français,
+  déclaré conforme à PDF/UA ; rien de personnel. Le champ `Keywords`
+  contient deux identifiants Canva (design et compte, probable),
+  inutilisables sans lien de partage : conservés, car une modification
+  avec ExifTool ajouterait une mise à jour au fichier sans effacer
+  l’ancienne valeur. Deux commits portent le même message : le premier
+  contient un export intermédiaire, dont l’auteur était encore
+  « Alexandre Mai - - Emery ». Le CV mentionne aussi la spécialité
+  Physique-chimie de première, absente du site (section 2). Âge
+  indiqué, sans date de naissance.
 - Navigateurs testés pour la V1 : Safari 27.0.1 sur Mac (tous les
   tests), Chrome sur Mac et Safari sur iPhone (affichage, le 26 octobre
   2026). Firefox et Android non testés (section 16).
@@ -1624,17 +1680,16 @@ case n’est cochée qu’après un contrôle réel.
   licence libre : code, textes, images et CV tous droits réservés ; les
   conditions d’utilisation de GitHub permettent quand même à tous de
   consulter et de forker un dépôt public. Notice MIT de Feather
-  reproduite en entier, comme l’exige la licence. Ligne « Statut » du
-  README à changer à la validation de la V1.
+  reproduite en entier, comme l’exige la licence. Ligne « Statut »
+  passée à « V1 terminée (octobre 2026) » et phrase sur l’utilisation
+  sans JavaScript corrigée le 27 octobre 2026.
 
 ### Prochaine étape
 
-Fin de la validation de la V1 (étape 5) : vérifier le contenu des blocs
-EXIF de la photo et de l’image d’aperçu, faire relire le site par une
-autre IA, puis sous-étape 5.7 (ligne « Statut » du README, mise à jour
-de ce cahier, contrôle final du site publié en fenêtre privée,
-étiquette `v1.0`, section 16). Ensuite : sauvegarde du dossier de
-travail et du dépôt local.
+Fin de la sous-étape 5.7 : contrôle final du site publié en fenêtre
+privée, sur Mac et sur iPhone, case « Publication GitHub Pages
+fonctionnelle » (section 14), puis étiquette `v1.0` (section 16).
+Ensuite : sauvegarde du dossier de travail et du dépôt local.
 
 ### Ordre de travail convenu
 
@@ -1657,8 +1712,9 @@ Ordre convenu le 20 octobre 2026 pour les étapes restantes, complété le
    bouton de thème reprises de Feather Icons pour un crédit unique,
    documents de travail retirés du dépôt et de son historique.
 5. Validation de la V1 (section 14). Commencée le 23 octobre 2026 :
-   sous-étapes 5.1 à 5.6 faites, 5.7 à faire (« Validation de la V1 »
-   ci-dessous).
+   sous-étapes 5.1 à 5.6 faites, relecture par deux autres IA et
+   corrections le 27 octobre 2026, 5.7 en cours (« Validation de la
+   V1 » ci-dessous).
 
 La description de Serrure à frappes sera rédigée quand le projet aura
 avancé (section 16).
@@ -1777,20 +1833,36 @@ tests en ligne dans une fenêtre privée.
   Mail) ; e-mail de test envoyé depuis la messagerie universitaire et
   reçu ; CV téléchargé, contenu et métadonnées relus ; recherche de
   marqueurs de métadonnées avec `grep` : rien dans le favicon et le CV,
-  un bloc EXIF dans la photo et dans l’image d’aperçu (contenu à
-  vérifier) ; historique Git : aucun document privé (seul ancien nom de
-  fichier : `assets/css/style.css`), recherche de termes liés aux
-  secrets sans résultat hors des règles de ce cahier ; analyse des
-  secrets de GitHub sans alerte.
-- Avant 5.7 : relecture du site par une autre IA (demande d’Alex).
-- 5.7 Finalisation, à faire : ligne « Statut » du README, mise à jour
-  de ce cahier, contrôle final du site publié en fenêtre privée,
-  étiquette `v1.0` (section 16).
+  un bloc EXIF dans la photo et dans l’image d’aperçu, lus avec
+  ExifTool 13.55 (`exiftool -a -G1 -s`) le 27 octobre 2026 : rien de
+  personnel, aucune modification nécessaire ; historique Git : aucun
+  document privé (seul ancien nom de fichier : `assets/css/style.css`),
+  recherche de termes liés aux secrets sans résultat hors des règles de
+  ce cahier ; analyse des secrets de GitHub sans alerte.
+- Avant 5.7 : relecture du site par deux autres IA (Claude Opus et
+  Claude Sonnet, demande d’Alex), le 27 octobre 2026, à partir du code,
+  du README et de ce cahier ; chaque remarque a été vérifiée dans le
+  dépôt avant décision, et quelques affirmations inexactes ont été
+  écartées. Aucun défaut bloquant. Corrigés, un commit par correction :
+  marge sans effet des `h3`, survol du sommaire hors du bloc
+  `(hover: hover)`, trois règles `display: none` regroupées
+  (`styles.css`) ; phrase du README sur l’utilisation sans JavaScript ;
+  intitulé de la spécialité NSI et nom sur le CV ; ligne Git des
+  compétences (section 3) ; règle de fusion et ordre du bloc
+  d’animation (section 13). Notés sans correction : cas où le lien
+  cliqué du sommaire reste marqué, retour à la ligne en fin de fichier
+  (section 16) ; ancien pseudo cité dans ce cahier, conservé (décision
+  d’Alex du 27 octobre 2026).
+- 5.7 Finalisation, en cours : phrase du README sur l’utilisation sans
+  JavaScript corrigée, ligne « Statut » changée et cahier mis à jour le
+  27 octobre 2026 ; restent le contrôle final du site publié en fenêtre
+  privée (Mac et iPhone), la case « Publication GitHub Pages
+  fonctionnelle » (section 14) et l’étiquette `v1.0` (section 16).
 
 ## 16. Évolutions après la V1
 
-Liste créée le 23 octobre 2026 et complétée le 26 octobre 2026 : tout
-ce qui a été évoqué pendant le développement de la V1 sans y être
+Liste créée le 23 octobre 2026 et complétée les 26 et 27 octobre 2026 :
+tout ce qui a été évoqué pendant le développement de la V1 sans y être
 fait, volontairement. Les détails restent dans la section indiquée
 entre parenthèses. Une idée nouvelle est ajoutée ici avant d’être
 commencée.
@@ -1820,10 +1892,9 @@ commencée.
   semestre, la phrase « Enseignements du premier semestre » du
   Parcours (et la mention correspondante du CV, s’il y en a une).
 - CV : âge indiqué sans date de naissance, à mettre à jour à chaque
-  anniversaire ; au prochain export depuis Canva, corriger le nom de
-  l’auteur dans les métadonnées (actuellement « Alexandre Mai - -
-  Emery », nom du compte Canva) en « Alexandre MAI--EMERY » ;
-  métadonnées à recontrôler (section 15).
+  anniversaire ; à chaque export depuis Canva, contrôler le contenu et
+  les métadonnées avec `exiftool -a -G1 -s` (titre, auteur, champ
+  `Keywords`) avant le commit (section 15).
 
 ### Prévu pour la V2
 
@@ -1853,6 +1924,19 @@ commencée.
   après le lien d’évitement (règle `main:focus { outline: none; }`) ;
   conservé en V1, réalisation incertaine (décision d’Alex du
   26 octobre 2026, section 15).
+- Section active du sommaire : revoir la libération du lien cliqué,
+  qui reste marqué après un retour en arrière du navigateur, le lien
+  d’évitement ou une recherche dans la page, et qui est marqué sans
+  défilement lors d’un clic avec ⌘ ; à reprendre en une seule fois
+  dans `main.js`. Piste : l’évènement `hashchange`, qui se déclenche
+  aussi lors d’un clic sur le sommaire et doit donc être traité avec
+  précaution (section 15, signalé le 27 octobre 2026).
+- Retour à la ligne en fin de fichier : présent dans `main.js` et les
+  fichiers Markdown, absent de `styles.css`, `index.html` et
+  `theme-init.js` ; choisir une règle commune et les réglages de
+  VS Code correspondants (`files.insertFinalNewline`), en vérifiant
+  qu’elle reste compatible avec le formateur, qui fait foi
+  (section 13, signalé le 27 octobre 2026).
 
 ### Vérifications reportées
 
@@ -1867,5 +1951,10 @@ commencée.
 - Navigateurs : Firefox et Chrome sur Android non testés ; la V1 a été
   testée dans Safari (Mac et iPhone) et dans Chrome sur Mac, le
   26 octobre 2026 (section 15).
+- iPad : non testé (aucun iPad disponible), notamment le survol du
+  sommaire et la colonne de gauche fixe en paysage (section 15).
+- Section active du sommaire : cas signalés à la relecture du
+  27 octobre 2026 (retour en arrière, lien d’évitement, recherche dans
+  la page, clic avec ⌘) non testés un par un (section 15).
 - Règle de l’UE UL1IN021 : publication du dépôt du projet dès le début
   supposée imposée, à confirmer sur Moodle (section 15).
