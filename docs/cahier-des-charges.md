@@ -2,7 +2,7 @@
 
 Date de cadrage : 1er octobre 2026  
 Dernière mise à jour : 27 octobre 2026  
-Statut : V1 terminée le 27 octobre 2026 (étiquette `v1.0`) — fonctionnalités de la V1 réalisées (structure, mise en page, thèmes, section active, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, contrastes, code uniformisé), README à jour, validation complète (5.1 à 5.7, relecture par deux autres IA), publication vérifiée ; sauvegarde du dépôt et des documents de travail en place (section 9) ; prochaine étape à définir
+Statut : V1 terminée le 27 octobre 2026 (étiquette `v1.0`) — fonctionnalités de la V1 réalisées (structure, mise en page, thèmes, section active, animation d’entrée, liens rapides, favicon, photo temporaire, balises de partage, police Geist, contrastes, code uniformisé), README à jour, validation complète (5.1 à 5.7, relecture par deux autres IA), publication vérifiée ; sauvegarde du dépôt et des documents de travail en place (section 9) ; projet en suspens, prochaine étape à définir à la reprise
 
 Ce document rassemble les objectifs, le contenu, les décisions techniques
 et les règles de travail du portfolio. Il doit être actualisé lorsque
@@ -1772,7 +1772,11 @@ case n’est cochée qu’après un contrôle réel.
 
 ### Prochaine étape
 
-À définir.
+À définir à la reprise du projet, en suspens depuis la fin de la V1.
+À la reprise, faire d’abord une sauvegarde (section 9,
+« Sauvegarde ») : les commits du cahier faits après la pose de
+l’étiquette `v1.0` ne sont pas dans celle du 27 octobre 2026. Choisir
+ensuite la prochaine étape.
 
 ### Ordre de travail convenu
 
