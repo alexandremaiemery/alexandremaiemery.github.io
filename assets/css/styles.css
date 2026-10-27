@@ -129,14 +129,8 @@ footer {
     cursor: pointer;
 }
 
-.theme-toggle[hidden] {
-    display: none;
-}
-
-.theme-toggle-moon {
-    display: none;
-}
-
+.theme-toggle[hidden],
+.theme-toggle-moon,
 :root[data-theme="light"] .theme-toggle-sun {
     display: none;
 }
