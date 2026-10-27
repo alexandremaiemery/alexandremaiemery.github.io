@@ -5,7 +5,7 @@ et informatique à Sorbonne Université.
 
 Site : <https://alexandremaiemery.github.io/>
 
-Statut : V1 en cours de développement.
+Statut : V1 terminée (octobre 2026).
 
 ## Contenu du site
 
